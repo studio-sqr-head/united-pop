@@ -14,16 +14,16 @@ export interface LanguageItem<T> {
 }
 
 export const languages: LanguageItem<Language>[] = [
-  {
-    id: Language.nl,
-    title: "Nederlands",
-    isDefault: true,
-    path: `/${Language.nl}`,
-  },
+  // {
+  //   id: Language.nl,
+  //   title: "NL",
+  //   isDefault: true,
+  //   path: `/${Language.nl}`,
+  // },
 
   {
     id: Language.en,
-    title: "English",
+    title: "EN",
     isDefault: false,
     path: `/${Language.en}`,
   },

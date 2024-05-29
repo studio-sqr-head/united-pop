@@ -7,7 +7,16 @@ const nextConfig = {
   },
 
   images: {
-    domains: ["a.storyblok.com"],
+    remotePatterns: [
+      {
+        hostname: "a.storyblok.com",
+        protocol: "https",
+      },
+      {
+        hostname: "via.placeholder.com",
+        protocol: "https",
+      },
+    ],
   },
 };
 
