@@ -1,7 +1,7 @@
 "use client"; // Error components must be Client Components
 
 import { useEffect } from "react";
-import { Container } from "@/app/components/layout";
+import { Container } from "@/app/components/structure";
 import { H3, Paragraph, Subheading } from "../components/typography";
 import { Button } from "../components/button";
 

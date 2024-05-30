@@ -1,7 +1,7 @@
 import { ISbStories, ISbStoryData } from "@storyblok/react/rsc";
 
 import { env } from "@/env";
-import { HeroSection } from "@/app/components/layout";
+import { HeroSection } from "@/app/components/structure";
 import { HomePageHeroCta } from "@/app/[lang]/components/home-page-hero-cta";
 import { CourseSection } from "@/app/[lang]/components/course-list";
 import { CourseStoryblok } from "@/types";

@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { ISbStoryData } from "@storyblok/react";
 
-import { Container, Divider } from "@/app/components/layout";
+import { Container, Divider } from "@/app/components/structure";
 import { H3, H5, Paragraph, Subheading } from "@/app/components/typography";
 import { MetaDataChip } from "@/app/components/chip";
 import { Button } from "@/app/components/button";
@@ -227,7 +227,7 @@ const CourseSectionHeader = () => {
   return (
     <div className="flex flex-col gap-2">
       <H3>Our Courses</H3>
-      <Subheading>What's your area of interest?</Subheading>
+      <Subheading>What&apos;s your area of interest?</Subheading>
     </div>
   );
 };

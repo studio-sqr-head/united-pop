@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 
 import { IconButton } from "@/app/components/button";
-import { Container } from "@/app/components/layout";
+import { Container } from "@/app/components/structure";
 import { Logo } from "@/app/components/logo";
 import { Paragraph } from "@/app/components/typography";
 import { SOCIAL_MEDIA } from "@/constants";

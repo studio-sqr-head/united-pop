@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { DesktopNav } from "@/app/components/navigation";
-import { Container } from "@/app/components/layout";
+import { Container } from "@/app/components/structure";
 import { Logo } from "@/app/components/logo";
 
 export const Header = ({ lang }: { lang: "en" | "nl" }) => {

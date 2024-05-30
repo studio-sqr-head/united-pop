@@ -1,5 +1,5 @@
 import { HubSpotForm } from "@/app/components/hubspot-form";
-import { Container, HeroSection } from "@/app/components/layout";
+import { Container, HeroSection } from "@/app/components/structure";
 import { H3, Paragraph } from "@/app/components/typography";
 
 const data = {

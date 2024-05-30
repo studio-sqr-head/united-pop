@@ -12,7 +12,7 @@ import {
 } from "@headlessui/react";
 import { ISbStory } from "@storyblok/react";
 
-import { Container, HeroSection } from "@/app/components/layout";
+import { Container, HeroSection } from "@/app/components/structure";
 import { H2, Paragraph, H6 } from "@/app/components/typography";
 import { Button, IconButton } from "@/app/components/button";
 import { Tab, TabGroup, TabList, TabPanel } from "@/app/components/tabs";
