@@ -50,7 +50,6 @@ const CourseListFilter = ({
 
       <div className="flex flex-wrap gap-4">
         {TYPES.map((type) => {
-          console.log(type.id, activeType);
           return (
             <div key={type.id}>
               <MetaDataChip

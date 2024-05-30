@@ -39,7 +39,7 @@ const getCourse = async ({
   const version = "published";
   const token = env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN;
   const url = `${STORYBLOK_BASE_URL}/courses/${slug}?&version=${version}&token=${token}`;
-  console.log(url);
+
   try {
     const response = await fetch(url, { next: { revalidate: 10 } });
 
