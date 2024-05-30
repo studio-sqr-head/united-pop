@@ -188,12 +188,10 @@ const MetaDataItem = ({
 };
 
 const CourseMetaData = ({
-  startDates,
   location,
   collaboration,
   type,
 }: {
-  startDates: Date[];
   location: ReactNode;
   collaboration: string;
   type?: TypeEnum;
