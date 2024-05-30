@@ -244,7 +244,7 @@ const Fees = () => {
     </div>
   );
 };
-const Overview = ({ courseOverview }: { courseOverview: string }) => {
+const Overview = ({ courseOverview }: { courseOverview?: string }) => {
   return (
     <div className="flex flex-col md:flex-row gap-8">
       <div className="flex flex-col gap-2 flex-1">
