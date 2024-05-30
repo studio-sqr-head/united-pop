@@ -1,50 +1,80 @@
-import { useMemo, ReactNode } from "react";
+import { ReactNode } from "react";
 import {
   ChevronDownIcon,
   MapPinIcon,
   ClockIcon,
   BookOpenIcon,
 } from "@heroicons/react/20/solid";
-
 import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
 } from "@headlessui/react";
+import { ISbStory } from "@storyblok/react";
 
 import { Container, HeroSection } from "@/app/components/layout";
 import { H2, Paragraph, H6 } from "@/app/components/typography";
 import { Button, IconButton } from "@/app/components/button";
 import { Tab, TabGroup, TabList, TabPanel } from "@/app/components/tabs";
 import { List, ListItem } from "@/app/components/list";
-
-import { DUMMY_COURSES } from "@/constants";
+import { CourseStoryblok } from "@/types";
+import { env } from "@/env";
 import { MetaDataChip } from "@/app/components/chip";
+import {
+  TABS,
+  TYPES,
+  START_DATES,
+  TypeEnum,
+  STORYBLOK_BASE_URL,
+} from "@/constants";
+import { getClosestDateToToday } from "@/utils";
 
-const TABS = [
-  { id: "overview", name: "Overview" },
-  { id: "structure", name: "Structure" },
-  { id: "fees", name: "Fees" },
-  { id: "faq", name: "FAQ" },
-  { id: "contact", name: "Contact" },
-];
+const getCourse = async ({
+  slug,
+  lang,
+}: {
+  slug: string;
+  lang: "en" | "nl";
+}): Promise<ISbStory["data"]> => {
+  const version = "published";
+  const token = env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN;
+  const url = `${STORYBLOK_BASE_URL}/courses/${slug}?&version=${version}&token=${token}`;
+  console.log(url);
+  try {
+    const response = await fetch(url, { next: { revalidate: 10 } });
 
-export default function CoursePage({
+    if (!response.ok) {
+      throw new Error("Failed to fetch course");
+    }
+
+    const data: ISbStory["data"] = await response.json();
+
+    return data;
+  } catch (error) {
+    throw new Error("Failed to fetch course");
+  }
+};
+
+export default async function CoursePage({
   params,
 }: {
-  params: { lang: "en" | "nl"; courseId: string };
+  params: { lang: "en" | "nl"; slug: string };
 }) {
-  const course = useMemo(
-    () => DUMMY_COURSES.find((course) => course?.id === params.courseId),
-    []
-  );
+  const { story: course } = await getCourse({
+    slug: params?.slug,
+    lang: params.lang,
+  });
+  const { content } = course;
+  const { title, description, image, type, fulltime, parttime } =
+    content as CourseStoryblok;
+
   return (
     <div className="mb-16">
-      {course && (
+      {image != null && (
         <HeroSection
           height={"banner"}
-          src={course?.image}
-          alt={course?.title}
+          src={image?.filename}
+          alt={image?.alt ?? title ?? "Course Image"}
           imageClassName="filter brightness-75"
         />
       )}
@@ -53,18 +83,28 @@ export default function CoursePage({
         <div className="full-w text-white pt-4 gradient bg-slate">
           <Container as="section" className="max-w-5xl pt-8">
             <div className="mb-4 flex items-center gap-4">
-              {course?.metadata?.map((meta) => (
-                <MetaDataChip size="medium" key={meta?.key}>
-                  {meta?.value}
+              {fulltime && (
+                <MetaDataChip variant="default" size="medium">
+                  Full-time
                 </MetaDataChip>
-              ))}
+              )}
+              {parttime && (
+                <MetaDataChip variant="default" size="medium">
+                  Part-time
+                </MetaDataChip>
+              )}
+              {type && (
+                <MetaDataChip variant="secondary" size="medium">
+                  {TYPES.find((t) => t.id === type)?.title}
+                </MetaDataChip>
+              )}
             </div>
 
             <div className="flex justify-between items-start gap-4 mb-12">
               <div className="flex flex-col gap-4">
-                <H2>{course?.title}</H2>
+                <H2>{title}</H2>
 
-                <Paragraph variant="secondary">{course?.description}</Paragraph>
+                <Paragraph variant="secondary">{description}</Paragraph>
               </div>
 
               <div>
@@ -96,7 +136,7 @@ export default function CoursePage({
               {id === "overview" && <Overview />}
               {id === "structure" && <Structure />}
               {id === "faq" && <Faq />}
-              {id === "contact" && <Contact />}
+              {id === "contact" && <Contact courseName={title} />}
               {id === "fees" && <Fees />}
             </TabPanel>
           ))}
@@ -106,9 +146,20 @@ export default function CoursePage({
   );
 }
 
+const Address = () => {
+  return (
+    <div className="flex gap-2 flex-col">
+      <Paragraph>United POP B.V.</Paragraph>
+      <Paragraph>Q-Factory, Atlantisplein 1</Paragraph>
+      <Paragraph>1093 NE Amsterdam</Paragraph>
+    </div>
+  );
+};
+
 const COURSE_METADATA = {
-  startDates: ["August", "September", "October"],
-  location: "Amsterdam",
+  startDates: START_DATES,
+  location: <Address />,
+
   collaboration:
     "The Bachelor (Hons) programmes delivered by United POP are validated by the University of West London and comply with the requirements of the UK Quality Assurance Agency for Higher Education and the Framework for Qualifications of the European Higher Education Area (FQ-EHEA).",
 };
@@ -123,7 +174,7 @@ const MetaDataItem = ({
   value: ReactNode;
 }) => {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-4">
       <div className="flex gap-2 items-center">
         {icon}
         <Paragraph variant="secondary" className="text-sm">
@@ -140,37 +191,51 @@ const CourseMetaData = ({
   startDates,
   location,
   collaboration,
+  type,
 }: {
-  startDates: string[];
-  location: string;
+  startDates: Date[];
+  location: ReactNode;
   collaboration: string;
+  type?: TypeEnum;
 }) => {
+  const closestDate = getClosestDateToToday(START_DATES);
   return (
     <div className="p-6 bg-slate rounded flex-1 h-fit">
       <div className="flex flex-col gap-8">
         <MetaDataItem
           icon={<MapPinIcon className="w-4 h-4 text-secondary" />}
           title="Location"
-          value={<Paragraph className="text-sm">{location}</Paragraph>}
+          value={location}
         />
         <MetaDataItem
           icon={<ClockIcon className="w-4 h-4 text-secondary" />}
           title="Start Dates"
           value={
             <div className="flex gap-2">
-              {startDates?.map((date) => (
-                <MetaDataChip size="small" key={date}>
-                  {date}
+              {startDates?.map((date, k) => (
+                <MetaDataChip
+                  size="small"
+                  key={k}
+                  variant="secondary"
+                  active={date === closestDate}
+                >
+                  {date.toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
                 </MetaDataChip>
               ))}
             </div>
           }
         />
-        <MetaDataItem
-          icon={<BookOpenIcon className="w-4 h-4 text-secondary" />}
-          title="Collaboration"
-          value={<Paragraph className="text-sm">{collaboration}</Paragraph>}
-        />
+        {type === TypeEnum.BACHELOR && (
+          <MetaDataItem
+            icon={<BookOpenIcon className="w-4 h-4 text-secondary" />}
+            title="Collaboration"
+            value={<Paragraph className="text-sm">{collaboration}</Paragraph>}
+          />
+        )}
       </div>
     </div>
   );
@@ -304,14 +369,36 @@ const FaqItem = ({
   );
 };
 
-const Contact = () => {
+const Contact = ({ courseName }: { courseName?: string }) => {
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-2">
-        <H6>Contact</H6>
-        <Paragraph variant="secondary">
-          If you specific questions about the Music & Sound program, feel free
-          to contact us. We are happy to help!
+        <Paragraph>
+          If you specific questions about the {courseName} program, feel free to
+          contact us. We are happy to help!
+        </Paragraph>
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <Paragraph className="text-sm" variant="secondary">
+          Address
+        </Paragraph>
+        <Address />
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <Paragraph className="text-sm" variant="secondary">
+          Phone
+        </Paragraph>
+        <Paragraph>+31 20 760 6780</Paragraph>
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <Paragraph className="text-sm" variant="secondary">
+          Email
+        </Paragraph>
+        <Paragraph>
+          <a href="mailto:amsterdam@united-pop.nl">amsterdam@united-pop.nl</a>
         </Paragraph>
       </div>
 

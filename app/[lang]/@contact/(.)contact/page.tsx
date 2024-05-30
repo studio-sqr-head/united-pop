@@ -16,7 +16,7 @@ import { H3, Paragraph } from "@/app/components/typography";
 
 export default function Modal({ params }: { params: { lang: "en" | "nl" } }) {
   const { lang } = params;
-  console.log(params);
+
   const router = useRouter();
   const onDismiss = useCallback(() => {
     router.back();

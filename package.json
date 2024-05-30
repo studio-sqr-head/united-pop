@@ -6,12 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "pull-components": "npx storyblok pull-components --space 288932",
+    "generate-types": "npm run pull-components && npx storyblok generate-typescript-typedefs --sourceFilePaths ./components.288932.json --destinationFilePath ./types.ts"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.4",
     "@headlessui/react": "^2.0.3",
     "@heroicons/react": "^2.1.3",
+    "@storyblok/react": "^3.0.10",
     "@t3-oss/env-core": "^0.10.1",
     "clsx": "^2.1.1",
     "negotiator": "^0.6.3",

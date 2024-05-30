@@ -5,6 +5,7 @@ import "./globals.css";
 
 import { Footer } from "@/app/components/footer";
 import { Header } from "@/app/components/header";
+import { StoryblokProvider } from "@/app/components/story-blok";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,15 +28,17 @@ export default function RootLayout(
   const { children, params, contact } = props;
 
   return (
-    <html
-      lang={params.lang}
-      className={`${inter.className} bg-black text-primary`}
-    >
-      <body>
-        <Header lang={params.lang} />
-        <Main>{children}</Main>
-        <Footer />
-      </body>
-    </html>
+    <StoryblokProvider>
+      <html
+        lang={params.lang}
+        className={`${inter.className} bg-black text-primary`}
+      >
+        <body>
+          <Header lang={params.lang} />
+          <Main>{children}</Main>
+          <Footer />
+        </body>
+      </html>
+    </StoryblokProvider>
   );
 }

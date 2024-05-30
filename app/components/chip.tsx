@@ -10,18 +10,20 @@ export const MetaDataChip = ({
   active = false,
   onClick,
 }: {
-  variant?: "info" | "warning" | "default";
+  variant?: "primary" | "secondary" | "default" | "info" | "warning";
   size?: "small" | "medium" | "large";
   children: React.ReactNode;
   active?: boolean;
   onClick?: () => void;
 }) => {
   const baseClasses =
-    "text-white rounded font-semibold inline-flex items-center";
+    "text-white rounded font-semibold inline-flex items-center whitespace-nowrap";
   const variantClasses = {
     info: "bg-blue-500",
     warning: "bg-yellow-500",
     default: "bg-gray-800",
+    primary: "bg-primary",
+    secondary: "border border-gray-800",
   };
   const sizeClasses = {
     small: "text-xs py-1 px-2",

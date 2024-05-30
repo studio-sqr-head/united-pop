@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      spacing: {
+        "128": "32rem",
+      },
       textColor: {
         primary: "var(--color-white)",
         secondary: "var(--color-gray-400)",
