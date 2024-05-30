@@ -17,18 +17,14 @@ import {
   TypeEnum,
   START_DATES,
 } from "@/constants";
-import { getClosestDateToToday } from "@/utils";
+import { getClosestFutureDateToToday } from "@/utils";
 
 const CourseListFilter = ({
   activeCategory,
-  activeType,
   handleCategoryChange,
-  handleTypeChange,
 }: {
   activeCategory: CategoryEnum;
-  activeType: TypeEnum;
   handleCategoryChange: (category: CategoryEnum) => void;
-  handleTypeChange: (type: TypeEnum) => void;
 }) => {
   return (
     <div className="flex flex-col gap-4">
@@ -45,40 +41,31 @@ const CourseListFilter = ({
           </div>
         ))}
       </div>
-
-      <Divider />
-
-      <div className="flex flex-wrap gap-4">
-        {TYPES.map((type) => {
-          return (
-            <div key={type.id}>
-              <MetaDataChip
-                variant="secondary"
-                onClick={() => handleTypeChange(type?.id)}
-                size="medium"
-                active={activeType === type?.id}
-              >
-                {type?.title}
-              </MetaDataChip>
-            </div>
-          );
-        })}
-      </div>
     </div>
   );
 };
 
+export const CourseStartDateChip = ({
+  size = "medium",
+}: {
+  size?: "small" | "medium" | "large";
+}) => {
+  const closestDate = getClosestFutureDateToToday(START_DATES);
+  return (
+    <MetaDataChip variant="secondary" size={size}>
+      {closestDate.toDateString()}
+    </MetaDataChip>
+  );
+};
+
 const CourseStartDates = () => {
-  const closestDate = getClosestDateToToday(START_DATES);
   return (
     <div className="flex gap-2 items-center mb-3">
       <Paragraph variant="secondary" className="text-sm">
         Next Course Starts:
       </Paragraph>
 
-      <MetaDataChip variant="secondary" size="small">
-        {closestDate.toDateString()}
-      </MetaDataChip>
+      <CourseStartDateChip size="small" />
     </div>
   );
 };
@@ -113,9 +100,9 @@ const CourseListItem = ({
         </div>
       )}
 
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full md:gap-0 gap-4">
         <div className="flex flex-col h-full">
-          <div className="flex justify-between w-full items-start mb-1">
+          <div className="flex flex-col-reverse md:flex-row justify-between w-full items-start mb-1 md:gap-0 gap-4">
             <H3>{title}</H3>
             <div className="flex gap-2">
               {fulltime && <MetaDataChip size="small">Full-time</MetaDataChip>}
@@ -150,25 +137,14 @@ const CourseListItem = ({
 
 const CourseListHeader = ({
   activeCategory,
-  activeType,
 }: {
   activeCategory: CategoryEnum;
-  activeType: TypeEnum;
 }) => {
   const activeCategoryTitle = CATEGORIES.find(
     (c) => c.id === activeCategory
   )?.title;
-  const activeTypeTitle = TYPES.find((t) => t.id === activeType)?.title;
 
-  if (activeCategory === CategoryEnum.ALL && activeType === TypeEnum.All) {
-    return <H5>All Courses</H5>;
-  }
-
-  return (
-    <H5>
-      {activeCategoryTitle} ({activeTypeTitle}) Courses
-    </H5>
-  );
+  return <H5> {activeCategoryTitle ?? "All"} Courses </H5>;
 };
 
 const CourseList = ({
@@ -176,11 +152,9 @@ const CourseList = ({
   activeCategory,
   handleCourseClick,
   filteredCourses,
-  activeType,
 }: {
   lang: "en" | "nl";
   activeCategory: CategoryEnum;
-  activeType: TypeEnum;
   handleCourseClick: (slug: string) => void;
   filteredCourses: ISbStoryData<CourseStoryblok>[];
 }) => {
@@ -193,10 +167,7 @@ const CourseList = ({
     <div className="flex flex-col" id="courses">
       <div className="flex flex-col gap-10 justify-center items-center h-full">
         <div className="flex gap-2 justify-between w-full">
-          <CourseListHeader
-            activeCategory={activeCategory}
-            activeType={activeType}
-          />
+          <CourseListHeader activeCategory={activeCategory} />
           <Paragraph variant="secondary">
             {filteredCourses.length === 1
               ? `${filteredCourses.length} course`
@@ -242,13 +213,9 @@ export const CourseSection = ({
   const [activeCategory, setActiveCategory] = useState<CategoryEnum>(
     CategoryEnum.ALL
   );
-  const [activeType, setActiveType] = useState<TypeEnum>(TypeEnum.All);
 
   const handleCategoryChange = (category: CategoryEnum) => {
     setActiveCategory(category);
-  };
-  const handleTypeChange = (type: TypeEnum) => {
-    setActiveType(type);
   };
 
   const handleCourseClick = async (slug: string) => {
@@ -262,10 +229,6 @@ export const CourseSection = ({
     );
   });
 
-  const filteredCourses = filteredCoursesOnCategory.filter((course) => {
-    return activeType === TypeEnum.All || course.content.type === activeType;
-  });
-
   return (
     <Container as="section" className="py-8 max-w-5xl min-h-300">
       <div className="flex flex-col gap-8">
@@ -273,15 +236,12 @@ export const CourseSection = ({
         <CourseListFilter
           activeCategory={activeCategory}
           handleCategoryChange={handleCategoryChange}
-          activeType={activeType}
-          handleTypeChange={handleTypeChange}
         />
         <CourseList
           lang={lang ?? "en"}
           activeCategory={activeCategory}
           handleCourseClick={handleCourseClick}
-          filteredCourses={filteredCourses}
-          activeType={activeType}
+          filteredCourses={filteredCoursesOnCategory}
         />
       </div>
     </Container>

@@ -20,6 +20,7 @@ import { List, ListItem } from "@/app/components/list";
 import { CourseStoryblok } from "@/types";
 import { env } from "@/env";
 import { MetaDataChip } from "@/app/components/chip";
+import { CourseStartDateChip } from "@/app/[lang]/components/course-list";
 import {
   TABS,
   TYPES,
@@ -27,7 +28,7 @@ import {
   TypeEnum,
   STORYBLOK_BASE_URL,
 } from "@/constants";
-import { getClosestDateToToday } from "@/utils";
+import { getClosestFutureDateToToday } from "@/utils";
 
 const getCourse = async ({
   slug,
@@ -133,7 +134,7 @@ export default async function CoursePage({
         <Container as="section" className="max-w-5xl pt-8">
           {TABS.map(({ id }, index) => (
             <TabPanel key={index}>
-              {id === "overview" && <Overview />}
+              {id === "overview" && <Overview courseOverview={description} />}
               {id === "structure" && <Structure />}
               {id === "faq" && <Faq />}
               {id === "contact" && <Contact courseName={title} />}
@@ -159,7 +160,6 @@ const Address = () => {
 const COURSE_METADATA = {
   startDates: START_DATES,
   location: <Address />,
-
   collaboration:
     "The Bachelor (Hons) programmes delivered by United POP are validated by the University of West London and comply with the requirements of the UK Quality Assurance Agency for Higher Education and the Framework for Qualifications of the European Higher Education Area (FQ-EHEA).",
 };
@@ -182,7 +182,7 @@ const MetaDataItem = ({
         </Paragraph>
       </div>
 
-      {value}
+      <div>{value}</div>
     </div>
   );
 };
@@ -198,7 +198,6 @@ const CourseMetaData = ({
   collaboration: string;
   type?: TypeEnum;
 }) => {
-  const closestDate = getClosestDateToToday(START_DATES);
   return (
     <div className="p-6 bg-slate rounded flex-1 h-fit">
       <div className="flex flex-col gap-8">
@@ -209,25 +208,8 @@ const CourseMetaData = ({
         />
         <MetaDataItem
           icon={<ClockIcon className="w-4 h-4 text-secondary" />}
-          title="Start Dates"
-          value={
-            <div className="flex gap-2">
-              {startDates?.map((date, k) => (
-                <MetaDataChip
-                  size="small"
-                  key={k}
-                  variant="secondary"
-                  active={date === closestDate}
-                >
-                  {date.toLocaleDateString("en-US", {
-                    month: "long",
-                    day: "numeric",
-                    year: "numeric",
-                  })}
-                </MetaDataChip>
-              ))}
-            </div>
-          }
+          title="Next start date"
+          value={<CourseStartDateChip size="medium" />}
         />
         {type === TypeEnum.BACHELOR && (
           <MetaDataItem
@@ -262,17 +244,11 @@ const Fees = () => {
     </div>
   );
 };
-const Overview = () => {
+const Overview = ({ description }: { description: string }) => {
   return (
     <div className="flex flex-col md:flex-row gap-8">
       <div className="flex flex-col gap-2 flex-1">
-        <H6>Overview</H6>
-        <Paragraph variant="secondary">
-          The Music & Sound program is designed for students who are passionate
-          about music and sound and want to learn how to produce music and sound
-          for various media. The program covers a wide range of topics including
-          music production, sound design, and audio engineering.
-        </Paragraph>
+        <Paragraph>{description}</Paragraph>
       </div>
       <div className="flex-1">
         <CourseMetaData {...COURSE_METADATA} />
