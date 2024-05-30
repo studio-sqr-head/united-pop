@@ -6,7 +6,7 @@ import { useParams, useRouter } from "next/navigation";
 import { ISbStoryData } from "@storyblok/react";
 
 import { Container, Divider } from "@/app/components/structure";
-import { H3, H5, Paragraph, Subheading } from "@/app/components/typography";
+import { H3, H5, H6, Paragraph, Subheading } from "@/app/components/typography";
 import { MetaDataChip } from "@/app/components/chip";
 import { Button } from "@/app/components/button";
 import { CourseStoryblok } from "@/types";
@@ -158,9 +158,14 @@ const CourseList = ({
   handleCourseClick: (slug: string) => void;
   filteredCourses: ISbStoryData<CourseStoryblok>[];
 }) => {
-  if (filteredCourses == null) {
+  if (filteredCourses == null || filteredCourses.length === 0) {
     return (
-      <div className="flex justify-center items-center">No courses found</div>
+      <div className="flex flex-col gap-2 items-center justify-center h-full">
+        <H6>No courses found</H6>
+        <Paragraph variant="secondary">
+          Please try a different category or check back later
+        </Paragraph>
+      </div>
     );
   }
   return (
