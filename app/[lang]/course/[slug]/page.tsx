@@ -225,7 +225,6 @@ const Fees = () => {
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-2">
-        <H6>Fees</H6>
         <Paragraph>
           The Music & Sound program costs $500 per semester. There are 3
           semesters in total, so the total cost of the program is $1500.
@@ -292,8 +291,7 @@ const Faq = () => {
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-2">
-        <H6>Frequently Asked Questions</H6>
-        <Paragraph variant="secondary">
+        <Paragraph>
           Here are some frequently asked questions about the Music & Sound
           program.
         </Paragraph>
@@ -471,7 +469,6 @@ const Structure = () => {
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-2">
-        <H6>Structure</H6>
         <Paragraph>
           The Music & Sound program is divided into 3 semesters. Each semester
           covers a different topic related to music and sound production.
