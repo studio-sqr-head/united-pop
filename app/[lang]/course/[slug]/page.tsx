@@ -244,11 +244,11 @@ const Fees = () => {
     </div>
   );
 };
-const Overview = ({ description }: { description: string }) => {
+const Overview = ({ courseOverview }: { courseOverview: string }) => {
   return (
     <div className="flex flex-col md:flex-row gap-8">
       <div className="flex flex-col gap-2 flex-1">
-        <Paragraph>{description}</Paragraph>
+        <Paragraph>{courseOverview}</Paragraph>
       </div>
       <div className="flex-1">
         <CourseMetaData {...COURSE_METADATA} />
