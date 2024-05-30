@@ -1,4 +1,4 @@
-import React, { createElement } from "react";
+import React, { createElement, ReactNode } from "react";
 import Image from "next/image";
 import clsx from "clsx";
 
@@ -19,6 +19,10 @@ export const Container = ({
 export const Divider = () => (
   <hr className="border-t border-gray-700 border-opacity-50" />
 );
+
+export const Main = ({ children }: { children: ReactNode }) => {
+  return <main>{children}</main>;
+};
 
 export const HeroSection = ({
   height = "full",

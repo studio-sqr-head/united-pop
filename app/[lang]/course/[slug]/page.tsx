@@ -196,7 +196,7 @@ const CourseMetaData = ({
   type?: TypeEnum;
 }) => {
   return (
-    <div className="p-6 bg-slate rounded flex-1 h-fit">
+    <div className="p-8 bg-slate rounded flex-1 h-fit">
       <div className="flex flex-col gap-8">
         <MetaDataItem
           icon={<MapPinIcon className="w-4 h-4 text-secondary" />}

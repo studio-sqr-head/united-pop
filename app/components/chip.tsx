@@ -17,7 +17,7 @@ export const MetaDataChip = ({
   onClick?: () => void;
 }) => {
   const baseClasses =
-    "text-white rounded-lg font-semibold inline-flex items-center whitespace-nowrap";
+    "text-white rounded-full font-semibold inline-flex items-center whitespace-nowrap";
   const variantClasses = {
     info: "bg-blue-500",
     warning: "bg-yellow-500",
