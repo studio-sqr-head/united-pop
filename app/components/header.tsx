@@ -21,8 +21,8 @@ export const Header = ({ lang }: { lang: "en" | "nl" }) => {
 
   return (
     <header
-      className={`z-30 h-16 text-white w-full top-0 left-0 right-0 fixed flex items-center justify-between bg-transparent transition-all duration-300 ${
-        blur ? "backdrop-blur-md" : ""
+      className={`z-30 h-16 text-white w-full top-0 left-0 right-0 fixed flex items-center justify-between transition-all duration-300 ${
+        blur ? "bg-black bg-opacity-90" : "bg-transparent"
       }`}
     >
       <Container className={`flex items-center justify-between`}>

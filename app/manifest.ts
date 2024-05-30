@@ -11,6 +11,7 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
     theme_color: "#ff5e00",
     start_url: "/",
     orientation: "portrait",
+
     id: "com.unitedpop",
     icons: [
       {

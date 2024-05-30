@@ -100,7 +100,7 @@ const CourseListItem = ({
         </div>
       )}
 
-      <div className="flex flex-col w-full md:gap-0 gap-4">
+      <div className="flex flex-col w-full md:gap-2 gap-4">
         <div className="flex flex-col h-full">
           <div className="flex flex-col-reverse md:flex-row justify-between w-full items-start mb-1 md:gap-0 gap-4">
             <H3>{title}</H3>
@@ -230,20 +230,22 @@ export const CourseSection = ({
   });
 
   return (
-    <Container as="section" className="py-8 max-w-5xl min-h-300">
-      <div className="flex flex-col gap-8">
-        <CourseSectionHeader />
-        <CourseListFilter
-          activeCategory={activeCategory}
-          handleCategoryChange={handleCategoryChange}
-        />
-        <CourseList
-          lang={lang ?? "en"}
-          activeCategory={activeCategory}
-          handleCourseClick={handleCourseClick}
-          filteredCourses={filteredCoursesOnCategory}
-        />
-      </div>
-    </Container>
+    <div className="bg-slate">
+      <Container as="section" className="py-8 max-w-5xl min-h-300">
+        <div className="flex flex-col gap-8">
+          <CourseSectionHeader />
+          <CourseListFilter
+            activeCategory={activeCategory}
+            handleCategoryChange={handleCategoryChange}
+          />
+          <CourseList
+            lang={lang ?? "en"}
+            activeCategory={activeCategory}
+            handleCourseClick={handleCourseClick}
+            filteredCourses={filteredCoursesOnCategory}
+          />
+        </div>
+      </Container>
+    </div>
   );
 };

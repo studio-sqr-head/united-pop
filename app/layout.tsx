@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     url: "https://unitedpop.com",
     title: "United Pop",
     description: "United Pop is an academy for music and media.",
+
     images: [
       {
         url: "https://unitedpop.com/og-image.jpg",

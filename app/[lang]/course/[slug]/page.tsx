@@ -101,10 +101,9 @@ export default async function CoursePage({
               )}
             </div>
 
-            <div className="flex justify-between items-start gap-4 mb-12">
+            <div className="flex justify-between items-start gap-4 mb-12 md:flex-row flex-col">
               <div className="flex flex-col gap-4">
                 <H2>{title}</H2>
-
                 <Paragraph variant="secondary">{description}</Paragraph>
               </div>
 
