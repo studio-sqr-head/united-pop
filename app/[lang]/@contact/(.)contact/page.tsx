@@ -25,7 +25,7 @@ export default function Modal({ params }: { params: { lang: "en" | "nl" } }) {
   return (
     <Dialog open onClose={onDismiss} className="relative z-50">
       <div className="fixed inset-0 flex w-screen items-center justify-center md:p-4 filter backdrop-blur-lg">
-        <DialogPanel className="relative h-full md:h-auto md:max-w-3xl w-full p-12 bg-slate md:rounded-lg border border-gray-900 border-opacity-50">
+        <DialogPanel className="relative h-full md:h-auto md:max-w-3xl w-full p-6 md:p-12 bg-slate md:rounded-lg border border-gray-900 border-opacity-50">
           <IconButton
             onClick={onDismiss}
             className="absolute top-4 right-4 border-0"

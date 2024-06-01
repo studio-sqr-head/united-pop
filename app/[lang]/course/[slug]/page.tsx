@@ -28,8 +28,35 @@ import {
   TypeEnum,
   STORYBLOK_BASE_URL,
 } from "@/constants";
-import { getClosestFutureDateToToday } from "@/utils";
+import { DownloadBrochureButton } from "@/app/[lang]/components/download-brochure-button";
 
+export const MainCta = ({
+  className,
+  params,
+}: {
+  className: string;
+  params: {
+    lang: "nl" | "en";
+  };
+}) => {
+  return (
+    <div className={`flex gap-2 items-center ${className}`}>
+      <Button
+        variant="primary"
+        size="medium"
+        as="a"
+        href={{
+          pathname: "/contact",
+          query: { lang: params.lang },
+        }}
+      >
+        Enroll
+      </Button>
+
+      <DownloadBrochureButton />
+    </div>
+  );
+};
 const getCourse = async ({
   slug,
   lang,
@@ -83,22 +110,26 @@ export default async function CoursePage({
       <TabGroup>
         <div className="full-w text-white pt-4 gradient bg-slate">
           <Container as="section" className="max-w-5xl pt-8">
-            <div className="mb-4 flex items-center gap-4">
-              {fulltime && (
-                <MetaDataChip variant="default" size="medium">
-                  Full-time
-                </MetaDataChip>
-              )}
-              {parttime && (
-                <MetaDataChip variant="default" size="medium">
-                  Part-time
-                </MetaDataChip>
-              )}
-              {type && (
-                <MetaDataChip variant="secondary" size="medium">
-                  {TYPES.find((t) => t.id === type)?.title}
-                </MetaDataChip>
-              )}
+            <div className="mb-4 flex items-center gap-4 justify-between">
+              <div className="flex gap-2 items-center">
+                {fulltime && (
+                  <MetaDataChip variant="default" size="medium">
+                    Full-time
+                  </MetaDataChip>
+                )}
+                {parttime && (
+                  <MetaDataChip variant="default" size="medium">
+                    Part-time
+                  </MetaDataChip>
+                )}
+                {type && (
+                  <MetaDataChip variant="secondary" size="medium">
+                    {TYPES.find((t) => t.id === type)?.title}
+                  </MetaDataChip>
+                )}
+              </div>
+
+              <MainCta className="hidden md:flex" params={params} />
             </div>
 
             <div className="flex justify-between items-start gap-4 mb-12 md:flex-row flex-col">
@@ -107,19 +138,7 @@ export default async function CoursePage({
                 <Paragraph variant="secondary">{description}</Paragraph>
               </div>
 
-              <div>
-                <Button
-                  variant="primary"
-                  size="medium"
-                  as="a"
-                  href={{
-                    pathname: "/contact",
-                    query: { lang: params.lang },
-                  }}
-                >
-                  Enroll
-                </Button>
-              </div>
+              <MainCta className="md:hidden" params={params} />
             </div>
 
             <TabList>
@@ -133,7 +152,12 @@ export default async function CoursePage({
         <Container as="section" className="max-w-5xl pt-8">
           {TABS.map(({ id }, index) => (
             <TabPanel key={index}>
-              {id === "overview" && <Overview courseOverview={description} />}
+              {id === "overview" && (
+                <Overview
+                  courseOverview={description}
+                  type={type as TypeEnum}
+                />
+              )}
               {id === "structure" && <Structure />}
               {id === "faq" && <Faq />}
               {id === "contact" && <Contact courseName={title} />}
@@ -220,34 +244,33 @@ const CourseMetaData = ({
   );
 };
 
-const Fees = () => {
+const Fees = ({ courseFees }: { courseFees?: string }) => {
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-2">
-        <Paragraph>
-          The Music & Sound program costs $500 per semester. There are 3
-          semesters in total, so the total cost of the program is $1500.
-        </Paragraph>
-      </div>
-
-      <div className="flex flex-col gap-2">
-        <H6>Payment Options</H6>
-        <Paragraph>
-          We offer a variety of payment options including credit card, bank
-          transfer, and PayPal.
-        </Paragraph>
+        <Paragraph>{courseFees}</Paragraph>
       </div>
     </div>
   );
 };
-const Overview = ({ courseOverview }: { courseOverview?: string }) => {
+const Overview = ({
+  courseOverview,
+  type,
+}: {
+  courseOverview?: string;
+  type: TypeEnum;
+}) => {
   return (
     <div className="flex flex-col md:flex-row gap-8">
       <div className="flex flex-col gap-2 flex-1">
         <Paragraph>{courseOverview}</Paragraph>
       </div>
       <div className="flex-1">
-        <CourseMetaData {...COURSE_METADATA} />
+        <CourseMetaData
+          collaboration={COURSE_METADATA.collaboration}
+          location={COURSE_METADATA.location}
+          type={type}
+        />
       </div>
     </div>
   );
@@ -288,19 +311,10 @@ const FAQ_ITEMS = [
 
 const Faq = () => {
   return (
-    <div className="flex flex-col gap-8">
-      <div className="flex flex-col gap-2">
-        <Paragraph>
-          Here are some frequently asked questions about the Music & Sound
-          program.
-        </Paragraph>
-      </div>
-
-      <div className="flex flex-col gap-6">
-        {FAQ_ITEMS.map((item, index) => (
-          <FaqItem key={index} {...item} />
-        ))}
-      </div>
+    <div className="flex flex-col gap-6">
+      {FAQ_ITEMS.map((item, index) => (
+        <FaqItem key={index} {...item} />
+      ))}
     </div>
   );
 };
@@ -372,43 +386,11 @@ const Contact = ({ courseName }: { courseName?: string }) => {
           <a href="mailto:amsterdam@united-pop.nl">amsterdam@united-pop.nl</a>
         </Paragraph>
       </div>
-
-      <div className="flex gap-2">
-        <Button
-          variant="primary"
-          size="small"
-          as="a"
-          href={{ pathname: "/contact", query: { lang: "en" } }}
-        >
-          Contact Us
-        </Button>
-      </div>
     </div>
   );
 };
 
 const TIMELINE = [
-  {
-    date: "August 1",
-    items: [
-      {
-        title: "Enrol",
-        description: "Enrol in the Music & Sound program.",
-      },
-    ],
-    children: (
-      <div className="flex gap-2">
-        <Button
-          variant="secondary"
-          size="small"
-          as="a"
-          href={{ pathname: "/contact", query: { lang: "en" } }}
-        >
-          Sign up now for the next course
-        </Button>
-      </div>
-    ),
-  },
   {
     date: "Semester 1",
     items: [
@@ -449,16 +431,6 @@ const TIMELINE = [
         title: "Advanced Electronic Music Production",
         description:
           "Learn advanced techniques in electronic music production.",
-      },
-    ],
-  },
-
-  {
-    date: "December 1",
-    items: [
-      {
-        title: "Graduation",
-        description: "Graduate from the Music & Sound program.",
       },
     ],
   },

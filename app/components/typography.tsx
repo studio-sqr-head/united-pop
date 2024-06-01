@@ -62,10 +62,19 @@ const Paragraph = ({
   });
 };
 
-const Subheading = ({ children }: { children: ReactNode }) => (
-  <Paragraph as="p" className={`${fontSize.subheading} ${fontColor.secondary}`}>
-    {children}
-  </Paragraph>
-);
+const Subheading = ({
+  children,
+  variant = "secondary",
+}: {
+  children: ReactNode;
+  variant?: "primary" | "secondary";
+}) => {
+  const fontColor = variant === "primary" ? "text-primary" : "text-secondary";
+  return (
+    <Paragraph as="p" className={`${fontSize.subheading} ${fontColor}`}>
+      {children}
+    </Paragraph>
+  );
+};
 
 export { H1, H2, H3, H4, H5, H6, Paragraph, Subheading };

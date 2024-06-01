@@ -35,7 +35,7 @@ export const Button: React.FC<ButtonProps> = ({
   const hoverClasses = "data-[hover]:opacity-50";
   const activeClasses = "data-[active]:bg-primary-900";
   const variantClasses = {
-    primary: clsx("bg-primary text-white", {
+    primary: clsx("bg-primary text-white border-2", {
       [hoverClasses]: !disabled,
       [activeClasses]: !disabled,
     }),

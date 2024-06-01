@@ -45,7 +45,7 @@ export default async function Home({
         src="/hero-image.jpeg"
         alt="Hero Image"
         height={"full"}
-        imageClassName="filter brightness-75"
+        imageClassName="filter brightness-50"
       >
         <HomePageHeroCta />
       </HeroSection>
