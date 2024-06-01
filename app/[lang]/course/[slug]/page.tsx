@@ -14,7 +14,7 @@ import { ISbStory } from "@storyblok/react";
 
 import { Container, HeroSection } from "@/app/components/structure";
 import { H2, Paragraph, H6 } from "@/app/components/typography";
-import { Button, IconButton } from "@/app/components/button";
+import { IconButton } from "@/app/components/button";
 import { Tab, TabGroup, TabList, TabPanel } from "@/app/components/tabs";
 import { List, ListItem } from "@/app/components/list";
 import { CourseStoryblok } from "@/types";
@@ -28,35 +28,8 @@ import {
   TypeEnum,
   STORYBLOK_BASE_URL,
 } from "@/constants";
-import { DownloadBrochureButton } from "@/app/[lang]/components/download-brochure-button";
+import { MainCta } from "@/app/[lang]/components/main-cta";
 
-export const MainCta = ({
-  className,
-  params,
-}: {
-  className: string;
-  params: {
-    lang: "nl" | "en";
-  };
-}) => {
-  return (
-    <div className={`flex gap-2 items-center ${className}`}>
-      <Button
-        variant="primary"
-        size="medium"
-        as="a"
-        href={{
-          pathname: "/contact",
-          query: { lang: params.lang },
-        }}
-      >
-        Enroll
-      </Button>
-
-      <DownloadBrochureButton />
-    </div>
-  );
-};
 const getCourse = async ({
   slug,
   lang,
