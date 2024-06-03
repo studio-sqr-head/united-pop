@@ -145,11 +145,17 @@ export default async function CoursePage({
 
 const Address = () => {
   return (
-    <div className="flex gap-2 flex-col">
-      <Paragraph>United POP B.V.</Paragraph>
-      <Paragraph>Q-Factory, Atlantisplein 1</Paragraph>
-      <Paragraph>1093 NE Amsterdam</Paragraph>
-    </div>
+    <address className="flex gap-2 flex-col font-normal hover:underline">
+      <a
+        href="https://www.google.com/maps/place/Q-Factory,+Atlantisplein+1,+Amsterdam"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <Paragraph>United POP B.V.</Paragraph>
+        <Paragraph>Q-Factory, Atlantisplein 1</Paragraph>
+        <Paragraph>1093 NE Amsterdam</Paragraph>
+      </a>
+    </address>
   );
 };
 
@@ -302,7 +308,7 @@ const FaqItem = ({
   return (
     <Disclosure
       as="div"
-      className="flex flex-col divide-gray-500 hover:opacity-70"
+      className="flex flex-col divide-gray-500 hover:opacity-70 cursor-pointer"
     >
       <DisclosureButton className="group flex gap-2" as="div">
         <div className="flex-grow flex items-center">
@@ -348,14 +354,16 @@ const Contact = ({ courseName }: { courseName?: string }) => {
         <Paragraph className="text-sm" variant="secondary">
           Phone
         </Paragraph>
-        <Paragraph>+31 20 760 6780</Paragraph>
+        <a href="tel:+31207606780" className="hover:underline">
+          <Paragraph>+31 20 760 6780</Paragraph>
+        </a>
       </div>
 
       <div className="flex flex-col gap-2">
         <Paragraph className="text-sm" variant="secondary">
           Email
         </Paragraph>
-        <Paragraph>
+        <Paragraph className="hover:underline">
           <a href="mailto:amsterdam@united-pop.nl">amsterdam@united-pop.nl</a>
         </Paragraph>
       </div>

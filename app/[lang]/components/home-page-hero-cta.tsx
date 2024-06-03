@@ -17,7 +17,8 @@ export const HomePageHeroCta = () => {
       <div className="flex flex-col gap-2 text-center md:text-left">
         <H1>Create your future today</H1>
         <Subheading variant="primary" as="div">
-          We offer full-time and part-time programs in a variety of fields.
+          We are an academy of music, media, and arts that offers a wide range
+          of courses to get you started on your creative journey.
         </Subheading>
       </div>
 

@@ -44,7 +44,7 @@ export default function Modal({ params }: { params: { lang: "en" | "nl" } }) {
                 possible.
               </Paragraph>
             </Description>
-            <div className="mt-8">
+            <div className="mt-4">
               <HubSpotForm lang={lang ?? "en"} />
             </div>
           </div>

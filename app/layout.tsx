@@ -24,7 +24,7 @@ export async function generateMetadata({
 
     openGraph: {
       type: "website",
-      locale: "en_UK",
+      locale: lang,
       url: env.NEXT_PUBLIC_BASE_URL,
       title: "United Pop",
       description: "United Pop is an academy for music and media.",
@@ -37,6 +37,7 @@ export async function generateMetadata({
         },
       ],
     },
+
     twitter: {
       images: [
         {
