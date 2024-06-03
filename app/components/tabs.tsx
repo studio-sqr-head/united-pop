@@ -8,6 +8,7 @@ import {
   TabPanel as HeadlessUiTabPanel,
   TabPanels as HeadlessUiTabPanels,
 } from "@headlessui/react";
+import { ChevronRightIcon } from "@heroicons/react/20/solid";
 
 export const Tabs = ({
   tabs,
@@ -62,11 +63,13 @@ export const TabGroup = ({ children }: { children: ReactNode }) => (
   <HeadlessUiTabGroup>{children}</HeadlessUiTabGroup>
 );
 
-export const TabList = ({ children }: { children: ReactNode }) => (
-  <HeadlessUiTabList className="flex gap-4 overflow-x-auto">
-    {children}
-  </HeadlessUiTabList>
-);
+export const TabList = ({ children }: { children: ReactNode }) => {
+  return (
+    <HeadlessUiTabList className="flex gap-4 overflow-x-auto no-scrollbar">
+      {children}
+    </HeadlessUiTabList>
+  );
+};
 
 export const TabPanels = ({ children }: { children: ReactNode }) => (
   <HeadlessUiTabPanels className="mt-6">{children}</HeadlessUiTabPanels>

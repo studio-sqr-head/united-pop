@@ -38,12 +38,6 @@ export default async function Home({
   const { stories } = await getAllCourses({ lang });
 
   const allCourses = stories as ISbStoryData<CourseStoryblok>[];
-  const bachelorCourses = allCourses.filter(
-    ({ content }) => content.type === TypeEnum.BACHELOR
-  );
-  const diplomaCourses = allCourses.filter(
-    ({ content }) => content.type === TypeEnum.DIPLOMA
-  );
 
   return (
     <>
@@ -53,11 +47,7 @@ export default async function Home({
         height={"full"}
         imageClassName="filter brightness-50"
       >
-        <HomePageHeroCta
-          courseCount={allCourses.length}
-          bachelorCourseCount={bachelorCourses.length}
-          diplomaCourseCount={diplomaCourses.length}
-        />
+        <HomePageHeroCta />
       </HeroSection>
       {allCourses != null && <CourseSection courses={allCourses} />}
     </>

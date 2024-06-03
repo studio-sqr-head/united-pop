@@ -6,15 +6,7 @@ import { H1, Subheading } from "@/app/components/typography";
 import { Button } from "@/app/components/button";
 import { Container } from "@/app/components/structure";
 
-export const HomePageHeroCta = ({
-  courseCount,
-  bachelorCourseCount,
-  diplomaCourseCount,
-}: {
-  courseCount: number;
-  bachelorCourseCount: number;
-  diplomaCourseCount: number;
-}) => {
+export const HomePageHeroCta = () => {
   const scrollToCourses = () => {
     const element = document.getElementById("courses");
     element?.scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -26,8 +18,6 @@ export const HomePageHeroCta = ({
         <H1>Create your future today</H1>
         <Subheading variant="primary" as="div">
           We offer full-time and part-time programs in a variety of fields.
-          Including {bachelorCourseCount} bachelor&apos;s and{" "}
-          {diplomaCourseCount} diploma programs
         </Subheading>
       </div>
 
@@ -48,7 +38,7 @@ export const HomePageHeroCta = ({
           icon={<ArrowDownIcon className="h-6 w-6 stroke-current stroke-1" />}
           iconPosition="right"
         >
-          Browse Catalog ({courseCount} courses)
+          View Courses
         </Button>
       </div>
     </Container>
