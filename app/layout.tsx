@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 
 import "./globals.css";
 import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
@@ -10,7 +10,7 @@ import { Header } from "@/app/components/header";
 import { StoryblokProvider } from "@/app/components/story-blok";
 import { Main } from "@/app/components/structure";
 
-const inter = Inter({ subsets: ["latin"] });
+const dmSans = DM_Sans({ subsets: ["latin"] });
 
 export async function generateMetadata({
   params,
@@ -22,6 +22,7 @@ export async function generateMetadata({
     title: "United Pop",
     description: "United Pop is an academy for music and media.",
     keywords: ["music", "media", "academy"],
+
     openGraph: {
       type: "website",
       locale: "en_UK",
@@ -70,7 +71,7 @@ export default function RootLayout(
     <StoryblokProvider>
       <html
         lang={params.lang}
-        className={`${inter.className} bg-black text-primary`}
+        className={`${dmSans.className} bg-black text-primary`}
       >
         <body>
           <Header lang={params.lang} />

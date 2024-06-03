@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailWindForms from "@tailwindcss/forms";
 
 export const config: Config = {
   content: [
@@ -54,6 +55,6 @@ export const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [tailWindForms],
 };
 export default config;

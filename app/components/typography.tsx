@@ -65,13 +65,15 @@ const Paragraph = ({
 const Subheading = ({
   children,
   variant = "secondary",
+  as = "p",
 }: {
   children: ReactNode;
   variant?: "primary" | "secondary";
+  as?: "p" | "div" | "span";
 }) => {
   const fontColor = variant === "primary" ? "text-primary" : "text-secondary";
   return (
-    <Paragraph as="p" className={`${fontSize.subheading} ${fontColor}`}>
+    <Paragraph as={as} className={`${fontSize.subheading} ${fontColor}`}>
       {children}
     </Paragraph>
   );

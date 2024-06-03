@@ -12,36 +12,35 @@ interface ButtonProps extends Partial<NextLinkProps<string | UrlObject>> {
   onClick?: (...args: any[]) => void;
   icon?: ReactNode;
   as?: "button" | "a";
+  iconPosition?: "left" | "right";
 }
 
-export const Button: React.FC<ButtonProps> = ({
-  variant = "primary",
-  size = "medium",
-  as = "button",
-  disabled = false,
-  children,
-  onClick,
-  icon,
-  ...linkProps
-}) => {
+// Using tailwind accessibilities classes so that we can also inject them into hubspot.
+export const useGenerateButtonClasses = ({
+  disabled,
+  size,
+  variant,
+}: Pick<ButtonProps, "variant" | "size" | "disabled">) => {
   const baseClasses =
     "rounded font-semibold text-center inline-flex items-center justify-center cursor-pointer focus:outline-none";
-  const focusClasses =
-    "data-[focus]:outline-1 data-[focus]:outline-white data-[focus]:ring-2 data-[focus]:ring-primary";
   const interactiveClasses = "transition-all ease-in-out duration-300";
   const disabledClasses =
-    "data-[disabled]:cursor-not-allowed data-[disabled]:text-gray-400 data-[disabled]:opacity-50 data-[disabled]:border-gray-600 data-[disabled]:bg-gray-500";
+    "disabled:cursor-not-allowed disabled:text-gray-400 disabled:opacity-50 disabled:border-gray-600 disabled:bg-gray-500";
 
-  const hoverClasses = "data-[hover]:opacity-50";
-  const activeClasses = "data-[active]:bg-primary-900";
+  const hoverClasses = {
+    primary: "hover:opacity-50",
+    secondary: "hover:bg-gray-800",
+  };
+
+  const activeClasses = "active:bg-primary-900";
   const variantClasses = {
     primary: clsx("bg-primary text-white border-2", {
-      [hoverClasses]: !disabled,
       [activeClasses]: !disabled,
+      [hoverClasses.primary]: !disabled,
     }),
     secondary: clsx("text-white border-2 border-white bg-transparent", {
-      [hoverClasses]: !disabled,
       [activeClasses]: !disabled,
+      [hoverClasses.secondary]: !disabled,
     }),
   };
 
@@ -55,17 +54,37 @@ export const Button: React.FC<ButtonProps> = ({
     baseClasses,
     sizeClasses[size],
     variantClasses[variant],
-    focusClasses,
     interactiveClasses,
     disabledClasses
   );
 
+  return buttonClasses;
+};
+
+export const Button: React.FC<ButtonProps> = ({
+  variant = "primary",
+  size = "medium",
+  as = "button",
+  disabled = false,
+  children,
+  onClick,
+  icon,
+  iconPosition = "left",
+  ...linkProps
+}) => {
+  const buttonClasses = useGenerateButtonClasses({ variant, size, disabled });
+  const render = (
+    <>
+      {icon && iconPosition === "left" && <span className="mr-2">{icon}</span>}
+      {children}
+      {icon && iconPosition === "right" && <span className="ml-2">{icon}</span>}
+    </>
+  );
   if (as === "a" && linkProps?.href) {
     return (
       <NextLink href={linkProps.href} passHref legacyBehavior {...linkProps}>
         <HeadlessUiButton as="a" className={buttonClasses} disabled={disabled}>
-          {icon && <span className="mr-2">{icon}</span>}
-          {children}
+          {render}
         </HeadlessUiButton>
       </NextLink>
     );
@@ -78,8 +97,7 @@ export const Button: React.FC<ButtonProps> = ({
       as="button"
       onClick={onClick}
     >
-      {icon && <span className="mr-2">{icon}</span>}
-      {children}
+      {render}
     </HeadlessUiButton>
   );
 };
@@ -108,16 +126,19 @@ export const IconButton: React.FC<IconButtonProps> = ({
 }) => {
   const baseClasses = "rounded-lg border flex items-center justify-center";
   const sizeClasses = {
-    small: "p-1",
-    medium: "p-2",
-    large: "p-3",
+    small: "p-1 text-sm",
+    medium: "p-2 text-base",
+    large: "p-3 text-lg",
   };
   const variantClasses = {
     primary: "text-primary border-primary",
-    secondary: "text-secondary border-gray-500",
+    secondary: "border-none",
   };
 
-  const hoverClasses = "hover:opacity-70";
+  const hoverClasses = {
+    primary: "data-[hover]:opacity-50",
+    secondary: "data-[hover]:bg-gray-800",
+  };
   const interactiveClasses = "transition-all ease-in-out duration-300";
   const disabledClasses =
     "data-[disabled]:cursor-not-allowed disabled:opacity-50";
@@ -125,7 +146,7 @@ export const IconButton: React.FC<IconButtonProps> = ({
   const buttonClasses = clsx(
     baseClasses,
     sizeClasses[size],
-    hoverClasses,
+    hoverClasses[variant],
     disabledClasses,
     interactiveClasses,
     variantClasses[variant],

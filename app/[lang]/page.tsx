@@ -5,7 +5,7 @@ import { HeroSection } from "@/app/components/structure";
 import { HomePageHeroCta } from "@/app/[lang]/components/home-page-hero-cta";
 import { CourseSection } from "@/app/[lang]/components/course-list";
 import { CourseStoryblok } from "@/types";
-import { STORYBLOK_BASE_URL } from "@/constants";
+import { STORYBLOK_BASE_URL, TypeEnum } from "@/constants";
 
 const getAllCourses = async ({
   lang,
@@ -37,7 +37,13 @@ export default async function Home({
 }) {
   const { stories } = await getAllCourses({ lang });
 
-  const courses = stories as ISbStoryData<CourseStoryblok>[];
+  const allCourses = stories as ISbStoryData<CourseStoryblok>[];
+  const bachelorCourses = allCourses.filter(
+    ({ content }) => content.type === TypeEnum.BACHELOR
+  );
+  const diplomaCourses = allCourses.filter(
+    ({ content }) => content.type === TypeEnum.DIPLOMA
+  );
 
   return (
     <>
@@ -47,9 +53,13 @@ export default async function Home({
         height={"full"}
         imageClassName="filter brightness-50"
       >
-        <HomePageHeroCta />
+        <HomePageHeroCta
+          courseCount={allCourses.length}
+          bachelorCourseCount={bachelorCourses.length}
+          diplomaCourseCount={diplomaCourses.length}
+        />
       </HeroSection>
-      {courses != null && <CourseSection courses={courses} />}
+      {allCourses != null && <CourseSection courses={allCourses} />}
     </>
   );
 }

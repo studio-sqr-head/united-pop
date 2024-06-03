@@ -11,7 +11,7 @@ export const Container = ({
   className?: string;
   as?: "div" | "section" | "article" | "main" | "header" | "footer";
 }) => {
-  const base = "container mx-auto px-4";
+  const base = "container mx-auto px-8";
   const containerClassNames = clsx(base, className);
   return createElement(as, { className: containerClassNames }, children);
 };

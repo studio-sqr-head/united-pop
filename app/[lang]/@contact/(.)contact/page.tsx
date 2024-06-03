@@ -25,25 +25,28 @@ export default function Modal({ params }: { params: { lang: "en" | "nl" } }) {
   return (
     <Dialog open onClose={onDismiss} className="relative z-50">
       <div className="fixed inset-0 flex w-screen items-center justify-center md:p-4 filter backdrop-blur-lg">
-        <DialogPanel className="relative h-full md:h-auto md:max-w-3xl w-full p-6 md:p-12 bg-slate md:rounded-lg border border-gray-900 border-opacity-50">
-          <IconButton
-            onClick={onDismiss}
-            className="absolute top-4 right-4 border-0"
-            icon={<XMarkIcon className="h-10 w-10 text-primary" />}
-            iconDescription="Close modal"
-            variant="secondary"
-          />
-
-          <DialogTitle as="div">
-            <H3>Get in touch</H3>
-          </DialogTitle>
-          <Description as="div">
-            <Paragraph variant="secondary">
-              Fill out the form below to get in touch with us.
-            </Paragraph>
-          </Description>
-          <div className="mt-8">
-            <HubSpotForm lang={lang ?? "en"} />
+        <DialogPanel className="overflow-y-scroll relative h-full md:h-auto md:max-w-xl w-full bg-slate md:rounded-lg border border-gray-800 border-opacity-50">
+          <div className="flex justify-between items-center p-6 md:px-12 md:py-6 border-b border-gray-800 border-opacity-50">
+            <DialogTitle as="div">
+              <H3>Get in touch</H3>
+            </DialogTitle>
+            <IconButton
+              onClick={onDismiss}
+              icon={<XMarkIcon className="h-6 w-6 stroke-current stroke-2" />}
+              iconDescription="Close modal"
+              variant="secondary"
+            />
+          </div>
+          <div className="p-6 md:px-12 md:py-6">
+            <Description as="div">
+              <Paragraph variant="secondary">
+                Fill in the form below and we will get back to you as soon as
+                possible.
+              </Paragraph>
+            </Description>
+            <div className="mt-8">
+              <HubSpotForm lang={lang ?? "en"} />
+            </div>
           </div>
         </DialogPanel>
       </div>

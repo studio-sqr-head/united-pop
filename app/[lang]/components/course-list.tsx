@@ -169,7 +169,7 @@ const CourseList = ({
     );
   }
   return (
-    <div className="flex flex-col" id="courses">
+    <div className="flex flex-col">
       <div className="flex flex-col gap-10 justify-center items-center h-full">
         <div className="flex gap-2 justify-between w-full">
           <CourseListHeader activeCategory={activeCategory} />
@@ -235,7 +235,7 @@ export const CourseSection = ({
   });
 
   return (
-    <div className="bg-slate">
+    <div className="bg-slate" id="courses">
       <Container as="section" className="py-16 max-w-5xl min-h-300">
         <div className="flex flex-col gap-8">
           <CourseSectionHeader />

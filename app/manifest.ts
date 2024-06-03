@@ -4,16 +4,19 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
   return {
     name: "United Pop",
     short_name: "United Pop",
-    description:
-      "United Pop is a music academy that offers courses in music production, sound engineering, and more.",
+    description: "Academy of music, media & the arts",
     display: "standalone",
     background_color: "#000000",
     theme_color: "#ff5e00",
-    start_url: "/",
+    start_url: `/`,
     orientation: "portrait",
-
     id: "com.unitedpop",
     icons: [
+      {
+        src: "/favicon.ico",
+        sizes: "any",
+        type: "image/x-icon",
+      },
       {
         src: "/android-chrome-192x192.png",
         sizes: "192x192",

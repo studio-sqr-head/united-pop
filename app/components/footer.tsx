@@ -25,7 +25,7 @@ export const Footer = (): ReactElement => {
             ))}
           </div>
           <Paragraph className="text-white text-sm">
-            © {new Date().getFullYear()} All rights reserved
+            © {new Date().getFullYear()} United Pop. All rights reserved.
           </Paragraph>
         </div>
       </Container>
