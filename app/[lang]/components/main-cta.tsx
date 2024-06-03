@@ -12,6 +12,7 @@ export const MainCta = ({
 }) => {
   return (
     <div className={`flex gap-2 items-center ${className}`}>
+      <DownloadBrochureButton />
       <Button
         variant="primary"
         size="medium"
@@ -23,8 +24,6 @@ export const MainCta = ({
       >
         Enroll
       </Button>
-
-      <DownloadBrochureButton />
     </div>
   );
 };

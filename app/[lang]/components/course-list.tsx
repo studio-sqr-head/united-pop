@@ -10,20 +10,16 @@ import { H3, H5, H6, Paragraph, Subheading } from "@/app/components/typography";
 import { MetaDataChip } from "@/app/components/chip";
 import { Button } from "@/app/components/button";
 import { CourseStoryblok } from "@/types";
-import {
-  CATEGORIES,
-  CategoryEnum,
-  TYPES,
-  TypeEnum,
-  START_DATES,
-} from "@/constants";
-import { getClosestFutureDateToToday } from "@/utils";
+import { CATEGORIES, CategoryEnum, TYPES, START_DATES } from "@/constants";
+import { formatDate, getClosestFutureDateToToday } from "@/utils";
 
 const CourseListFilter = ({
   activeCategory,
+  courses,
   handleCategoryChange,
 }: {
   activeCategory: CategoryEnum;
+  courses?: ISbStoryData<CourseStoryblok>[];
   handleCategoryChange: (category: CategoryEnum) => void;
 }) => {
   return (
@@ -36,7 +32,19 @@ const CourseListFilter = ({
               size="medium"
               active={activeCategory === category?.id}
             >
-              {category?.title}
+              {category?.title}{" "}
+              {category?.id === CategoryEnum.ALL ? (
+                <span className="ml-1">({courses?.length})</span>
+              ) : (
+                <span className="ml-1">
+                  (
+                  {
+                    courses?.filter((c) => c.content.category === category.id)
+                      .length
+                  }
+                  )
+                </span>
+              )}
             </MetaDataChip>
           </div>
         ))}
@@ -51,9 +59,10 @@ export const CourseStartDateChip = ({
   size?: "small" | "medium" | "large";
 }) => {
   const closestDate = getClosestFutureDateToToday(START_DATES);
+  const date = formatDate({ date: closestDate });
   return (
     <MetaDataChip variant="secondary" size={size}>
-      {closestDate.toDateString()}
+      {date}
     </MetaDataChip>
   );
 };
@@ -242,6 +251,7 @@ export const CourseSection = ({
           <CourseListFilter
             activeCategory={activeCategory}
             handleCategoryChange={handleCategoryChange}
+            courses={courses}
           />
           <CourseList
             lang={lang ?? "en"}

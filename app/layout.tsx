@@ -7,7 +7,6 @@ import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 import { env } from "@/env";
 import { Footer } from "@/app/components/footer";
 import { Header } from "@/app/components/header";
-import { StoryblokProvider } from "@/app/components/story-blok";
 import { Main } from "@/app/components/structure";
 
 const dmSans = DM_Sans({ subsets: ["latin"] });
@@ -68,17 +67,15 @@ export default function RootLayout(
   const { children, params } = props;
 
   return (
-    <StoryblokProvider>
-      <html
-        lang={params.lang}
-        className={`${dmSans.className} bg-black text-primary`}
-      >
-        <body>
-          <Header lang={params.lang} />
-          <Main>{children}</Main>
-          <Footer />
-        </body>
-      </html>
-    </StoryblokProvider>
+    <html
+      lang={params.lang}
+      className={`${dmSans.className} bg-black text-primary`}
+    >
+      <body>
+        <Header lang={params.lang} />
+        <Main>{children}</Main>
+        <Footer />
+      </body>
+    </html>
   );
 }

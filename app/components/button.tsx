@@ -20,7 +20,7 @@ export const useGenerateButtonClasses = ({
   disabled = false,
   size = "medium",
   variant = "primary",
-}: Pick<ButtonProps, "variant" | "size" | "disabled">) => {
+}: Pick<ButtonProps, "variant" | "size" | "disabled">): string => {
   const baseClasses =
     "rounded font-semibold text-center inline-flex items-center justify-center cursor-pointer focus:outline-none whitespace-nowrap";
   const interactiveClasses = "transition-all ease-in-out duration-300";

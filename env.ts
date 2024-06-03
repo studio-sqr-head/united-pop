@@ -8,6 +8,7 @@ export const env = createEnv({
     NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN: z.string(),
     NEXT_PUBLIC_STORYBLOK_REGION: z.string(),
     NEXT_PUBLIC_IS_PREVIEW: z.string(),
+    NEXT_PUBLIC_HUBSPOT_PORTAL_ID: z.string(),
   },
 
   runtimeEnv: {
@@ -16,5 +17,6 @@ export const env = createEnv({
     NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN:
       process.env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN,
     NEXT_PUBLIC_IS_PREVIEW: process.env.NEXT_PUBLIC_IS_PREVIEW,
+    NEXT_PUBLIC_HUBSPOT_PORTAL_ID: process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID,
   },
 });
