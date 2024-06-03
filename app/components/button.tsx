@@ -18,8 +18,8 @@ interface ButtonProps extends Partial<NextLinkProps<string | UrlObject>> {
 // Using tailwind accessibilities classes so that we can also inject them into hubspot.
 export const useGenerateButtonClasses = ({
   disabled,
-  size,
-  variant,
+  size = "medium",
+  variant = "primary",
 }: Pick<ButtonProps, "variant" | "size" | "disabled">) => {
   const baseClasses =
     "rounded font-semibold text-center inline-flex items-center justify-center cursor-pointer focus:outline-none";

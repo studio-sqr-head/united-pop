@@ -4,6 +4,7 @@ import { ArrowDownIcon } from "@heroicons/react/20/solid";
 
 import { H1, Subheading } from "@/app/components/typography";
 import { Button } from "@/app/components/button";
+import { Container } from "@/app/components/structure";
 
 export const HomePageHeroCta = ({
   courseCount,
@@ -20,13 +21,13 @@ export const HomePageHeroCta = ({
   };
 
   return (
-    <div className="flex flex-col justify-between items-start gap-8 max-w-4xl mx-auto py-16 px-8 md:px-0">
+    <Container className="flex flex-col justify-between items-start gap-8 max-w-5xl py-16 px-8">
       <div className="flex flex-col gap-2 text-center md:text-left">
         <H1>Create your future today</H1>
         <Subheading variant="primary" as="div">
           We offer full-time and part-time programs in a variety of fields.
-          Including {bachelorCourseCount} bachelor's and {diplomaCourseCount}{" "}
-          diploma programs
+          Including {bachelorCourseCount} bachelor&apos;s and{" "}
+          {diplomaCourseCount} diploma programs
         </Subheading>
       </div>
 
@@ -50,6 +51,6 @@ export const HomePageHeroCta = ({
           Browse Catalog ({courseCount} courses)
         </Button>
       </div>
-    </div>
+    </Container>
   );
 };

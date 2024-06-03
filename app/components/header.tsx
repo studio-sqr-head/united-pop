@@ -25,7 +25,7 @@ export const Header = ({ lang }: { lang: "en" | "nl" }) => {
         blur ? "bg-black bg-opacity-90" : "bg-transparent"
       }`}
     >
-      <Container className={`flex items-center justify-between`}>
+      <Container className={`flex items-center justify-between max-w-7xl`}>
         <Logo />
 
         <div className="flex items-center gap-8">

@@ -82,7 +82,7 @@ export default async function CoursePage({
 
       <TabGroup>
         <div className="full-w text-white pt-4 gradient bg-slate">
-          <Container as="section" className="max-w-5xl pt-8">
+          <Container as="section" className="max-w-6xl pt-8">
             <div className="mb-4 flex items-center gap-4 justify-between">
               <div className="flex gap-2 items-center">
                 {fulltime && (
@@ -122,7 +122,7 @@ export default async function CoursePage({
           </Container>
         </div>
 
-        <Container as="section" className="max-w-5xl pt-8">
+        <Container as="section" className="max-w-6xl pt-8">
           {TABS.map(({ id }, index) => (
             <TabPanel key={index}>
               {id === "overview" && (

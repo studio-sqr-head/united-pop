@@ -236,7 +236,7 @@ export const CourseSection = ({
 
   return (
     <div className="bg-slate" id="courses">
-      <Container as="section" className="py-16 max-w-5xl min-h-300">
+      <Container as="section" className="py-16 max-w-6xl min-h-300">
         <div className="flex flex-col gap-8">
           <CourseSectionHeader />
           <CourseListFilter
