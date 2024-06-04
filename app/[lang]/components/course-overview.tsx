@@ -19,7 +19,8 @@ function RichText({ document }: { document: any }) {
       {render(document, {
         markResolvers: {
           [MARK_LINK](children, { href }) {
-            return <Link href={href}>{children}</Link>;
+            // FIXME: ANY
+            return <Link href={href as any}>{children}</Link>;
           },
         },
         nodeResolvers: {

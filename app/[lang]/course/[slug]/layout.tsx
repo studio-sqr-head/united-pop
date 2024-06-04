@@ -47,18 +47,13 @@ export async function generateMetadata({
     },
   };
 }
+
 export default function Layout(
   props: Readonly<{
-    children: React.ReactNode;
-    params: { lang: "en" | "nl" };
-    contact: ReactNode;
+    children: ReactNode;
   }>
 ) {
-  const { children, contact } = props;
+  const { children } = props;
 
-  return (
-    <>
-      {children} {contact}
-    </>
-  );
+  return <>{children}</>;
 }
