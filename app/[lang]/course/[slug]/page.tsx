@@ -1,76 +1,33 @@
-import { ReactNode } from "react";
-import {
-  ChevronDownIcon,
-  MapPinIcon,
-  ClockIcon,
-  BookOpenIcon,
-} from "@heroicons/react/20/solid";
-import {
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-} from "@headlessui/react";
-import { ISbStory } from "@storyblok/react";
-
 import { Container, HeroSection } from "@/app/components/structure";
-import { H2, Paragraph, H6 } from "@/app/components/typography";
-import { IconButton } from "@/app/components/button";
+import { H2, Paragraph } from "@/app/components/typography";
 import { Tab, TabGroup, TabList, TabPanel } from "@/app/components/tabs";
-import { List, ListItem } from "@/app/components/list";
 import { CourseStoryblok } from "@/types";
-import { env } from "@/env";
-import { MetaDataChip } from "@/app/components/chip";
-import { CourseStartDateChip } from "@/app/[lang]/components/course-list";
-import {
-  TABS,
-  TYPES,
-  START_DATES,
-  TypeEnum,
-  STORYBLOK_BASE_URL,
-} from "@/constants";
+import { TABS, TypeEnum, STORYBLOK_BASE_URL } from "@/constants";
 import { MainCta } from "@/app/[lang]/components/main-cta";
-
-const getCourse = async ({
-  slug,
-  lang,
-}: {
-  slug: string;
-  lang: "en" | "nl";
-}): Promise<ISbStory["data"]> => {
-  const version = "published";
-  const token = env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN;
-  const url = `${STORYBLOK_BASE_URL}/courses/${slug}?&version=${version}&token=${token}`;
-
-  try {
-    const response = await fetch(url, { next: { revalidate: 10 } });
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch course");
-    }
-
-    const data: ISbStory["data"] = await response.json();
-
-    return data;
-  } catch (error) {
-    throw new Error("Failed to fetch course");
-  }
-};
+import { ContactDetails } from "@/app/[lang]/components/course-contact-details";
+import { CourseFaq } from "@/app/[lang]/components/course-faq";
+import { CourseFees } from "@/app/[lang]/components/course-fees";
+import { CourseOverview } from "@/app/[lang]/components/course-overview";
+import { CourseTimetable } from "@/app/[lang]/components/course-timetable";
+import { CourseHeader } from "@/app/[lang]/components/course-header";
+import { BreadCrumbs } from "@/app/components/breadcrumbs";
+import { getCourseBySlug } from "@/api/course";
 
 export default async function CoursePage({
   params,
 }: {
   params: { lang: "en" | "nl"; slug: string };
 }) {
-  const { story: course } = await getCourse({
+  const { story: course } = await getCourseBySlug({
     slug: params?.slug,
     lang: params.lang,
   });
   const { content } = course;
-  const { title, description, image, type, fulltime, parttime } =
+  const { title, description, image, type, fulltime, parttime, overview } =
     content as CourseStoryblok;
 
   return (
-    <div className="mb-16">
+    <div>
       {image != null && (
         <HeroSection
           height={"banner"}
@@ -79,32 +36,21 @@ export default async function CoursePage({
           imageClassName="filter brightness-75"
         />
       )}
+      <div className="bg-slate text-white py-4 full-w">
+        <Container as="section" className="max-w-6xl">
+          <BreadCrumbs />
+        </Container>
+      </div>
 
       <TabGroup>
-        <div className="full-w text-white pt-4 gradient bg-slate">
+        <div className="full-w text-white pt-4 gradient bg-black">
           <Container as="section" className="max-w-6xl pt-8">
-            <div className="mb-4 flex items-center gap-4 justify-between">
-              <div className="flex gap-2 items-center">
-                {fulltime && (
-                  <MetaDataChip variant="default" size="medium">
-                    Full-time
-                  </MetaDataChip>
-                )}
-                {parttime && (
-                  <MetaDataChip variant="default" size="medium">
-                    Part-time
-                  </MetaDataChip>
-                )}
-                {type && (
-                  <MetaDataChip variant="secondary" size="medium">
-                    {TYPES.find((t) => t.id === type)?.title}
-                  </MetaDataChip>
-                )}
-              </div>
-
-              <MainCta className="hidden md:flex" params={params} />
-            </div>
-
+            <CourseHeader
+              fulltime={fulltime}
+              parttime={parttime}
+              type={type as TypeEnum}
+              params={params}
+            />
             <div className="flex justify-between items-start gap-4 mb-12 md:flex-row flex-col">
               <div className="flex flex-col gap-4">
                 <H2>{title}</H2>
@@ -122,362 +68,25 @@ export default async function CoursePage({
           </Container>
         </div>
 
-        <Container as="section" className="max-w-6xl pt-8">
-          {TABS.map(({ id }, index) => (
-            <TabPanel key={index}>
-              {id === "overview" && (
-                <Overview
-                  courseOverview={description}
-                  type={type as TypeEnum}
-                />
-              )}
-              {id === "structure" && <Structure />}
-              {id === "faq" && <Faq />}
-              {id === "contact" && <Contact courseName={title} />}
-              {id === "fees" && <Fees />}
-            </TabPanel>
-          ))}
-        </Container>
+        <div className="bg-slate text-white full-w">
+          <Container as="section" className="max-w-6xl py-16">
+            {TABS.map(({ id }, index) => (
+              <TabPanel key={index}>
+                {id === "overview" && (
+                  <CourseOverview
+                    courseOverview={overview}
+                    type={type as TypeEnum}
+                  />
+                )}
+                {id === "structure" && <CourseTimetable />}
+                {id === "faq" && <CourseFaq />}
+                {id === "contact" && <ContactDetails courseName={title} />}
+                {id === "fees" && <CourseFees />}
+              </TabPanel>
+            ))}
+          </Container>
+        </div>
       </TabGroup>
     </div>
   );
 }
-
-const Address = () => {
-  return (
-    <address className="flex gap-2 flex-col font-normal hover:underline">
-      <a
-        href="https://www.google.com/maps/place/Q-Factory,+Atlantisplein+1,+Amsterdam"
-        target="_blank"
-        rel="noreferrer"
-      >
-        <Paragraph>United POP B.V.</Paragraph>
-        <Paragraph>Q-Factory, Atlantisplein 1</Paragraph>
-        <Paragraph>1093 NE Amsterdam</Paragraph>
-      </a>
-    </address>
-  );
-};
-
-const COURSE_METADATA = {
-  startDates: START_DATES,
-  location: <Address />,
-  collaboration:
-    "The Bachelor (Hons) programmes delivered by United POP are validated by the University of West London and comply with the requirements of the UK Quality Assurance Agency for Higher Education and the Framework for Qualifications of the European Higher Education Area (FQ-EHEA).",
-};
-
-const MetaDataItem = ({
-  icon,
-  title,
-  value,
-}: {
-  icon: ReactNode;
-  title: string;
-  value: ReactNode;
-}) => {
-  return (
-    <div className="flex flex-col gap-4">
-      <div className="flex gap-2 items-center">
-        {icon}
-        <Paragraph variant="secondary" className="text-sm">
-          {title}
-        </Paragraph>
-      </div>
-
-      <div>{value}</div>
-    </div>
-  );
-};
-
-const CourseMetaData = ({
-  location,
-  collaboration,
-  type,
-}: {
-  location: ReactNode;
-  collaboration: string;
-  type?: TypeEnum;
-}) => {
-  return (
-    <div className="p-8 bg-slate rounded flex-1 h-fit">
-      <div className="flex flex-col gap-8">
-        <MetaDataItem
-          icon={<MapPinIcon className="w-4 h-4 text-secondary" />}
-          title="Location"
-          value={location}
-        />
-        <MetaDataItem
-          icon={<ClockIcon className="w-4 h-4 text-secondary" />}
-          title="Next start date"
-          value={<CourseStartDateChip size="medium" />}
-        />
-        {type === TypeEnum.BACHELOR && (
-          <MetaDataItem
-            icon={<BookOpenIcon className="w-4 h-4 text-secondary" />}
-            title="Collaboration"
-            value={<Paragraph className="text-sm">{collaboration}</Paragraph>}
-          />
-        )}
-      </div>
-    </div>
-  );
-};
-
-const Fees = ({ courseFees }: { courseFees?: string }) => {
-  return (
-    <div className="flex flex-col gap-8">
-      <div className="flex flex-col gap-2">
-        <Paragraph>{courseFees}</Paragraph>
-      </div>
-    </div>
-  );
-};
-const Overview = ({
-  courseOverview,
-  type,
-}: {
-  courseOverview?: string;
-  type: TypeEnum;
-}) => {
-  return (
-    <div className="flex flex-col md:flex-row gap-8">
-      <div className="flex flex-col gap-2 flex-1">
-        <Paragraph>{courseOverview}</Paragraph>
-      </div>
-      <div className="flex-1">
-        <CourseMetaData
-          collaboration={COURSE_METADATA.collaboration}
-          location={COURSE_METADATA.location}
-          type={type}
-        />
-      </div>
-    </div>
-  );
-};
-
-const FAQ_ITEMS = [
-  {
-    question: "Is team pricing available?",
-    answer:
-      "Yes! You can purchase a license that you can share with your entire team.",
-  },
-  {
-    question: "Can I get a refund?",
-    answer: "Yes! You can get a refund within 30 days of purchase.",
-  },
-  {
-    question: "Can I upgrade my license?",
-    answer: "Yes! You can upgrade your license at any time.",
-  },
-  {
-    question: "Is there a free trial available?",
-    answer: "Yes! You can try out our software for free for 14 days.",
-  },
-  {
-    question: "Do you offer discounts for students?",
-    answer:
-      "Yes! We offer discounts for students who can provide a valid student ID.",
-  },
-  {
-    question: "Can I cancel my subscription at any time?",
-    answer: "Yes! You can cancel your subscription at any time.",
-  },
-  {
-    question: "Can I cancel my subscription at any time?",
-    answer: "Yes! You can cancel your subscription at any time.",
-  },
-];
-
-const Faq = () => {
-  return (
-    <div className="flex flex-col gap-6">
-      {FAQ_ITEMS.map((item, index) => (
-        <FaqItem key={index} {...item} />
-      ))}
-    </div>
-  );
-};
-
-const FaqItem = ({
-  question,
-  answer,
-}: {
-  question: string;
-  answer: string;
-}) => {
-  return (
-    <Disclosure
-      as="div"
-      className="flex flex-col divide-gray-500 hover:opacity-70 cursor-pointer"
-    >
-      <DisclosureButton className="group flex gap-2" as="div">
-        <div className="flex-grow flex items-center">
-          <H6>{question}</H6>
-        </div>
-        <div>
-          <IconButton
-            variant="secondary"
-            size="small"
-            iconDescription="Toggle Answer"
-            className="border-none"
-            icon={
-              <ChevronDownIcon className="w-8 group-data-[open]:rotate-180 stroke-2" />
-            }
-          />
-        </div>
-      </DisclosureButton>
-      <DisclosurePanel>
-        <Paragraph variant="secondary">{answer}</Paragraph>
-      </DisclosurePanel>
-    </Disclosure>
-  );
-};
-
-const Contact = ({ courseName }: { courseName?: string }) => {
-  return (
-    <div className="flex flex-col gap-8">
-      <div className="flex flex-col gap-2">
-        <Paragraph>
-          If you specific questions about the {courseName} program, feel free to
-          contact us. We are happy to help!
-        </Paragraph>
-      </div>
-
-      <div className="flex flex-col gap-2">
-        <Paragraph className="text-sm" variant="secondary">
-          Address
-        </Paragraph>
-        <Address />
-      </div>
-
-      <div className="flex flex-col gap-2">
-        <Paragraph className="text-sm" variant="secondary">
-          Phone
-        </Paragraph>
-        <a href="tel:+31207606780" className="hover:underline">
-          <Paragraph>+31 20 760 6780</Paragraph>
-        </a>
-      </div>
-
-      <div className="flex flex-col gap-2">
-        <Paragraph className="text-sm" variant="secondary">
-          Email
-        </Paragraph>
-        <Paragraph className="hover:underline">
-          <a href="mailto:amsterdam@united-pop.nl">amsterdam@united-pop.nl</a>
-        </Paragraph>
-      </div>
-    </div>
-  );
-};
-
-const TIMELINE = [
-  {
-    date: "Semester 1",
-    items: [
-      {
-        title: "Introduction to Electronic Music Production",
-        description: "Learn the basics of electronic music production.",
-      },
-      {
-        title: "Advanced Electronic Music Production",
-        description:
-          "Learn advanced techniques in electronic music production.",
-      },
-    ],
-  },
-  {
-    date: "Semester 2",
-    items: [
-      {
-        title: "Advanced Electronic Music Production",
-        description:
-          "Learn advanced techniques in electronic music production.",
-      },
-      {
-        title: "Advanced Electronic Music Production",
-        description:
-          "Learn advanced techniques in electronic music production.",
-      },
-    ],
-  },
-  {
-    date: "Semester 3",
-    items: [
-      {
-        title: "Sound Design",
-        description: "Learn how to design sounds for electronic music.",
-      },
-      {
-        title: "Advanced Electronic Music Production",
-        description:
-          "Learn advanced techniques in electronic music production.",
-      },
-    ],
-  },
-];
-
-const Structure = () => {
-  return (
-    <div className="flex flex-col gap-8">
-      <div className="flex flex-col gap-2">
-        <Paragraph>
-          The Music & Sound program is divided into 3 semesters. Each semester
-          covers a different topic related to music and sound production.
-        </Paragraph>
-      </div>
-
-      <div className="flex flex-col gap-6 justify-between w-full">
-        <TimeLine timeline={TIMELINE} />
-      </div>
-    </div>
-  );
-};
-
-const TimeLine = ({
-  timeline,
-}: {
-  timeline: {
-    date: string;
-    items: { title: string; description: string; children?: ReactNode }[];
-  }[];
-}) => {
-  return (
-    <ol className="relative border-s border-gray-500">
-      {timeline.map((item, index) => (
-        <TimeLineItem key={index} {...item} />
-      ))}
-    </ol>
-  );
-};
-
-const TimeLineItem = ({
-  date,
-  items,
-  children,
-}: {
-  date?: string;
-  items: { title: string; description: string }[];
-  children?: ReactNode;
-}) => {
-  return (
-    <li className="mb-8 ml-4">
-      <div className="absolute w-3 h-3 bg-gray-600 rounded-full mt-1.5 -start-1.5 border border-black"></div>
-      <div className="flex items-center gap-2">
-        <time className="text-secondary text-sm">{date}</time>
-      </div>
-
-      <List className="my-4">
-        {items.map((item, index) => (
-          <ListItem
-            textPrimary={item.title}
-            textSecondary={item.description}
-            key={index}
-          />
-        ))}
-      </List>
-
-      {children}
-    </li>
-  );
-};

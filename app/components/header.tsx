@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { clsx } from "clsx";
 import { DesktopNav } from "@/app/components/navigation";
 import { Container } from "@/app/components/structure";
 import { Logo } from "@/app/components/logo";
@@ -19,12 +20,13 @@ export const Header = ({ lang }: { lang: "en" | "nl" }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const headerClasses = clsx(
+    "z-30 py-4 text-white w-full top-0 left-0 right-0 fixed flex items-center justify-between transition-all duration-300",
+    blur ? "bg-slate bg-opacity-70" : "bg-transparent"
+  );
+
   return (
-    <header
-      className={`z-30 h-16 text-white w-full top-0 left-0 right-0 fixed flex items-center justify-between transition-all duration-300 ${
-        blur ? "bg-black bg-opacity-90" : "bg-transparent"
-      }`}
-    >
+    <header className={headerClasses}>
       <Container className={`flex items-center justify-between max-w-7xl`}>
         <Logo />
 

@@ -21,9 +21,21 @@ export async function generateMetadata({
     title: "United Pop",
     description: "United Pop is an academy for music and media.",
     keywords: ["music", "media", "academy"],
-
+    twitter: {
+      images: [
+        {
+          url: `${env.NEXT_PUBLIC_BASE_URL}/${lang}/og-image.jpg`,
+          width: 800,
+          height: 600,
+          alt: "United Pop",
+        },
+      ],
+      title: "United Pop",
+      description: "United Pop is an academy for music and media.",
+    },
     openGraph: {
       type: "website",
+
       locale: lang,
       url: env.NEXT_PUBLIC_BASE_URL,
       title: "United Pop",
@@ -36,19 +48,6 @@ export async function generateMetadata({
           alt: "United Pop",
         },
       ],
-    },
-
-    twitter: {
-      images: [
-        {
-          url: `${env.NEXT_PUBLIC_BASE_URL}/${lang}/og-image.jpg`,
-          width: 800,
-          height: 600,
-          alt: "United Pop",
-        },
-      ],
-      title: "United Pop",
-      description: "United Pop is an academy for music and media.",
     },
   };
 }

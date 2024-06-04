@@ -5,13 +5,14 @@ import React, { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { ISbStoryData } from "@storyblok/react";
 
+import { formatDate, getClosestFutureDateToToday } from "@/utils";
 import { Container, Divider } from "@/app/components/structure";
 import { H3, H5, H6, Paragraph, Subheading } from "@/app/components/typography";
 import { MetaDataChip } from "@/app/components/chip";
 import { Button } from "@/app/components/button";
 import { CourseStoryblok } from "@/types";
 import { CATEGORIES, CategoryEnum, TYPES, START_DATES } from "@/constants";
-import { formatDate, getClosestFutureDateToToday } from "@/utils";
+import { CourseStartDateChip } from "@/app/[lang]/components/course-start-date-chip";
 
 const CourseListFilter = ({
   activeCategory,
@@ -53,32 +54,6 @@ const CourseListFilter = ({
   );
 };
 
-export const CourseStartDateChip = ({
-  size = "medium",
-}: {
-  size?: "small" | "medium" | "large";
-}) => {
-  const closestDate = getClosestFutureDateToToday(START_DATES);
-  const date = formatDate({ date: closestDate });
-  return (
-    <MetaDataChip variant="secondary" size={size}>
-      {date}
-    </MetaDataChip>
-  );
-};
-
-const CourseStartDates = () => {
-  return (
-    <div className="flex gap-2 items-center mb-3">
-      <Paragraph variant="secondary" className="text-sm">
-        Next Course Starts:
-      </Paragraph>
-
-      <CourseStartDateChip size="small" />
-    </div>
-  );
-};
-
 const CourseListItem = ({
   course,
   handleCourseClick,
@@ -90,6 +65,7 @@ const CourseListItem = ({
 }) => {
   const { content, slug } = course;
   const { title, description, image, type, fulltime, parttime } = content ?? {};
+  const closestStartDate = getClosestFutureDateToToday(START_DATES);
   return (
     <div
       className="flex w-full gap-4 h-full flex-col md:flex-row cursor-pointer hover:opacity-80"
@@ -121,7 +97,16 @@ const CourseListItem = ({
               </MetaDataChip>
             </div>
           </div>
-          <CourseStartDates />
+          <div className="flex gap-2 items-center mb-3">
+            <Paragraph variant="secondary" className="text-sm">
+              Next Course Starts:
+            </Paragraph>
+
+            <CourseStartDateChip
+              size="small"
+              date={formatDate({ date: closestStartDate, lang: "en" })}
+            />
+          </div>
 
           <Paragraph className="grow flex-1 h-full">{description}</Paragraph>
         </div>

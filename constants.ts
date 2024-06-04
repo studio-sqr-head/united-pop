@@ -3,7 +3,7 @@ import {
   InstagramSvg,
   LinkedInSvg,
   YoutubeSvg,
-} from "@/app/components/socials";
+} from "@/app/components/icons";
 
 // move to env
 export const STORYBLOK_BASE_URL = "https://api.storyblok.com/v2/cdn/stories";
@@ -111,5 +111,38 @@ export const SOCIAL_MEDIA = [
     href: "https://www.youtube.com/unitedpop",
     title: "YouTube",
     Svg: YoutubeSvg,
+  },
+];
+
+export const FAQ_ITEMS = [
+  {
+    title: "Is team pricing available?",
+    description:
+      "Yes! You can purchase a license that you can share with your entire team.",
+  },
+  {
+    title: "Can I get a refund?",
+    description: "Yes! You can get a refund within 30 days of purchase.",
+  },
+  {
+    title: "Can I upgrade my license?",
+    description: "Yes! You can upgrade your license at any time.",
+  },
+  {
+    title: "Is there a free trial available?",
+    description: "Yes! You can try out our software for free for 14 days.",
+  },
+  {
+    title: "Do you offer discounts for students?",
+    description:
+      "Yes! We offer discounts for students who can provide a valid student ID.",
+  },
+  {
+    title: "Can I cancel my subscription at any time?",
+    description: "Yes! You can cancel your subscription at any time.",
+  },
+  {
+    title: "Can I cancel my subscription at any time?",
+    description: "Yes! You can cancel your subscription at any time.",
   },
 ];

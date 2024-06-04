@@ -15,9 +15,26 @@ const formatPathToTitle = (path: string) => {
     .join(" ");
 };
 
+const getPathSegments = ({
+  pathname,
+  nameOfSegmentsToRemove, // // Not all paths are relevant to the breadcrumb. Remove the course segment from the path
+}: {
+  pathname: string;
+  nameOfSegmentsToRemove: string[];
+}) => {
+  return pathname
+    .split("/")
+    .filter(Boolean)
+    .filter((p) => !nameOfSegmentsToRemove.includes(p));
+};
+
+// This component is dependent on url structure.
 export const BreadCrumbs = () => {
   const pathname = usePathname();
-  const path = pathname.split("/").filter(Boolean); // Split and remove empty strings
+  const path = getPathSegments({
+    pathname,
+    nameOfSegmentsToRemove: ["course"],
+  });
 
   return (
     <div className="flex gap-2 align-center items-center">

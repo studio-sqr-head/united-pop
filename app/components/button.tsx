@@ -46,8 +46,8 @@ export const useGenerateButtonClasses = ({
 
   const sizeClasses = {
     small: "py-1 px-2 text-md",
-    medium: "py-2 px-4 text-base",
-    large: "py-2 px-3 text-lg",
+    medium: "py-2 px-3 text-lg",
+    large: "py-2 md:py-3 px-3 md:px-4 text-lg",
   };
 
   const buttonClasses = clsx(
@@ -105,7 +105,7 @@ export const Button: React.FC<ButtonProps> = ({
 interface IconButtonProps extends Partial<NextLinkProps<string | UrlObject>> {
   icon: ReactNode;
   onClick?: () => void;
-  iconDescription: string;
+  iconDescription?: string;
   size?: "small" | "medium" | "large";
   disabled?: boolean;
   className?: string;

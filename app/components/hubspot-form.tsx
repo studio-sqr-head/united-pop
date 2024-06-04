@@ -84,6 +84,7 @@ const FormLoading = () => (
   </div>
 );
 
+// Generate Tailwind classes for the HubSpot form.
 const applyTailwindClasses = (
   container: HTMLElement,
   buttonClasses: string
@@ -91,9 +92,15 @@ const applyTailwindClasses = (
   const form = container.querySelector("form");
   form?.classList.add("w-full", "flex", "flex-col");
 
-  const inputs = container.querySelectorAll(
-    "input[type=text], input[type=email], input[type=tel], textarea, select"
-  );
+  const inputSelectors = [
+    "input[type=text]",
+    "input[type=email]",
+    "input[type=tel]",
+    "textarea",
+    "select",
+  ].join(", ");
+
+  const inputs = container.querySelectorAll(inputSelectors);
   inputs.forEach((input) => {
     input.classList.add(
       "p-3",
@@ -141,8 +148,7 @@ const applyTailwindClasses = (
 
     checkbox.querySelectorAll("label").forEach((label) => {
       label.classList.add("text-secondary", "text-sm", "flex");
-      const span = label.querySelector("span");
-      span?.classList.add("flex", "items-center");
+      label.querySelector("span")?.classList.add("flex", "items-center");
     });
 
     checkbox.querySelectorAll("a").forEach((link) => {
@@ -150,35 +156,29 @@ const applyTailwindClasses = (
     });
   });
 
-  const richText = container.querySelectorAll(".hs-richtext");
-  richText.forEach((richText) => {
+  container.querySelectorAll(".hs-richtext").forEach((richText) => {
     richText.classList.add("text-secondary", "text-sm");
   });
 
-  const classNameInput = container.querySelectorAll(".hs-form-field");
-  classNameInput.forEach((field) => {
+  container.querySelectorAll(".hs-form-field").forEach((field) => {
     field.classList.add("mb-5");
   });
 
-  const actions = container.querySelectorAll(".actions");
-  actions.forEach((action) => {
+  container.querySelectorAll(".actions").forEach((action) => {
     action.classList.add("mt-3", "flex", "justify-end");
   });
 
-  const buttons = container.querySelectorAll("input[type=submit]");
-  const classes = buttonClasses.split(" ");
-  buttons.forEach((button) => {
-    button.classList.add(...classes);
+  const buttonClassesArray = buttonClasses.split(" ");
+  container.querySelectorAll("input[type=submit]").forEach((button) => {
+    button.classList.add(...buttonClassesArray);
   });
 
-  const submittedMessage = container.querySelector(".submitted-message");
-  submittedMessage?.classList.add("text-xl");
+  container.querySelector(".submitted-message")?.classList.add("text-xl");
 };
 
 // Observe mutations on the form container to apply Tailwind classes (otherwise they get removed)
 const observeMutations = (container: HTMLElement, buttonClasses: string) => {
   const observer = new MutationObserver((mutations) => {
-    console.log(mutations);
     if (mutations.length > 0) {
       const formContainer = document.getElementById("hubspotForm");
       if (formContainer) {
