@@ -82,7 +82,13 @@ export const Button: React.FC<ButtonProps> = ({
   )
   if (as === "a" && linkProps?.href) {
     return (
-      <NextLink href={linkProps.href} passHref legacyBehavior {...linkProps}>
+      <NextLink
+        href={linkProps.href}
+        prefetch={false}
+        passHref
+        legacyBehavior
+        {...linkProps}
+      >
         <HeadlessUiButton as="a" className={buttonClasses} disabled={disabled}>
           {render}
         </HeadlessUiButton>

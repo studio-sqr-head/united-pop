@@ -21,7 +21,7 @@ export const Divider = () => (
 )
 
 export const Main = ({ children }: { children: ReactNode }) => {
-  return <main className="pt-16 md:mt-2">{children}</main>
+  return <main className="pt-16 md:pt-0">{children}</main>
 }
 
 export const HeroSection = ({

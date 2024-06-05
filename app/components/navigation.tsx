@@ -6,7 +6,7 @@ import { useParams, usePathname } from "next/navigation"
 import { Container } from "@/app/components/structure"
 import { Logo } from "@/app/components/logo"
 import { Button, IconButton, Link } from "@/app/components/button"
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid"
+import { Bars3Icon, CalendarIcon, XMarkIcon } from "@heroicons/react/20/solid"
 
 const NavItems = ({ items }: { items: typeof NAV_ITEMS }) => {
   const { lang } = useParams()
@@ -62,7 +62,7 @@ export const Navigation = () => {
 
   return (
     <nav className="w-full relative">
-      <Container className="max-w-7xl flex items-center justify-between p-3">
+      <Container className="max-w-7xl flex items-center justify-between">
         <Logo />
 
         <div className="flex gap-8 align-center items-center md:hidden">
@@ -81,9 +81,9 @@ export const Navigation = () => {
         </div>
 
         <ul
-          className={`absolute top-16 left-0 right-0 bg-black flex flex-col py-4 px-8 gap-4 border-t border-gray-800 ${
-            showMenu ? "md:hidden" : "hidden"
-          }`}
+          className={`absolute top-12 left-0 right-0 bg-black flex flex-col py-4 px-8 gap-4 border-t border-gray-800 ${
+            showMenu ? "opacity-100" : "opacity-0 pointer-events-none"
+          } transition-all duration-300 ease-in-out md:flex md:gap-8 md:py-0 md:px-0`}
         >
           <NavItems items={NAV_ITEMS} />
 
@@ -97,7 +97,7 @@ export const Navigation = () => {
               query: { lang },
             }}
           >
-            Contact
+            Make an Appointment
           </Button>
         </ul>
 
@@ -107,14 +107,14 @@ export const Navigation = () => {
           <Button
             scroll={false}
             variant="secondary"
-            size="small"
             as="a"
             href={{
               pathname: "/contact",
               query: { lang },
             }}
+            icon={<CalendarIcon className="h-4 w-4" />}
           >
-            Contact
+            Make an Appointment
           </Button>
         </ul>
       </Container>

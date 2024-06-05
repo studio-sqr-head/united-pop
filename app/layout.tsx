@@ -3,7 +3,6 @@ import type { Metadata } from "next"
 import { DM_Sans } from "next/font/google"
 
 import "./globals.css"
-import { storyblokInit, apiPlugin } from "@storyblok/react/rsc"
 import { env } from "@/env"
 import { Footer } from "@/app/components/footer"
 import { Header } from "@/app/components/header"
@@ -51,11 +50,6 @@ export async function generateMetadata({
     },
   }
 }
-
-storyblokInit({
-  accessToken: env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN,
-  use: [apiPlugin],
-})
 
 export default function RootLayout(
   props: Readonly<{
