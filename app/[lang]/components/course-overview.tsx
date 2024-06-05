@@ -66,43 +66,35 @@ const CourseMetaData = ({ type }: { type?: TypeEnum }) => {
   return (
     <div className="p-8 bg-slate rounded flex-1 h-fit border-2 border-gray-800">
       <div className="flex flex-col gap-6">
-        <div className="flex flex-col gap-4">
-          <div className="flex gap-2 items-center">
-            <Paragraph variant="secondary" className="text-sm">
-              Start Dates
-            </Paragraph>
-          </div>
-          <CourseStartDates dates={START_DATES} />
-        </div>
-        <div className="flex flex-col gap-4">
-          <div className="flex gap-2 items-center">
-            <Paragraph variant="secondary" className="text-sm">
-              Location
-            </Paragraph>
-          </div>
+        <div className="flex flex-col gap-2">
+          <Paragraph variant="secondary" className="text-sm">
+            Location
+          </Paragraph>
           <AddressDetails />
         </div>
 
-        <div className="flex flex-col gap-4">
-          <div className="flex gap-2 items-center">
-            <Paragraph variant="secondary" className="text-sm">
-              Course Duration
-            </Paragraph>
-          </div>
+        <div className="flex flex-col gap-2">
+          <Paragraph variant="secondary" className="text-sm">
+            Course Duration
+          </Paragraph>
           <Paragraph>
             The {TYPES.find((t) => t.id === type)?.title} programme runs for 3
             years.
           </Paragraph>
         </div>
 
-        {type === TypeEnum.BACHELOR && (
-          <div className="flex flex-col gap-4">
-            <div className="flex gap-2 items-center">
-              <Paragraph variant="secondary" className="text-sm">
-                In collaboration with
-              </Paragraph>
-            </div>
+        <div className="flex flex-col gap-2">
+          <Paragraph variant="secondary" className="text-sm">
+            Start Dates
+          </Paragraph>
+          <CourseStartDates dates={START_DATES} />
+        </div>
 
+        {type === TypeEnum.BACHELOR && (
+          <div className="flex flex-col gap-2">
+            <Paragraph variant="secondary" className="text-sm">
+              In collaboration with
+            </Paragraph>
             <Paragraph>
               The Bachelor (Hons) programmes delivered by United POP are
               validated by the University of West London and comply with the

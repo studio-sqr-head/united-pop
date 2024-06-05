@@ -1,5 +1,5 @@
 import { Container, Divider, HeroSection } from "@/app/components/structure";
-import { H3, H4, Paragraph } from "@/app/components/typography";
+import { H2, H3, H4, Paragraph } from "@/app/components/typography";
 import { Accordion } from "@/app/components/accordion";
 import { FAQ_ITEMS } from "@/constants";
 
@@ -26,9 +26,9 @@ export default function About() {
       />
 
       <div className="bg-slate">
-        <Container className="py-16 max-w-3xl">
+        <Container className="py-8 max-w-3xl">
           <div className="mb-4 w-full flex flex-col gap-2">
-            <H3>{header}</H3>
+            <H2>{header}</H2>
             <Paragraph variant="secondary">{paragraph}</Paragraph>
           </div>
 

@@ -1,4 +1,4 @@
-import { Button } from "@/app/components/button";
+import { EnrollButton } from "@/app/[lang]/components/enroll-button";
 import { DownloadBrochureButton } from "@/app/[lang]/components/download-brochure-button";
 
 export const MainCta = ({
@@ -13,17 +13,7 @@ export const MainCta = ({
   return (
     <div className={`flex gap-2 items-center ${className}`}>
       <DownloadBrochureButton />
-      <Button
-        variant="primary"
-        size="medium"
-        as="a"
-        href={{
-          pathname: "/contact",
-          query: { lang: params.lang },
-        }}
-      >
-        Enroll
-      </Button>
+      <EnrollButton params={params} />
     </div>
   );
 };

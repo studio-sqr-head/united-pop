@@ -21,7 +21,7 @@ export const Divider = () => (
 );
 
 export const Main = ({ children }: { children: ReactNode }) => {
-  return <main>{children}</main>;
+  return <main className="pt-16 md:mt-2">{children}</main>;
 };
 
 export const HeroSection = ({
@@ -38,8 +38,8 @@ export const HeroSection = ({
   imageClassName?: string;
 }) => {
   const heightClass = {
-    full: "h-[600px] md:h-[800px]",
-    banner: "h-[400px]",
+    full: "h-[500px] md:h-[800px]",
+    banner: "h-[300px] md:h-[500px]",
   };
 
   return (

@@ -1,16 +1,18 @@
 import { Container, HeroSection } from "@/app/components/structure";
-import { H2, Paragraph } from "@/app/components/typography";
+import { BottomNavigation } from "@/app/components/bottom-navigation";
+import { BreadCrumbs } from "@/app/components/breadcrumbs";
 import { Tab, TabGroup, TabList, TabPanel } from "@/app/components/tabs";
-import { CourseStoryblok } from "@/types";
-import { TABS, TypeEnum, STORYBLOK_BASE_URL } from "@/constants";
-import { MainCta } from "@/app/[lang]/components/main-cta";
+import { H2, Paragraph } from "@/app/components/typography";
 import { ContactDetails } from "@/app/[lang]/components/course-contact-details";
 import { CourseFaq } from "@/app/[lang]/components/course-faq";
 import { CourseFees } from "@/app/[lang]/components/course-fees";
 import { CourseOverview } from "@/app/[lang]/components/course-overview";
 import { CourseTimetable } from "@/app/[lang]/components/course-timetable";
 import { CourseHeader } from "@/app/[lang]/components/course-header";
-import { BreadCrumbs } from "@/app/components/breadcrumbs";
+import { EnrollButtonMobile } from "@/app/[lang]/components/enroll-button";
+import { DownloadBrochureMobileButton } from "@/app/[lang]/components/download-brochure-button";
+import { CourseStoryblok } from "@/types";
+import { TABS, TypeEnum } from "@/constants";
 import { getCourseBySlug } from "@/api/course";
 
 export default async function CoursePage({
@@ -56,8 +58,6 @@ export default async function CoursePage({
                 <H2>{title}</H2>
                 <Paragraph variant="secondary">{description}</Paragraph>
               </div>
-
-              <MainCta className="md:hidden" params={params} />
             </div>
 
             <TabList>
@@ -87,6 +87,11 @@ export default async function CoursePage({
           </Container>
         </div>
       </TabGroup>
+
+      <BottomNavigation>
+        <DownloadBrochureMobileButton />
+        <EnrollButtonMobile params={params} />
+      </BottomNavigation>
     </div>
   );
 }
