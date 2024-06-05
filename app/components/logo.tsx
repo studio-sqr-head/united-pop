@@ -1,4 +1,4 @@
-import NextLink from "next/link";
+import NextLink from "next/link"
 
 export const Logo = () => (
   <NextLink
@@ -8,4 +8,4 @@ export const Logo = () => (
     {/* eslint-disable-next-line @next/next/no-img-element -- No need for next/image here */}
     <img src="/logo.svg" alt="Logo" className="h-10 md:h-12 w-auto" />
   </NextLink>
-);
+)

@@ -1,26 +1,26 @@
-"use client";
+"use client"
 
-import { useCallback } from "react";
-import { useRouter } from "next/navigation";
-import { XMarkIcon } from "@heroicons/react/24/solid";
+import { useCallback } from "react"
+import { useRouter } from "next/navigation"
+import { XMarkIcon } from "@heroicons/react/24/solid"
 import {
   Dialog,
   DialogPanel,
   DialogTitle,
   Description,
-} from "@headlessui/react";
+} from "@headlessui/react"
 
-import { IconButton } from "@/app/components/button";
-import { HubSpotForm } from "@/app/components/hubspot-form";
-import { H3, Paragraph } from "@/app/components/typography";
+import { IconButton } from "@/app/components/button"
+import { HubSpotForm } from "@/app/components/hubspot-form"
+import { H3, Paragraph } from "@/app/components/typography"
 
 export default function Modal({ params }: { params: { lang: "en" | "nl" } }) {
-  const { lang } = params;
+  const { lang } = params
 
-  const router = useRouter();
+  const router = useRouter()
   const onDismiss = useCallback(() => {
-    router.back();
-  }, [router]);
+    router.back()
+  }, [router])
 
   return (
     <Dialog open onClose={onDismiss} className="relative z-50">
@@ -51,5 +51,5 @@ export default function Modal({ params }: { params: { lang: "en" | "nl" } }) {
         </DialogPanel>
       </div>
     </Dialog>
-  );
+  )
 }

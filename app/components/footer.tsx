@@ -1,16 +1,16 @@
-import { ReactElement } from "react";
+import { ReactElement } from "react"
 
-import { Container } from "@/app/components/structure";
-import { Paragraph } from "@/app/components/typography";
-import { SocialMediaLinks } from "@/app/components/socials";
+import { Container } from "@/app/components/structure"
+import { Paragraph } from "@/app/components/typography"
+import { SocialMediaLinks } from "@/app/components/socials"
 
 const UnitedPopRightsReserved = () => {
   return (
     <Paragraph className="text-sm">
       © {new Date().getFullYear()} United Pop. All rights reserved.
     </Paragraph>
-  );
-};
+  )
+}
 
 export const Footer = (): ReactElement => {
   return (
@@ -22,5 +22,5 @@ export const Footer = (): ReactElement => {
         </div>
       </Container>
     </footer>
-  );
-};
+  )
+}

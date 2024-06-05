@@ -1,5 +1,5 @@
-import { Accordion } from "@/app/components/accordion";
-import { FAQ_ITEMS } from "@/constants";
+import { Accordion } from "@/app/components/accordion"
+import { FAQ_ITEMS } from "@/constants"
 
 export const CourseFaq = () => {
   return (
@@ -8,5 +8,5 @@ export const CourseFaq = () => {
         <Accordion key={index} {...item} />
       ))}
     </div>
-  );
-};
+  )
+}

@@ -1,5 +1,5 @@
-import { UrlObject } from "url";
-import { Route } from "next";
+import { UrlObject } from "url"
+import { Route } from "next"
 
 export enum Language {
   nl = "nl",
@@ -7,10 +7,10 @@ export enum Language {
 }
 
 export interface LanguageItem<T> {
-  id: Language;
-  title: string;
-  isDefault: boolean;
-  path: UrlObject | Route<`/${Language}`>;
+  id: Language
+  title: string
+  isDefault: boolean
+  path: UrlObject | Route<`/${Language}`>
 }
 
 export const languages: LanguageItem<Language>[] = [
@@ -27,11 +27,11 @@ export const languages: LanguageItem<Language>[] = [
     isDefault: false,
     path: `/${Language.en}`,
   },
-];
+]
 
 const i18n = {
   languages,
   base: languages.find((item) => item.isDefault)?.id,
-};
+}
 
-export { i18n };
+export { i18n }

@@ -1,16 +1,16 @@
-"use client";
+"use client"
 
-import { ArrowDownIcon } from "@heroicons/react/20/solid";
+import { ArrowDownIcon } from "@heroicons/react/20/solid"
 
-import { H1, Subheading } from "@/app/components/typography";
-import { Button } from "@/app/components/button";
-import { Container } from "@/app/components/structure";
+import { H1, Subheading } from "@/app/components/typography"
+import { Button } from "@/app/components/button"
+import { Container } from "@/app/components/structure"
 
 export const HomePageHeroCta = () => {
   const scrollToCourses = () => {
-    const element = document.getElementById("courses");
-    element?.scrollIntoView({ behavior: "smooth", block: "nearest" });
-  };
+    const element = document.getElementById("courses")
+    element?.scrollIntoView({ behavior: "smooth", block: "nearest" })
+  }
 
   return (
     <Container className="flex flex-col justify-between items-start gap-8 max-w-5xl py-16 px-8">
@@ -43,5 +43,5 @@ export const HomePageHeroCta = () => {
         </Button>
       </div>
     </Container>
-  );
-};
+  )
+}

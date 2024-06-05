@@ -1,4 +1,4 @@
-import { Paragraph } from "@/app/components/typography";
+import { Paragraph } from "@/app/components/typography"
 
 export const CourseFees = ({ courseFees }: { courseFees?: string }) => {
   return (
@@ -10,5 +10,5 @@ export const CourseFees = ({ courseFees }: { courseFees?: string }) => {
         </Paragraph>
       </div>
     </div>
-  );
-};
+  )
+}

@@ -1,5 +1,5 @@
-import { IconButton } from "@/app/components/button";
-import { SOCIAL_MEDIA } from "@/constants";
+import { IconButton } from "@/app/components/button"
+import { SOCIAL_MEDIA } from "@/constants"
 
 export const SocialMediaLinks = () => {
   return (
@@ -16,5 +16,5 @@ export const SocialMediaLinks = () => {
         />
       ))}
     </div>
-  );
-};
+  )
+}

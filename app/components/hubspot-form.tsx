@@ -1,34 +1,34 @@
-"use client";
+"use client"
 
-import { useEffect, useState } from "react";
-import { useGenerateButtonClasses } from "@/app/components/button";
-import { HUBSPOT_REGION, HUBSPOT_SRC, formToLang } from "@/constants";
-import { env } from "@/env";
+import { useEffect, useState } from "react"
+import { useGenerateButtonClasses } from "@/app/components/button"
+import { HUBSPOT_REGION, HUBSPOT_SRC, formToLang } from "@/constants"
+import { env } from "@/env"
 
 export function HubSpotForm({ lang = "en" }: { lang: "en" | "nl" }) {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true)
 
   const buttonClasses = useGenerateButtonClasses({
     variant: "primary",
     disabled: false,
     size: "medium",
-  });
+  })
 
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src = HUBSPOT_SRC;
-    script.async = true;
-    document.body.appendChild(script);
+    const script = document.createElement("script")
+    script.src = HUBSPOT_SRC
+    script.async = true
+    document.body.appendChild(script)
 
     const cleanupForm = () => {
-      const formContainer = document.getElementById("hubspotForm");
+      const formContainer = document.getElementById("hubspotForm")
       if (formContainer) {
-        formContainer.innerHTML = "";
+        formContainer.innerHTML = ""
       }
-    };
+    }
 
     script.addEventListener("load", () => {
-      cleanupForm();
+      cleanupForm()
       try {
         window.hbspt.forms.create({
           region: HUBSPOT_REGION,
@@ -36,30 +36,30 @@ export function HubSpotForm({ lang = "en" }: { lang: "en" | "nl" }) {
           formId: formToLang[lang],
           target: "#hubspotForm",
           onFormReady: () => {
-            setLoading(false);
-            const formContainer = document.getElementById("hubspotForm");
+            setLoading(false)
+            const formContainer = document.getElementById("hubspotForm")
             if (formContainer) {
-              setLoading(false);
-              applyTailwindClasses(formContainer, buttonClasses);
-              const observer = observeMutations(formContainer, buttonClasses);
+              setLoading(false)
+              applyTailwindClasses(formContainer, buttonClasses)
+              const observer = observeMutations(formContainer, buttonClasses)
               return () => {
-                observer.disconnect();
-                cleanupForm();
-              };
+                observer.disconnect()
+                cleanupForm()
+              }
             }
           },
-        });
+        })
       } catch (error) {
-        console.error(error);
-        setLoading(false);
+        console.error(error)
+        setLoading(false)
       }
-    });
+    })
 
     return () => {
-      cleanupForm();
-      document.body.removeChild(script);
-    };
-  }, [lang, buttonClasses]);
+      cleanupForm()
+      document.body.removeChild(script)
+    }
+  }, [lang, buttonClasses])
 
   return (
     <>
@@ -69,7 +69,7 @@ export function HubSpotForm({ lang = "en" }: { lang: "en" | "nl" }) {
         style={{ display: loading ? "none" : "block" }}
       ></div>
     </>
-  );
+  )
 }
 
 const FormLoading = () => (
@@ -82,15 +82,15 @@ const FormLoading = () => (
     <div className="h-6 bg-gray-700 rounded"></div>
     <span className="sr-only">Loading...</span>
   </div>
-);
+)
 
 // Generate Tailwind classes for the HubSpot form.
 const applyTailwindClasses = (
   container: HTMLElement,
   buttonClasses: string
 ) => {
-  const form = container.querySelector("form");
-  form?.classList.add("w-full", "flex", "flex-col");
+  const form = container.querySelector("form")
+  form?.classList.add("w-full", "flex", "flex-col")
 
   const inputSelectors = [
     "input[type=text]",
@@ -98,9 +98,9 @@ const applyTailwindClasses = (
     "input[type=tel]",
     "textarea",
     "select",
-  ].join(", ");
+  ].join(", ")
 
-  const inputs = container.querySelectorAll(inputSelectors);
+  const inputs = container.querySelectorAll(inputSelectors)
   inputs.forEach((input) => {
     input.classList.add(
       "p-3",
@@ -114,21 +114,19 @@ const applyTailwindClasses = (
       "focus:ring-primary-500",
       "focus:border-primary-500",
       "placeholder-gray-500"
-    );
-  });
+    )
+  })
 
-  const labels = container.querySelectorAll("label");
+  const labels = container.querySelectorAll("label")
   labels.forEach((label) => {
-    label.classList.add("block", "text-primary", "text-sm", "mb-1");
+    label.classList.add("block", "text-primary", "text-sm", "mb-1")
     if (label.classList.contains("hs-error-msg")) {
-      label.classList.replace("text-primary", "text-orange");
-      label.classList.add("mt-1");
+      label.classList.replace("text-primary", "text-orange")
+      label.classList.add("mt-1")
     }
-  });
+  })
 
-  const booleanCheckBox = container.querySelectorAll(
-    ".hs-form-booleancheckbox"
-  );
+  const booleanCheckBox = container.querySelectorAll(".hs-form-booleancheckbox")
   booleanCheckBox.forEach((checkbox) => {
     checkbox.querySelectorAll("input[type=checkbox]").forEach((input) => {
       input.classList.add(
@@ -143,49 +141,49 @@ const applyTailwindClasses = (
         "text-orange",
         "focus:ring-primary-500",
         "checked:bg-primary-500"
-      );
-    });
+      )
+    })
 
     checkbox.querySelectorAll("label").forEach((label) => {
-      label.classList.add("text-secondary", "text-sm", "flex");
-      label.querySelector("span")?.classList.add("flex", "items-center");
-    });
+      label.classList.add("text-secondary", "text-sm", "flex")
+      label.querySelector("span")?.classList.add("flex", "items-center")
+    })
 
     checkbox.querySelectorAll("a").forEach((link) => {
-      link.classList.add("text-orange", "text-sm", "underline");
-    });
-  });
+      link.classList.add("text-orange", "text-sm", "underline")
+    })
+  })
 
   container.querySelectorAll(".hs-richtext").forEach((richText) => {
-    richText.classList.add("text-secondary", "text-sm");
-  });
+    richText.classList.add("text-secondary", "text-sm")
+  })
 
   container.querySelectorAll(".hs-form-field").forEach((field) => {
-    field.classList.add("mb-5");
-  });
+    field.classList.add("mb-5")
+  })
 
   container.querySelectorAll(".actions").forEach((action) => {
-    action.classList.add("mt-3", "flex", "justify-end");
-  });
+    action.classList.add("mt-3", "flex", "justify-end")
+  })
 
-  const buttonClassesArray = buttonClasses.split(" ");
+  const buttonClassesArray = buttonClasses.split(" ")
   container.querySelectorAll("input[type=submit]").forEach((button) => {
-    button.classList.add(...buttonClassesArray);
-  });
+    button.classList.add(...buttonClassesArray)
+  })
 
-  container.querySelector(".submitted-message")?.classList.add("text-xl");
-};
+  container.querySelector(".submitted-message")?.classList.add("text-xl")
+}
 
 // Observe mutations on the form container to apply Tailwind classes (otherwise they get removed)
 const observeMutations = (container: HTMLElement, buttonClasses: string) => {
   const observer = new MutationObserver((mutations) => {
     if (mutations.length > 0) {
-      const formContainer = document.getElementById("hubspotForm");
+      const formContainer = document.getElementById("hubspotForm")
       if (formContainer) {
-        applyTailwindClasses(formContainer, buttonClasses);
+        applyTailwindClasses(formContainer, buttonClasses)
       }
     }
-  });
+  })
 
   // Observe changes to the form container and scope to certain attributes (otherwise there are too many mutations)
   observer.observe(container, {
@@ -193,7 +191,7 @@ const observeMutations = (container: HTMLElement, buttonClasses: string) => {
     subtree: true,
     attributes: true,
     attributeFilter: ["type", "value", "placeholder", "checked"], // Only observe these attributes
-  });
+  })
 
-  return observer;
-};
+  return observer
+}

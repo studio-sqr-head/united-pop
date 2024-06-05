@@ -1,6 +1,6 @@
-import { H2, Subheading, Paragraph } from "@/app/components/typography";
-import { Button } from "@/app/components/button";
-import { Container } from "@/app/components/structure";
+import { H2, Subheading, Paragraph } from "@/app/components/typography"
+import { Button } from "@/app/components/button"
+import { Container } from "@/app/components/structure"
 
 const NotFound = () => {
   return (
@@ -18,6 +18,6 @@ const NotFound = () => {
         </Button>
       </div>
     </Container>
-  );
-};
-export default NotFound;
+  )
+}
+export default NotFound

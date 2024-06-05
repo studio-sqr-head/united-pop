@@ -1,22 +1,22 @@
-import type { ReactNode } from "react";
-import type { Metadata } from "next";
-import { DM_Sans } from "next/font/google";
+import type { ReactNode } from "react"
+import type { Metadata } from "next"
+import { DM_Sans } from "next/font/google"
 
-import "./globals.css";
-import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
-import { env } from "@/env";
-import { Footer } from "@/app/components/footer";
-import { Header } from "@/app/components/header";
-import { Main } from "@/app/components/structure";
+import "./globals.css"
+import { storyblokInit, apiPlugin } from "@storyblok/react/rsc"
+import { env } from "@/env"
+import { Footer } from "@/app/components/footer"
+import { Header } from "@/app/components/header"
+import { Main } from "@/app/components/structure"
 
-const dmSans = DM_Sans({ subsets: ["latin"] });
+const dmSans = DM_Sans({ subsets: ["latin"] })
 
 export async function generateMetadata({
   params,
 }: {
-  params: { lang: "en" | "nl" };
+  params: { lang: "en" | "nl" }
 }): Promise<Metadata> {
-  const lang = params.lang;
+  const lang = params.lang
   return {
     title: "United Pop",
     description: "United Pop is an academy for music and media.",
@@ -49,22 +49,22 @@ export async function generateMetadata({
         },
       ],
     },
-  };
+  }
 }
 
 storyblokInit({
   accessToken: env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN,
   use: [apiPlugin],
-});
+})
 
 export default function RootLayout(
   props: Readonly<{
-    children: React.ReactNode;
-    params: { lang: "en" | "nl" };
-    contact: ReactNode;
+    children: React.ReactNode
+    params: { lang: "en" | "nl" }
+    contact: ReactNode
   }>
 ) {
-  const { children, params } = props;
+  const { children, params } = props
 
   return (
     <html
@@ -77,5 +77,5 @@ export default function RootLayout(
         <Footer />
       </body>
     </html>
-  );
+  )
 }

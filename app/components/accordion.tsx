@@ -2,18 +2,18 @@ import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
-} from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
+} from "@headlessui/react"
+import { ChevronDownIcon } from "@heroicons/react/20/solid"
 
-import { IconButton } from "@/app/components/button";
-import { H6, Paragraph } from "@/app/components/typography";
+import { IconButton } from "@/app/components/button"
+import { H6, Paragraph } from "@/app/components/typography"
 
 export const Accordion = ({
   title,
   description,
 }: {
-  title: string;
-  description: string;
+  title: string
+  description: string
 }) => {
   return (
     <Disclosure as="div" className="flex flex-col divide-gray-500">
@@ -40,5 +40,5 @@ export const Accordion = ({
         <Paragraph variant="secondary">{description}</Paragraph>
       </DisclosurePanel>
     </Disclosure>
-  );
-};
+  )
+}

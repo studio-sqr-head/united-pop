@@ -1,4 +1,4 @@
-import { Paragraph } from "@/app/components/typography";
+import { Paragraph } from "@/app/components/typography"
 
 export const ContactDetails = ({ courseName }: { courseName?: string }) => {
   return (
@@ -35,8 +35,8 @@ export const ContactDetails = ({ courseName }: { courseName?: string }) => {
         </Paragraph>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export const AddressDetails = () => {
   return (
@@ -51,5 +51,5 @@ export const AddressDetails = () => {
         <Paragraph>1093 NE Amsterdam</Paragraph>
       </a>
     </address>
-  );
-};
+  )
+}

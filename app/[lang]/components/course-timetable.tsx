@@ -1,8 +1,8 @@
-import { ReactNode } from "react";
-import { CalendarIcon } from "@heroicons/react/24/solid";
+import { ReactNode } from "react"
+import { CalendarIcon } from "@heroicons/react/24/solid"
 
-import { Paragraph } from "@/app/components/typography";
-import { List, ListItem } from "@/app/components/list";
+import { Paragraph } from "@/app/components/typography"
+import { List, ListItem } from "@/app/components/list"
 
 const TIMELINE = [
   {
@@ -48,7 +48,7 @@ const TIMELINE = [
       },
     ],
   },
-];
+]
 
 export const CourseTimetable = () => {
   return (
@@ -64,16 +64,16 @@ export const CourseTimetable = () => {
         <TimeLine timeline={TIMELINE} />
       </div>
     </div>
-  );
-};
+  )
+}
 
 const TimeLine = ({
   timeline,
 }: {
   timeline: {
-    date: string;
-    items: { title: string; description: string; children?: ReactNode }[];
-  }[];
+    date: string
+    items: { title: string; description: string; children?: ReactNode }[]
+  }[]
 }) => {
   return (
     <ol className="relative border-s border-gray-500">
@@ -81,17 +81,17 @@ const TimeLine = ({
         <TimeLineItem key={index} {...item} />
       ))}
     </ol>
-  );
-};
+  )
+}
 
 const TimeLineItem = ({
   date,
   items,
   children,
 }: {
-  date?: string;
-  items: { title: string; description: string }[];
-  children?: ReactNode;
+  date?: string
+  items: { title: string; description: string }[]
+  children?: ReactNode
 }) => {
   return (
     <li className="mb-8 ml-8">
@@ -114,5 +114,5 @@ const TimeLineItem = ({
 
       {children}
     </li>
-  );
-};
+  )
+}

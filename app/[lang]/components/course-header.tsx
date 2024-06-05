@@ -1,6 +1,6 @@
-import { MetaDataChip } from "@/app/components/chip";
-import { TYPES, TypeEnum } from "@/constants";
-import { MainCta } from "@/app/[lang]/components/main-cta";
+import { MetaDataChip } from "@/app/components/chip"
+import { TYPES, TypeEnum } from "@/constants"
+import { MainCta } from "@/app/[lang]/components/main-cta"
 
 export const CourseHeader = ({
   fulltime,
@@ -8,10 +8,10 @@ export const CourseHeader = ({
   type,
   params,
 }: {
-  fulltime?: boolean;
-  parttime?: boolean;
-  type?: TypeEnum;
-  params: { lang: "en" | "nl"; slug: string };
+  fulltime?: boolean
+  parttime?: boolean
+  type?: TypeEnum
+  params: { lang: "en" | "nl"; slug: string }
 }) => {
   return (
     <div className="mb-4 flex items-center gap-4 justify-between">
@@ -35,5 +35,5 @@ export const CourseHeader = ({
 
       <MainCta className="hidden md:flex" params={params} />
     </div>
-  );
-};
+  )
+}

@@ -1,17 +1,17 @@
-import { ReactNode } from "react";
-import { Paragraph } from "./typography";
+import { ReactNode } from "react"
+import { Paragraph } from "./typography"
 
 export const List = ({
   children,
   className,
 }: {
-  children: ReactNode;
-  className?: string;
+  children: ReactNode
+  className?: string
 }) => (
   <ul className={`list-disc list-inside gap-4 flex flex-col ${className}`}>
     {children}
   </ul>
-);
+)
 
 export const ListItem = ({
   icon,
@@ -20,11 +20,11 @@ export const ListItem = ({
   cta,
   className,
 }: {
-  icon?: ReactNode;
-  textPrimary?: string;
-  textSecondary?: string;
-  cta?: ReactNode;
-  className?: string;
+  icon?: ReactNode
+  textPrimary?: string
+  textSecondary?: string
+  cta?: ReactNode
+  className?: string
 }) => (
   <li className={`flex gap-2 items-center ${className}`}>
     {icon && <span className="mr-2">{icon}</span>}
@@ -40,4 +40,4 @@ export const ListItem = ({
       )}
     </div>
   </li>
-);
+)

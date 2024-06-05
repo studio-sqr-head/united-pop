@@ -1,4 +1,4 @@
-import { MetadataRoute } from "next";
+import { MetadataRoute } from "next"
 
 export default async function manifest(): Promise<MetadataRoute.Manifest> {
   return {
@@ -45,5 +45,5 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
     ],
     lang: "en",
     display_override: ["standalone"],
-  };
+  }
 }

@@ -1,32 +1,32 @@
-import { Container, HeroSection } from "@/app/components/structure";
-import { BottomNavigation } from "@/app/components/bottom-navigation";
-import { BreadCrumbs } from "@/app/components/breadcrumbs";
-import { Tab, TabGroup, TabList, TabPanel } from "@/app/components/tabs";
-import { H2, Paragraph } from "@/app/components/typography";
-import { ContactDetails } from "@/app/[lang]/components/course-contact-details";
-import { CourseFaq } from "@/app/[lang]/components/course-faq";
-import { CourseFees } from "@/app/[lang]/components/course-fees";
-import { CourseOverview } from "@/app/[lang]/components/course-overview";
-import { CourseTimetable } from "@/app/[lang]/components/course-timetable";
-import { CourseHeader } from "@/app/[lang]/components/course-header";
-import { EnrollButtonMobile } from "@/app/[lang]/components/enroll-button";
-import { DownloadBrochureMobileButton } from "@/app/[lang]/components/download-brochure-button";
-import { CourseStoryblok } from "@/types";
-import { TABS, TypeEnum } from "@/constants";
-import { getCourseBySlug } from "@/api/course";
+import { Container, HeroSection } from "@/app/components/structure"
+import { BottomNavigation } from "@/app/components/bottom-navigation"
+import { BreadCrumbs } from "@/app/components/breadcrumbs"
+import { Tab, TabGroup, TabList, TabPanel } from "@/app/components/tabs"
+import { H2, Paragraph } from "@/app/components/typography"
+import { ContactDetails } from "@/app/[lang]/components/course-contact-details"
+import { CourseFaq } from "@/app/[lang]/components/course-faq"
+import { CourseFees } from "@/app/[lang]/components/course-fees"
+import { CourseOverview } from "@/app/[lang]/components/course-overview"
+import { CourseTimetable } from "@/app/[lang]/components/course-timetable"
+import { CourseHeader } from "@/app/[lang]/components/course-header"
+import { EnrollButtonMobile } from "@/app/[lang]/components/enroll-button"
+import { DownloadBrochureMobileButton } from "@/app/[lang]/components/download-brochure-button"
+import { CourseStoryblok } from "@/types"
+import { TABS, TypeEnum } from "@/constants"
+import { getCourseBySlug } from "@/api/course"
 
 export default async function CoursePage({
   params,
 }: {
-  params: { lang: "en" | "nl"; slug: string };
+  params: { lang: "en" | "nl"; slug: string }
 }) {
   const { story: course } = await getCourseBySlug({
     slug: params?.slug,
     lang: params.lang,
-  });
-  const { content } = course;
+  })
+  const { content } = course
   const { title, description, image, type, fulltime, parttime, overview } =
-    content as CourseStoryblok;
+    content as CourseStoryblok
 
   return (
     <div>
@@ -93,5 +93,5 @@ export default async function CoursePage({
         <EnrollButtonMobile params={params} />
       </BottomNavigation>
     </div>
-  );
+  )
 }

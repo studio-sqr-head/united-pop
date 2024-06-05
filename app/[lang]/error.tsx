@@ -1,21 +1,21 @@
-"use client"; // Error components must be Client Components
+"use client" // Error components must be Client Components
 
-import { useEffect } from "react";
-import { Container } from "@/app/components/structure";
-import { H3, Paragraph, Subheading } from "../components/typography";
-import { Button } from "../components/button";
+import { useEffect } from "react"
+import { Container } from "@/app/components/structure"
+import { H3, Paragraph, Subheading } from "../components/typography"
+import { Button } from "../components/button"
 
 export default function Error({
   error,
   reset,
 }: {
-  error: Error & { digest?: string };
-  reset: () => void;
+  error: Error & { digest?: string }
+  reset: () => void
 }) {
   useEffect(() => {
     // Log the error to an error reporting service
-    console.error(error);
-  }, [error]);
+    console.error(error)
+  }, [error])
 
   return (
     <Container className="flex flex-col items-center justify-center h-screen gap-4">
@@ -41,5 +41,5 @@ export default function Error({
         </Button>
       </div>
     </Container>
-  );
+  )
 }

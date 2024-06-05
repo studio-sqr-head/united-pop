@@ -1,28 +1,28 @@
-import React, { createElement, ReactNode } from "react";
-import Image from "next/image";
-import clsx from "clsx";
+import React, { createElement, ReactNode } from "react"
+import Image from "next/image"
+import clsx from "clsx"
 
 export const Container = ({
   children,
   className,
   as = "div",
 }: {
-  children: React.ReactNode;
-  className?: string;
-  as?: "div" | "section" | "article" | "main" | "header" | "footer";
+  children: React.ReactNode
+  className?: string
+  as?: "div" | "section" | "article" | "main" | "header" | "footer"
 }) => {
-  const base = "container mx-auto px-8";
-  const containerClassNames = clsx(base, className);
-  return createElement(as, { className: containerClassNames }, children);
-};
+  const base = "container mx-auto px-8"
+  const containerClassNames = clsx(base, className)
+  return createElement(as, { className: containerClassNames }, children)
+}
 
 export const Divider = () => (
   <hr className="border-t border-gray-700 border-opacity-50" />
-);
+)
 
 export const Main = ({ children }: { children: ReactNode }) => {
-  return <main className="pt-16 md:mt-2">{children}</main>;
-};
+  return <main className="pt-16 md:mt-2">{children}</main>
+}
 
 export const HeroSection = ({
   height = "full",
@@ -31,16 +31,16 @@ export const HeroSection = ({
   children,
   imageClassName,
 }: {
-  height?: "full" | "banner";
-  src: string;
-  alt: string;
-  children?: React.ReactNode;
-  imageClassName?: string;
+  height?: "full" | "banner"
+  src: string
+  alt: string
+  children?: React.ReactNode
+  imageClassName?: string
 }) => {
   const heightClass = {
     full: "h-[500px] md:h-[800px]",
     banner: "h-[300px] md:h-[500px]",
-  };
+  }
 
   return (
     <section
@@ -63,5 +63,5 @@ export const HeroSection = ({
         </div>
       )}
     </section>
-  );
-};
+  )
+}

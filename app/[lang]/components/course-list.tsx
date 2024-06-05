@@ -1,27 +1,27 @@
-"use client";
+"use client"
 
-import NextImage from "next/image";
-import React, { useState } from "react";
-import { useParams, useRouter } from "next/navigation";
-import { ISbStoryData } from "@storyblok/react";
+import NextImage from "next/image"
+import React, { useState } from "react"
+import { useParams, useRouter } from "next/navigation"
+import { ISbStoryData } from "@storyblok/react"
 
-import { formatDate, getClosestFutureDateToToday } from "@/utils";
-import { Container, Divider } from "@/app/components/structure";
-import { H3, H5, H6, Paragraph, Subheading } from "@/app/components/typography";
-import { MetaDataChip } from "@/app/components/chip";
-import { Button } from "@/app/components/button";
-import { CourseStoryblok } from "@/types";
-import { CATEGORIES, CategoryEnum, TYPES, START_DATES } from "@/constants";
-import { CourseStartDateChip } from "@/app/[lang]/components/course-start-date-chip";
+import { formatDate, getClosestFutureDateToToday } from "@/utils"
+import { Container, Divider } from "@/app/components/structure"
+import { H3, H5, H6, Paragraph, Subheading } from "@/app/components/typography"
+import { MetaDataChip } from "@/app/components/chip"
+import { Button } from "@/app/components/button"
+import { CourseStoryblok } from "@/types"
+import { CATEGORIES, CategoryEnum, TYPES, START_DATES } from "@/constants"
+import { CourseStartDateChip } from "@/app/[lang]/components/course-start-date-chip"
 
 const CourseListFilter = ({
   activeCategory,
   courses,
   handleCategoryChange,
 }: {
-  activeCategory: CategoryEnum;
-  courses?: ISbStoryData<CourseStoryblok>[];
-  handleCategoryChange: (category: CategoryEnum) => void;
+  activeCategory: CategoryEnum
+  courses?: ISbStoryData<CourseStoryblok>[]
+  handleCategoryChange: (category: CategoryEnum) => void
 }) => {
   return (
     <div className="flex flex-col gap-4">
@@ -51,26 +51,26 @@ const CourseListFilter = ({
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
 const CourseListItem = ({
   course,
   handleCourseClick,
   lang,
 }: {
-  course: ISbStoryData<CourseStoryblok>;
-  handleCourseClick: (slug: string) => void;
-  lang: string;
+  course: ISbStoryData<CourseStoryblok>
+  handleCourseClick: (slug: string) => void
+  lang: string
 }) => {
-  const { content, slug } = course;
-  const { title, description, image, type, fulltime, parttime } = content ?? {};
-  const closestStartDate = getClosestFutureDateToToday(START_DATES);
+  const { content, slug } = course
+  const { title, description, image, type, fulltime, parttime } = content ?? {}
+  const closestStartDate = getClosestFutureDateToToday(START_DATES)
   return (
     <div
       className="flex w-full gap-4 h-full flex-col md:flex-row cursor-pointer hover:opacity-80"
       onClick={() => {
-        handleCourseClick(slug);
+        handleCourseClick(slug)
       }}
     >
       {image?.filename != null && (
@@ -126,20 +126,20 @@ const CourseListItem = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 const CourseListHeader = ({
   activeCategory,
 }: {
-  activeCategory: CategoryEnum;
+  activeCategory: CategoryEnum
 }) => {
   const activeCategoryTitle = CATEGORIES.find(
     (c) => c.id === activeCategory
-  )?.title;
+  )?.title
 
-  return <H5> {activeCategoryTitle ?? "All"} Courses </H5>;
-};
+  return <H5> {activeCategoryTitle ?? "All"} Courses </H5>
+}
 
 const CourseList = ({
   lang,
@@ -147,10 +147,10 @@ const CourseList = ({
   handleCourseClick,
   filteredCourses,
 }: {
-  lang: "en" | "nl";
-  activeCategory: CategoryEnum;
-  handleCourseClick: (slug: string) => void;
-  filteredCourses: ISbStoryData<CourseStoryblok>[];
+  lang: "en" | "nl"
+  activeCategory: CategoryEnum
+  handleCourseClick: (slug: string) => void
+  filteredCourses: ISbStoryData<CourseStoryblok>[]
 }) => {
   if (filteredCourses == null || filteredCourses.length === 0) {
     return (
@@ -160,7 +160,7 @@ const CourseList = ({
           Please try a different category or check back later
         </Paragraph>
       </div>
-    );
+    )
   }
   return (
     <div className="flex flex-col">
@@ -189,8 +189,8 @@ const CourseList = ({
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
 const CourseSectionHeader = () => {
   return (
@@ -198,35 +198,35 @@ const CourseSectionHeader = () => {
       <H3>Our Courses</H3>
       <Subheading>What&apos;s your area of interest?</Subheading>
     </div>
-  );
-};
+  )
+}
 
 export const CourseSection = ({
   courses,
 }: {
-  courses: ISbStoryData<CourseStoryblok>[];
+  courses: ISbStoryData<CourseStoryblok>[]
 }) => {
-  const router = useRouter();
-  const { lang } = useParams() as { lang: "en" | "nl" };
+  const router = useRouter()
+  const { lang } = useParams() as { lang: "en" | "nl" }
 
   const [activeCategory, setActiveCategory] = useState<CategoryEnum>(
     CategoryEnum.ALL
-  );
+  )
 
   const handleCategoryChange = (category: CategoryEnum) => {
-    setActiveCategory(category);
-  };
+    setActiveCategory(category)
+  }
 
   const handleCourseClick = async (slug: string) => {
-    await router.push(`/${lang}/course/${slug}`);
-  };
+    await router.push(`/${lang}/course/${slug}`)
+  }
 
   const filteredCoursesOnCategory = courses.filter((course) => {
     return (
       activeCategory === CategoryEnum.ALL ||
       course.content.category === activeCategory
-    );
-  });
+    )
+  })
 
   return (
     <div className="bg-slate" id="courses">
@@ -247,5 +247,5 @@ export const CourseSection = ({
         </div>
       </Container>
     </div>
-  );
-};
+  )
+}

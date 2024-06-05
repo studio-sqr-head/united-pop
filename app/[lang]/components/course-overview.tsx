@@ -3,15 +3,15 @@ import {
   NODE_HEADING,
   NODE_PARAGRAPH,
   MARK_LINK,
-} from "storyblok-rich-text-react-renderer";
+} from "storyblok-rich-text-react-renderer"
 
-import { AddressDetails } from "@/app/[lang]/components/course-contact-details";
-import { H1, H2, H3, H4, H5, H6, Paragraph } from "@/app/components/typography";
-import { START_DATES, TypeEnum, TYPES } from "@/constants";
-import { CourseStartDates } from "@/app/[lang]/components/course-start-date-chip";
-import { Link } from "@/app/components/button";
+import { AddressDetails } from "@/app/[lang]/components/course-contact-details"
+import { H1, H2, H3, H4, H5, H6, Paragraph } from "@/app/components/typography"
+import { START_DATES, TypeEnum, TYPES } from "@/constants"
+import { CourseStartDates } from "@/app/[lang]/components/course-start-date-chip"
+import { Link } from "@/app/components/button"
 
-import { RichtextStoryblok } from "@/types";
+import { RichtextStoryblok } from "@/types"
 
 function RichText({ document }: { document: any }) {
   return (
@@ -20,36 +20,36 @@ function RichText({ document }: { document: any }) {
         markResolvers: {
           [MARK_LINK](children, { href }) {
             // FIXME: ANY
-            return <Link href={href as any}>{children}</Link>;
+            return <Link href={href as any}>{children}</Link>
           },
         },
         nodeResolvers: {
           [NODE_PARAGRAPH](children) {
-            return <Paragraph>{children}</Paragraph>;
+            return <Paragraph>{children}</Paragraph>
           },
           [NODE_HEADING](children, props) {
-            const { level } = props;
-            if (level === 1) return <H1>{children}</H1>;
-            if (level === 2) return <H2>{children}</H2>;
-            if (level === 3) return <H3>{children}</H3>;
-            if (level === 4) return <H4>{children}</H4>;
-            if (level === 5) return <H5>{children}</H5>;
-            if (level === 6) return <H6>{children}</H6>;
+            const { level } = props
+            if (level === 1) return <H1>{children}</H1>
+            if (level === 2) return <H2>{children}</H2>
+            if (level === 3) return <H3>{children}</H3>
+            if (level === 4) return <H4>{children}</H4>
+            if (level === 5) return <H5>{children}</H5>
+            if (level === 6) return <H6>{children}</H6>
 
-            return null;
+            return null
           },
         },
       })}
     </div>
-  );
+  )
 }
 
 export const CourseOverview = ({
   courseOverview,
   type,
 }: {
-  courseOverview?: RichtextStoryblok;
-  type: TypeEnum;
+  courseOverview?: RichtextStoryblok
+  type: TypeEnum
 }) => {
   return (
     <div className="flex flex-col md:flex-row gap-8">
@@ -59,8 +59,8 @@ export const CourseOverview = ({
         <CourseMetaData type={type} />
       </div>
     </div>
-  );
-};
+  )
+}
 
 const CourseMetaData = ({ type }: { type?: TypeEnum }) => {
   return (
@@ -106,5 +106,5 @@ const CourseMetaData = ({ type }: { type?: TypeEnum }) => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}

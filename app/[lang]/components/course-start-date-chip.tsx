@@ -1,19 +1,19 @@
-import { MetaDataChip } from "@/app/components/chip";
-import { formatDate } from "@/utils";
+import { MetaDataChip } from "@/app/components/chip"
+import { formatDate } from "@/utils"
 
 export const CourseStartDateChip = ({
   size = "medium",
   date,
 }: {
-  size?: "small" | "medium" | "large";
-  date: string;
+  size?: "small" | "medium" | "large"
+  date: string
 }) => {
   return (
     <MetaDataChip variant="secondary" size={size}>
       {date}
     </MetaDataChip>
-  );
-};
+  )
+}
 
 export const CourseStartDates = ({ dates }: { dates: Date[] }) => {
   return (
@@ -25,5 +25,5 @@ export const CourseStartDates = ({ dates }: { dates: Date[] }) => {
         />
       ))}
     </div>
-  );
-};
+  )
+}

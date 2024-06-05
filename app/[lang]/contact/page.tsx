@@ -1,6 +1,6 @@
-import { HubSpotForm } from "@/app/components/hubspot-form";
-import { Container, HeroSection } from "@/app/components/structure";
-import { H3, Paragraph } from "@/app/components/typography";
+import { HubSpotForm } from "@/app/components/hubspot-form"
+import { Container, HeroSection } from "@/app/components/structure"
+import { H3, Paragraph } from "@/app/components/typography"
 
 const data = {
   hero: {
@@ -10,9 +10,9 @@ const data = {
 
   header: "Get in touch",
   paragraph: "Fill out the form below to get in touch with us.",
-};
+}
 export default function Contact() {
-  const { hero, header, paragraph } = data;
+  const { hero, header, paragraph } = data
   return (
     <div>
       <HeroSection
@@ -33,5 +33,5 @@ export default function Contact() {
         </Container>
       </div>
     </div>
-  );
+  )
 }

@@ -1,5 +1,5 @@
-import { Container, HeroSection } from "@/app/components/structure";
-import { H3, Paragraph } from "@/app/components/typography";
+import { Container, HeroSection } from "@/app/components/structure"
+import { H3, Paragraph } from "@/app/components/typography"
 
 const data = {
   hero: {
@@ -10,10 +10,10 @@ const data = {
   header: "Data Protection Guidelines",
   paragraph:
     "United Pop is an academy for music and media. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-};
+}
 
 export default function DataProtectionGuidelines() {
-  const { hero, header, paragraph } = data;
+  const { hero, header, paragraph } = data
   return (
     <div>
       <HeroSection
@@ -30,5 +30,5 @@ export default function DataProtectionGuidelines() {
         </Container>
       </div>
     </div>
-  );
+  )
 }

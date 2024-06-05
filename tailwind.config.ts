@@ -1,5 +1,5 @@
-import type { Config } from "tailwindcss";
-import tailWindForms from "@tailwindcss/forms";
+import type { Config } from "tailwindcss"
+import tailWindForms from "@tailwindcss/forms"
 
 export const config: Config = {
   content: [
@@ -56,5 +56,5 @@ export const config: Config = {
     },
   },
   plugins: [tailWindForms],
-};
-export default config;
+}
+export default config

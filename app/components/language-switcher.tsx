@@ -1,19 +1,19 @@
-"use client";
+"use client"
 
-import NextLink from "next/link";
-import clsx from "clsx";
-import { Route } from "next";
-import { usePathname } from "next/navigation";
+import NextLink from "next/link"
+import clsx from "clsx"
+import { Route } from "next"
+import { usePathname } from "next/navigation"
 
-import { languages } from "@/i18n.config";
+import { languages } from "@/i18n.config"
 
 export const LanguageSwitcher = ({ lang }: { lang: "en" | "nl" }) => {
-  const pathname = usePathname();
+  const pathname = usePathname()
   return (
     <ul className="flex rounded bg-gray-800">
       {languages.map((language, key) => {
-        const href = replaceLocaleInPathname(pathname, language.id);
-        const isActive = lang === language.id;
+        const href = replaceLocaleInPathname(pathname, language.id)
+        const isActive = lang === language.id
         return (
           <NextLink href={href} key={language.id}>
             <li
@@ -36,16 +36,16 @@ export const LanguageSwitcher = ({ lang }: { lang: "en" | "nl" }) => {
               {language.title}
             </li>
           </NextLink>
-        );
+        )
       })}
     </ul>
-  );
-};
+  )
+}
 
 const replaceLocaleInPathname = (pathname: string, locale: string): Route => {
-  const languageCodes = languages.map((lang) => lang.id);
+  const languageCodes = languages.map((lang) => lang.id)
   return pathname.replace(
     new RegExp(`^/(${languageCodes.join("|")})`),
     `/${locale}`
-  ) as Route;
-};
+  ) as Route
+}

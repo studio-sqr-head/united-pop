@@ -1,18 +1,18 @@
-import type { ReactNode } from "react";
-import type { Metadata } from "next";
+import type { ReactNode } from "react"
+import type { Metadata } from "next"
 
-import { env } from "@/env";
-import { getCourseBySlug } from "@/api/course";
+import { env } from "@/env"
+import { getCourseBySlug } from "@/api/course"
 
 export async function generateMetadata({
   params,
 }: {
-  params: { lang: "en" | "nl"; slug: string };
+  params: { lang: "en" | "nl"; slug: string }
 }): Promise<Metadata> {
-  const { lang, slug } = params;
-  const { story: course } = await getCourseBySlug({ lang, slug });
-  const { content } = course;
-  const { title, description, image } = content;
+  const { lang, slug } = params
+  const { story: course } = await getCourseBySlug({ lang, slug })
+  const { content } = course
+  const { title, description, image } = content
 
   return {
     title: `${title} | United Pop`,
@@ -45,15 +45,15 @@ export async function generateMetadata({
         },
       ],
     },
-  };
+  }
 }
 
 export default function Layout(
   props: Readonly<{
-    children: ReactNode;
+    children: ReactNode
   }>
 ) {
-  const { children } = props;
+  const { children } = props
 
-  return <>{children}</>;
+  return <>{children}</>
 }

@@ -1,22 +1,22 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode } from "react"
 
-import clsx from "clsx";
+import clsx from "clsx"
 import {
   Tab as HeadlessUiTab,
   TabGroup as HeadlessUiTabGroup,
   TabList as HeadlessUiTabList,
   TabPanel as HeadlessUiTabPanel,
   TabPanels as HeadlessUiTabPanels,
-} from "@headlessui/react";
-import { ChevronRightIcon } from "@heroicons/react/20/solid";
+} from "@headlessui/react"
+import { ChevronRightIcon } from "@heroicons/react/20/solid"
 
 export const Tabs = ({
   tabs,
 }: {
   tabs: {
-    name: string;
-    component: () => ReactNode;
-  }[];
+    name: string
+    component: () => ReactNode
+  }[]
 }) => (
   <TabGroup>
     <TabList>
@@ -31,17 +31,17 @@ export const Tabs = ({
       ))}
     </TabPanels>
   </TabGroup>
-);
+)
 
 export const Tab = ({ name }: { name: string }) => {
   const baseClasses =
-    "px-3 py-2 font-semibold text-white cursor-pointer font-xl";
+    "px-3 py-2 font-semibold text-white cursor-pointer font-xl"
   const selectedClasses =
-    "data-[selected]:border-b-4 data-[selected]:border-primary";
-  const hoverClasses = "data-[hover]:bg-gray-800";
-  const selectedHoverClasses = "data-[selected]:data-[hover]:bg-gray-800";
+    "data-[selected]:border-b-4 data-[selected]:border-primary"
+  const hoverClasses = "data-[hover]:bg-gray-800"
+  const selectedHoverClasses = "data-[selected]:data-[hover]:bg-gray-800"
   const focusClasses =
-    "focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white";
+    "focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white"
 
   return (
     <HeadlessUiTab
@@ -56,25 +56,25 @@ export const Tab = ({ name }: { name: string }) => {
     >
       {name}
     </HeadlessUiTab>
-  );
-};
+  )
+}
 
 export const TabGroup = ({ children }: { children: ReactNode }) => (
   <HeadlessUiTabGroup>{children}</HeadlessUiTabGroup>
-);
+)
 
 export const TabList = ({ children }: { children: ReactNode }) => {
   return (
     <HeadlessUiTabList className="flex gap-4 overflow-x-auto no-scrollbar">
       {children}
     </HeadlessUiTabList>
-  );
-};
+  )
+}
 
 export const TabPanels = ({ children }: { children: ReactNode }) => (
   <HeadlessUiTabPanels className="mt-6">{children}</HeadlessUiTabPanels>
-);
+)
 
 export const TabPanel = ({ children }: { children: ReactNode }) => (
   <HeadlessUiTabPanel>{children}</HeadlessUiTabPanel>
-);
+)

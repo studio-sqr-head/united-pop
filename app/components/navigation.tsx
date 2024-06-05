@@ -1,24 +1,24 @@
-"use client";
+"use client"
 
-import { useState, useEffect } from "react";
-import { useParams, usePathname } from "next/navigation";
+import { useState, useEffect } from "react"
+import { useParams, usePathname } from "next/navigation"
 
-import { Container } from "@/app/components/structure";
-import { Logo } from "@/app/components/logo";
-import { Button, IconButton, Link } from "@/app/components/button";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
+import { Container } from "@/app/components/structure"
+import { Logo } from "@/app/components/logo"
+import { Button, IconButton, Link } from "@/app/components/button"
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid"
 
 const NavItems = ({ items }: { items: typeof NAV_ITEMS }) => {
-  const { lang } = useParams();
-  const pathname = usePathname();
+  const { lang } = useParams()
+  const pathname = usePathname()
   return (
     <>
       {items.map(({ id, path, title }) => {
         // check whether pathname includes the path
         if (id === "home") {
-          var isActive = `/${lang}` === pathname;
+          var isActive = `/${lang}` === pathname
         } else {
-          var isActive = pathname.includes(path);
+          var isActive = pathname.includes(path)
         }
 
         return (
@@ -33,32 +33,32 @@ const NavItems = ({ items }: { items: typeof NAV_ITEMS }) => {
               {title}
             </Link>
           </li>
-        );
+        )
       })}
     </>
-  );
-};
+  )
+}
 
 export const Navigation = () => {
-  const [showMenu, setShowMenu] = useState(false);
-  const { lang } = useParams();
-  const pathname = usePathname();
+  const [showMenu, setShowMenu] = useState(false)
+  const { lang } = useParams()
+  const pathname = usePathname()
 
   useEffect(() => {
     // on route change, close the menu
-    setShowMenu(false);
-  }, [pathname]);
+    setShowMenu(false)
+  }, [pathname])
 
   // click away listener
   useEffect(() => {
     const handleClick = (e: any) => {
       if (showMenu && !e.target.closest("nav")) {
-        setShowMenu(false);
+        setShowMenu(false)
       }
-    };
-    document.addEventListener("click", handleClick);
-    return () => document.removeEventListener("click", handleClick);
-  }, [showMenu]);
+    }
+    document.addEventListener("click", handleClick)
+    return () => document.removeEventListener("click", handleClick)
+  }, [showMenu])
 
   return (
     <nav className="w-full relative">
@@ -119,8 +119,8 @@ export const Navigation = () => {
         </ul>
       </Container>
     </nav>
-  );
-};
+  )
+}
 
 const NAV_ITEMS = [
   {
@@ -135,4 +135,4 @@ const NAV_ITEMS = [
     path: "/about",
     component: "link",
   },
-];
+]
