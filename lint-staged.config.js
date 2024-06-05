@@ -1,8 +1,7 @@
 
 
 module.exports = {
-  "app/*.{js,jsx,ts,tsx,yaml,yml,json,svg}": [
-    "npm run lint",
-    "npm run format",
-  ],
+  // run `npm run lint` on all `ts and tsx` files
+  '**/*.{ts,tsx}': () => 'npm run lint',
+
 }
