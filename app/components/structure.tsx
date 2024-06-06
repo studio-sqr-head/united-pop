@@ -21,30 +21,33 @@ export const Divider = () => (
 )
 
 export const Main = ({ children }: { children: ReactNode }) => {
-  return <main className="pt-16 md:pt-0">{children}</main>
+  return <main>{children}</main>
 }
 
 export const HeroSection = ({
-  height = "full",
+  height = "hero",
   src,
   alt,
   children,
   imageClassName,
+  sectionClassName,
 }: {
-  height?: "full" | "banner"
+  height?: "hero" | "banner" | "largeBanner"
   src: string
   alt: string
   children?: React.ReactNode
   imageClassName?: string
+  sectionClassName?: string
 }) => {
   const heightClass = {
-    full: "h-[500px] md:h-[800px]",
     banner: "h-[300px] md:h-[500px]",
+    largeBanner: "h-[400px] md:h-[600px]",
+    hero: "h-[500px] md:h-[100vh]",
   }
 
   return (
     <section
-      className={`relative ${heightClass[height]} overflow-hidden z-0 aspect-auto`}
+      className={`relative ${heightClass[height]} overflow-hidden z-0 aspect-auto ${sectionClassName}`}
     >
       <Image
         src={src}
@@ -57,11 +60,7 @@ export const HeroSection = ({
         className={clsx("object-cover object-center", imageClassName)}
       />
 
-      {children && (
-        <div className="absolute top-0 left-0 right-0 bottom-0 z-10 flex flex-col items-center justify-center">
-          {children}
-        </div>
-      )}
+      {children}
     </section>
   )
 }

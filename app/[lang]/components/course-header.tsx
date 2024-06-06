@@ -7,11 +7,15 @@ export const CourseHeader = ({
   parttime,
   type,
   params,
+  primaryButtonText,
+  downloadBrochureButtonText,
 }: {
   fulltime?: boolean
   parttime?: boolean
   type?: TypeEnum
   params: { lang: "en" | "nl"; slug: string }
+  primaryButtonText?: string
+  downloadBrochureButtonText?: string
 }) => {
   return (
     <div className="mb-4 flex items-center gap-4 justify-between">
@@ -33,7 +37,12 @@ export const CourseHeader = ({
         )}
       </div>
 
-      <MainCta className="hidden md:flex" params={params} />
+      <MainCta
+        className="hidden md:flex"
+        params={params}
+        primaryButtonText={primaryButtonText}
+        downloadBrochureButtonText={downloadBrochureButtonText}
+      />
     </div>
   )
 }

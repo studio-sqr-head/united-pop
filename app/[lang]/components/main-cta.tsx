@@ -4,16 +4,25 @@ import { DownloadBrochureButton } from "@/app/[lang]/components/download-brochur
 export const MainCta = ({
   className,
   params,
+  primaryButtonText,
+  downloadBrochureButtonText,
+  downloadBrochureUrl,
 }: {
   className: string
   params: {
     lang: "nl" | "en"
   }
+  primaryButtonText?: string
+  downloadBrochureButtonText?: string
+  downloadBrochureUrl?: string
 }) => {
   return (
     <div className={`flex gap-2 items-center ${className}`}>
-      <DownloadBrochureButton />
-      <EnrollButton params={params} />
+      <DownloadBrochureButton
+        text={downloadBrochureButtonText}
+        downloadBrochureUrl={downloadBrochureUrl}
+      />
+      <EnrollButton params={params} text={primaryButtonText} />
     </div>
   )
 }

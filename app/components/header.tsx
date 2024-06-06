@@ -5,14 +5,13 @@ import { clsx } from "clsx"
 import { Navigation } from "@/app/components/navigation"
 
 export const Header = ({ lang }: { lang: "en" | "nl" }) => {
-  const [showHeader, setShowHeader] = useState(true)
   const [scroll, setScroll] = useState(false)
 
   useEffect(() => {
-    let prevScrollPos = window.pageYOffset
+    if (typeof window === "undefined") return
+    let prevScrollPos = window.scrollY
     window.onscroll = () => {
-      const currentScrollPos = window.pageYOffset
-      setShowHeader(prevScrollPos > currentScrollPos || currentScrollPos < 80)
+      const currentScrollPos = window.scrollY
       setScroll(currentScrollPos > 80)
       prevScrollPos = currentScrollPos
     }
@@ -30,11 +29,7 @@ export const Header = ({ lang }: { lang: "en" | "nl" }) => {
     "flex",
     "justify-between",
     "items-center",
-    "py-4 md:py-6",
-    "gradient",
-    "bg-opacity-90",
-
-    scroll ? "bg-black" : "md:bg-transparent bg-black"
+    scroll && "backdrop-filter backdrop-blur-lg"
   )
 
   return (

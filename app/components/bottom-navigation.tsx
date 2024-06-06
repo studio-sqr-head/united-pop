@@ -25,7 +25,7 @@ export const BottomNavigation = ({
   children?: React.ReactNode
 }) => {
   return (
-    <div className="md:hidden sticky bottom-0 left-0 z-50 w-full bg-slate border-t border-gray-800">
+    <div className="md:hidden sticky bottom-0 left-0 z-45 w-full bg-black">
       <div className="grid h-full grid-cols-2 w-full max-w-6xl mx-auto border-l border-gray-800 border-r">
         {children}
       </div>

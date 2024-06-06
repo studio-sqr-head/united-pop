@@ -33,7 +33,7 @@ export const START_DATES = [
 
 export const TABS = [
   { id: "overview", name: "Overview" },
-  { id: "structure", name: "Structure" },
+  { id: "timetable", name: "Timetable" },
   { id: "fees", name: "Fees" },
   { id: "faq", name: "FAQ" },
   { id: "contact", name: "Contact" },

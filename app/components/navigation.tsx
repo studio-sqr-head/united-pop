@@ -61,30 +61,36 @@ export const Navigation = () => {
   }, [showMenu])
 
   return (
-    <nav className="w-full relative">
-      <Container className="max-w-7xl flex items-center justify-between">
+    <nav className="w-full relative h-full">
+      <Container className="flex items-start justify-between py-4 md:py-6">
         <Logo />
 
         <div className="flex gap-8 align-center items-center md:hidden">
           <IconButton
             variant="secondary"
-            onClick={() => setShowMenu(!showMenu)}
-            icon={
-              showMenu ? (
-                <XMarkIcon className="h-6 w-6 text-white" />
-              ) : (
-                <Bars3Icon className="h-6 w-6 text-white" />
-              )
-            }
+            onClick={() => setShowMenu(true)}
+            icon={<Bars3Icon className="h-6 w-6 text-white" />}
             size="small"
           />
         </div>
 
         <ul
-          className={`absolute top-12 left-0 right-0 bg-black flex flex-col py-4 px-8 gap-4 border-t border-gray-800 ${
-            showMenu ? "opacity-100" : "opacity-0 pointer-events-none"
-          } transition-all duration-300 ease-in-out md:flex md:gap-8 md:py-0 md:px-0`}
+          className={`absolute top-0 top-0 left-0 right-0 bg-black flex flex-col py-4 px-8 gap-4 ${
+            showMenu
+              ? "opacity-100 w-full h-screen z-50`"
+              : "opacity-0 pointer-events-none"
+          } transition-all duration-300 ease-in-out`}
         >
+          <div className="flex gap-8 align-center md:hidden justify-between w-full mb-4">
+            <Logo />
+            <IconButton
+              variant="secondary"
+              onClick={() => setShowMenu(false)}
+              icon={<XMarkIcon className="h-8 w-8 text-white" />}
+              size="small"
+            />
+          </div>
+
           <NavItems items={NAV_ITEMS} />
 
           <Button
@@ -101,7 +107,7 @@ export const Navigation = () => {
           </Button>
         </ul>
 
-        <ul className="flex gap-8 align-center items-center hidden md:flex">
+        <ul className="flex gap-8 align-center items-center hidden md:flex h-full">
           <NavItems items={NAV_ITEMS} />
 
           <Button

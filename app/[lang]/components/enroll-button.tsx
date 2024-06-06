@@ -8,10 +8,12 @@ import { ArrowRightIcon } from "@heroicons/react/20/solid"
 
 export const EnrollButton = ({
   params,
+  text = "Enroll",
 }: {
   params: {
     lang: "en" | "nl"
   }
+  text?: string
 }) => {
   return (
     <Button
@@ -23,17 +25,19 @@ export const EnrollButton = ({
         query: { lang: params.lang },
       }}
     >
-      Enroll
+      {text}
     </Button>
   )
 }
 
 export const EnrollButtonMobile = ({
   params,
+  text = "Enroll",
 }: {
   params: {
     lang: "en" | "nl"
   }
+  text?: string
 }) => {
   const router = useRouter()
 
@@ -43,8 +47,8 @@ export const EnrollButtonMobile = ({
 
   return (
     <MobileNavButton onClick={handleClick}>
-      <ArrowRightIcon className="h-6 w-6 stroke-current stroke-1 text-secondary" />
-      Enroll
+      <ArrowRightIcon className="h-6 w-6 stroke-current stroke-1 text-primary" />
+      <span>{text}</span>
     </MobileNavButton>
   )
 }

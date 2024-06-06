@@ -25,8 +25,19 @@ export default async function CoursePage({
     lang: params.lang,
   })
   const { content } = course
-  const { title, description, image, type, fulltime, parttime, overview } =
-    content as CourseStoryblok
+  const {
+    title,
+    description,
+    image,
+    type,
+    fulltime,
+    parttime,
+    overview,
+    fees,
+    downloadBrochureUrl,
+    downloadBrochureButtonText,
+    primaryButtonText,
+  } = content as CourseStoryblok
 
   return (
     <div>
@@ -52,6 +63,8 @@ export default async function CoursePage({
               parttime={parttime}
               type={type as TypeEnum}
               params={params}
+              primaryButtonText={primaryButtonText}
+              downloadBrochureButtonText={downloadBrochureButtonText}
             />
             <div className="flex justify-between items-start gap-4 mb-12 md:flex-row flex-col">
               <div className="flex flex-col gap-4">
@@ -78,7 +91,7 @@ export default async function CoursePage({
                     type={type as TypeEnum}
                   />
                 )}
-                {id === "structure" && <CourseTimetable />}
+                {id === "timetable" && <CourseTimetable />}
                 {id === "faq" && <CourseFaq />}
                 {id === "contact" && <ContactDetails courseName={title} />}
                 {id === "fees" && <CourseFees />}
@@ -89,8 +102,11 @@ export default async function CoursePage({
       </TabGroup>
 
       <BottomNavigation>
-        <DownloadBrochureMobileButton />
-        <EnrollButtonMobile params={params} />
+        <DownloadBrochureMobileButton
+          text={downloadBrochureButtonText}
+          downloadBrochureUrl={downloadBrochureUrl}
+        />
+        <EnrollButtonMobile params={params} text={primaryButtonText} />
       </BottomNavigation>
     </div>
   )

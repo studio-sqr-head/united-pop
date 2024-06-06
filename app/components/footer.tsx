@@ -15,7 +15,7 @@ const UnitedPopRightsReserved = () => {
 export const Footer = (): ReactElement => {
   return (
     <footer className="bg-black">
-      <Container className="py-8 max-w-7xl">
+      <Container className="py-8">
         <div className="flex flex-col md:flex-row gap-8 justify-between items-center md:items-end">
           <SocialMediaLinks />
           <UnitedPopRightsReserved />

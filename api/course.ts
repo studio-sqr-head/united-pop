@@ -36,7 +36,7 @@ export const getAllCourses = async ({
 }): Promise<ISbStories["data"]> => {
   const version = "published"
   const token = env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN
-  const url = `${STORYBLOK_BASE_URL}?language=${lang}&version=${version}&token=${token}`
+  const url = `${STORYBLOK_BASE_URL}?language=${lang}&version=${version}&token=${token}&starts_with=courses/`
   try {
     const response = await fetch(url, { next: { revalidate: 10 } })
 
