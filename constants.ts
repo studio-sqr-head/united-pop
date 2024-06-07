@@ -11,6 +11,11 @@ export const HUBSPOT_SRC = `//js-eu1.hsforms.net/forms/embed/v2.js`
 export const HUBSPOT_REGION = "eu1"
 export const HUBSPOT_FORM_ID_EN = "38b95c65-2534-4a9c-b4af-4c96945436b4"
 export const HUBSPOT_FORM_ID_NL = "0125f0e4-27e0-4fa1-ad0a-283b73fd3c4d"
+export const FACEBOOK_URL = "https://www.facebook.com/UnitedPOPNetherlands/"
+export const INSTAGRAM_URL = "https://www.instagram.com/unitedpopamsterdam/"
+export const LINKEDIN_URL = "https://www.linkedin.com/school/unitedpop"
+export const YOUTUBE_URL = "https://www.youtube.com/unitedpop"
+export const BROCHURE_URL = "https://brochure.united-pop.com/#page=2"
 
 export const formToLang = {
   en: HUBSPOT_FORM_ID_EN,
@@ -86,12 +91,6 @@ export const CATEGORIES = [
     id: CategoryEnum["MUSIC-SOUND-PRODUCTION"],
   },
 ]
-
-const FACEBOOK_URL = "https://www.facebook.com/UnitedPOPNetherlands/"
-const INSTAGRAM_URL = "https://www.instagram.com/unitedpopamsterdam/"
-const LINKEDIN_URL = "https://www.linkedin.com/school/unitedpop"
-const YOUTUBE_URL = "https://www.youtube.com/unitedpop"
-export const BROCHURE_URL = "https://brochure.united-pop.com/#page=2"
 
 export const SOCIAL_MEDIA = [
   {
