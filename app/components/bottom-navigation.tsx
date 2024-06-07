@@ -10,7 +10,7 @@ export const MobileNavButton = ({
 }) => {
   const baseClasses =
     "flex flex-col gap-1 items-center justify-center h-full w-full text-primary text-sm p-2"
-  const hoverClasses = "data-[hover]:bg-primary-800"
+  const hoverClasses = "data-[hover]:bg-gray-800"
   const className = clsx(baseClasses, hoverClasses)
   return (
     <Button type="button" className={className} onClick={onClick}>
@@ -26,7 +26,7 @@ export const BottomNavigation = ({
 }) => {
   return (
     <div className="md:hidden sticky bottom-0 left-0 z-45 w-full bg-black">
-      <div className="grid h-full grid-cols-2 w-full max-w-6xl mx-auto border-l border-gray-800 border-r">
+      <div className="grid h-full grid-cols-2 w-full max-w-6xl mx-auto">
         {children}
       </div>
     </div>

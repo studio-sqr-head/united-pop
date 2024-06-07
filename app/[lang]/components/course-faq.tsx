@@ -9,7 +9,13 @@ export const CourseFaq = ({
 }) => {
   return (
     <div className="flex flex-col gap-4">
-      {faqs?.map((item, index) => <Accordion key={index} {...item} />)}
+      {faqs?.map(({ content }, index) => (
+        <Accordion
+          key={index}
+          description={content?.description}
+          title={content?.title}
+        />
+      ))}
     </div>
   )
 }

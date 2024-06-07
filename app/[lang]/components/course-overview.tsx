@@ -15,7 +15,13 @@ export const CourseOverview = ({
 }) => {
   return (
     <div className="flex flex-col md:flex-row gap-8">
-      <RichText document={courseOverview} />
+      <RichText
+        document={courseOverview}
+        classNameOverrides={{
+          p: "mb-4 text-primary",
+          strong: "font-bold text-primary",
+        }}
+      />
       <div className="md:max-w-sm full-w">
         <CourseMetaData type={type} />
       </div>

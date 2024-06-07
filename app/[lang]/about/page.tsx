@@ -24,7 +24,6 @@ export default async function About({
           height={"banner"}
           src={heroImage?.filename}
           alt={heroImage?.alt ?? "Hero Image"}
-          imageClassName="filter brightness-75"
         />
       )}
 
@@ -32,7 +31,13 @@ export default async function About({
         <Container className="py-8 max-w-3xl">
           <div className="mb-4 w-full flex flex-col gap-4">
             <H2>{title}</H2>
-            <RichText document={body} />
+            <RichText
+              document={body}
+              classNameOverrides={{
+                p: "text-secondary",
+                b: "text-white",
+              }}
+            />
           </div>
 
           <div className="mt-8 w-full">

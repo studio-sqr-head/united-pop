@@ -4,8 +4,8 @@ import { DownloadBrochureButton } from "@/app/[lang]/components/download-brochur
 export const MainCta = ({
   className,
   params,
-  primaryButtonText,
-  downloadBrochureButtonText,
+  primaryButtonText = "Enroll Now",
+  downloadBrochureButtonText = "Download Brochure",
   downloadBrochureUrl,
 }: {
   className: string

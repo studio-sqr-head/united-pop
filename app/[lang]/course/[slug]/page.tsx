@@ -36,6 +36,7 @@ export default async function CoursePage({
     parttime,
     overview,
     fees,
+    timetable,
     downloadBrochureUrl,
     downloadBrochureButtonText,
     primaryButtonText,
@@ -84,7 +85,7 @@ export default async function CoursePage({
         </div>
 
         <div className="bg-slate text-white full-w">
-          <Container as="section" className="max-w-6xl py-16">
+          <Container as="section" className="max-w-6xl py-8">
             {TABS.map(({ id }, index) => (
               <TabPanel key={index}>
                 {id === "overview" && (
@@ -93,7 +94,9 @@ export default async function CoursePage({
                     type={type as TypeEnum}
                   />
                 )}
-                {id === "timetable" && <CourseTimetable />}
+                {id === "timetable" && (
+                  <CourseTimetable timetable={timetable} />
+                )}
                 {id === "faq" && <CourseFaq faqs={allFaqs} />}
                 {id === "contact" && <ContactDetails courseName={title} />}
                 {id === "fees" && <CourseFees courseFees={fees} />}
