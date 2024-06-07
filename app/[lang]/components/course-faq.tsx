@@ -1,12 +1,15 @@
+import { ISbStoryData } from "@storyblok/react"
+import { FaqStoryblok } from "@/types"
 import { Accordion } from "@/app/components/accordion"
-import { FAQ_ITEMS } from "@/constants"
 
-export const CourseFaq = () => {
+export const CourseFaq = ({
+  faqs,
+}: {
+  faqs?: ISbStoryData<FaqStoryblok>[]
+}) => {
   return (
     <div className="flex flex-col gap-4">
-      {FAQ_ITEMS.map((item, index) => (
-        <Accordion key={index} {...item} />
-      ))}
+      {faqs?.map((item, index) => <Accordion key={index} {...item} />)}
     </div>
   )
 }

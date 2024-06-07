@@ -14,12 +14,14 @@ import { DownloadBrochureMobileButton } from "@/app/[lang]/components/download-b
 import { CourseStoryblok } from "@/types"
 import { TABS, TypeEnum } from "@/constants"
 import { getCourseBySlug } from "@/api/course"
+import { getAllFaqs } from "@/api/faq"
 
 export default async function CoursePage({
   params,
 }: {
   params: { lang: "en" | "nl"; slug: string }
 }) {
+  const { allFaqs } = await getAllFaqs({ lang: params.lang })
   const { story: course } = await getCourseBySlug({
     slug: params?.slug,
     lang: params.lang,
@@ -92,7 +94,7 @@ export default async function CoursePage({
                   />
                 )}
                 {id === "timetable" && <CourseTimetable />}
-                {id === "faq" && <CourseFaq />}
+                {id === "faq" && <CourseFaq faqs={allFaqs} />}
                 {id === "contact" && <ContactDetails courseName={title} />}
                 {id === "fees" && <CourseFees courseFees={fees} />}
               </TabPanel>
