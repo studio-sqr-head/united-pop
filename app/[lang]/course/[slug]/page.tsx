@@ -94,7 +94,7 @@ export default async function CoursePage({
                 {id === "timetable" && <CourseTimetable />}
                 {id === "faq" && <CourseFaq />}
                 {id === "contact" && <ContactDetails courseName={title} />}
-                {id === "fees" && <CourseFees />}
+                {id === "fees" && <CourseFees courseFees={fees} />}
               </TabPanel>
             ))}
           </Container>

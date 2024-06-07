@@ -33,7 +33,7 @@ export const HeroSection = ({
   sectionClassName,
 }: {
   height?: "hero" | "banner" | "largeBanner"
-  src: string
+  src?: string
   alt: string
   children?: React.ReactNode
   imageClassName?: string
@@ -50,7 +50,7 @@ export const HeroSection = ({
       className={`relative ${heightClass[height]} overflow-hidden z-0 aspect-auto ${sectionClassName}`}
     >
       <Image
-        src={src}
+        src={src ?? "/fallback-hero.jpeg"}
         fill
         alt={alt}
         priority

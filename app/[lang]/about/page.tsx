@@ -1,51 +1,52 @@
-import { Container, Divider, HeroSection } from "@/app/components/structure"
-import { H2, H3, H4, Paragraph } from "@/app/components/typography"
+import { Container, HeroSection } from "@/app/components/structure"
+import { H2, H4, Paragraph } from "@/app/components/typography"
 import { Accordion } from "@/app/components/accordion"
 import { FAQ_ITEMS } from "@/constants"
 
-const data = {
-  hero: {
-    alt: "Hero Image",
-    src: "/hero.jpeg",
-  },
+import { getAbout } from "@/api/page"
+import { getAllFaqs } from "@/api/faq"
+import { RichText } from "@/app/components/rich-text"
 
-  header: "About us",
-  paragraph:
-    "United Pop is an academy for music and media. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-}
+export default async function About({
+  params,
+}: {
+  params: { lang: "en" | "nl" }
+}) {
+  const { aboutPageContent } = await getAbout({ lang: params.lang })
+  const { heroImage, title, body, faqTitle, faqSubtitle } =
+    aboutPageContent.content
+  const { allFaqs } = await getAllFaqs({ lang: params.lang })
 
-export default function About() {
-  const { hero, header, paragraph } = data
   return (
     <div>
-      <HeroSection
-        height={"banner"}
-        src={hero.src}
-        alt={hero.alt}
-        imageClassName="filter brightness-75"
-      />
+      {heroImage != null && (
+        <HeroSection
+          height={"banner"}
+          src={heroImage?.filename}
+          alt={heroImage?.alt ?? "Hero Image"}
+          imageClassName="filter brightness-75"
+        />
+      )}
 
       <div className="bg-slate">
         <Container className="py-8 max-w-3xl">
-          <div className="mb-4 w-full flex flex-col gap-2">
-            <H2>{header}</H2>
-            <Paragraph variant="secondary">{paragraph}</Paragraph>
+          <div className="mb-4 w-full flex flex-col gap-4">
+            <H2>{title}</H2>
+            <RichText document={body} />
           </div>
 
           <div className="mt-8 w-full">
             <div className="mb-4 w-full flex flex-col gap-2">
-              <H4>FAQ</H4>
-              <Paragraph variant="secondary">
-                Frequently asked questions about United Pop.
-              </Paragraph>
+              <H4>{faqTitle}</H4>
+              <Paragraph variant="secondary">{faqSubtitle}</Paragraph>
             </div>
 
             <div className="flex flex-col gap-4 w-full">
-              {FAQ_ITEMS.map((item) => (
+              {allFaqs.map(({ content, uuid }) => (
                 <Accordion
-                  key={item?.title}
-                  title={item?.title}
-                  description={item?.description}
+                  key={uuid}
+                  title={content?.title}
+                  description={content?.description}
                 />
               ))}
             </div>

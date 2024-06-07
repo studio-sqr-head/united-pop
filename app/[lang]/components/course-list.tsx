@@ -90,20 +90,17 @@ const CourseListItem = ({
           <div className="flex flex-col-reverse md:flex-row justify-between w-full md:items-center mb-1 md:gap-0 gap-4">
             <H3>{title}</H3>
             <div className="flex gap-2">
-              {fulltime && <MetaDataChip size="small">Full-time</MetaDataChip>}
-              {parttime && <MetaDataChip size="small">Part-time</MetaDataChip>}
-              <MetaDataChip size="small">
+              {fulltime && <MetaDataChip>Full-time</MetaDataChip>}
+              {parttime && <MetaDataChip>Part-time</MetaDataChip>}
+              <MetaDataChip>
                 {TYPES.find((t) => t.id === type)?.title}
               </MetaDataChip>
             </div>
           </div>
           <div className="flex gap-2 items-center mb-3">
-            <Paragraph variant="secondary" className="text-sm">
-              Next Course Starts:
-            </Paragraph>
+            <Paragraph variant="secondary">Next Course Starts:</Paragraph>
 
             <CourseStartDateChip
-              size="small"
               date={formatDate({ date: closestStartDate, lang: "en" })}
             />
           </div>
@@ -192,19 +189,29 @@ const CourseList = ({
   )
 }
 
-const CourseSectionHeader = () => {
+const CourseSectionHeader = ({
+  courseSectionTitle = "Our Courses",
+  courseSectionSubtitle = "Choose from a variety of courses to suit your needs",
+}: {
+  courseSectionTitle?: string
+  courseSectionSubtitle?: string
+}) => {
   return (
     <div className="flex flex-col gap-2">
-      <H3>Our Courses</H3>
-      <Subheading>What&apos;s your area of interest?</Subheading>
+      <H3>{courseSectionTitle}</H3>
+      <Subheading>{courseSectionSubtitle}</Subheading>
     </div>
   )
 }
 
 export const CourseSection = ({
   courses,
+  courseSectionTitle,
+  courseSectionSubtitle,
 }: {
   courses: ISbStoryData<CourseStoryblok>[]
+  courseSectionTitle?: string
+  courseSectionSubtitle?: string
 }) => {
   const router = useRouter()
   const { lang } = useParams() as { lang: "en" | "nl" }
@@ -230,9 +237,13 @@ export const CourseSection = ({
 
   return (
     <div className="black" id="courses">
-      <Container as="section" className="py-16 min-h-300">
+      <Container as="section" className="py-8 md:py-16 min-h-300">
         <div className="flex flex-col gap-8">
-          <CourseSectionHeader />
+          <CourseSectionHeader
+            courseSectionTitle={courseSectionTitle}
+            courseSectionSubtitle={courseSectionSubtitle}
+          />
+
           <CourseListFilter
             activeCategory={activeCategory}
             handleCategoryChange={handleCategoryChange}

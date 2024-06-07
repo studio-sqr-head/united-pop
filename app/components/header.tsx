@@ -29,7 +29,8 @@ export const Header = ({ lang }: { lang: "en" | "nl" }) => {
     "flex",
     "justify-between",
     "items-center",
-    scroll && "backdrop-filter backdrop-blur-lg"
+    scroll &&
+      "bg-black md:backdrop-filter md:backdrop-blur-lg md:bg-transparent"
   )
 
   return (

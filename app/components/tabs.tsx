@@ -8,7 +8,6 @@ import {
   TabPanel as HeadlessUiTabPanel,
   TabPanels as HeadlessUiTabPanels,
 } from "@headlessui/react"
-import { ChevronRightIcon } from "@heroicons/react/20/solid"
 
 export const Tabs = ({
   tabs,

@@ -2,11 +2,12 @@
 
 import { ArrowDownTrayIcon } from "@heroicons/react/20/solid"
 
+import { BROCHURE_URL } from "@/constants"
 import { Button } from "@/app/components/button"
 import { MobileNavButton } from "@/app/components/bottom-navigation"
 
 const useDownloadBrochure = ({
-  downloadBrochureUrl = "https://brochure.united-pop.com/#page=2",
+  downloadBrochureUrl = BROCHURE_URL,
 }: {
   downloadBrochureUrl?: string
 }) => {

@@ -6,15 +6,15 @@ import { H1, Subheading } from "@/app/components/typography"
 import { Button } from "@/app/components/button"
 
 export const HomePageHeroCta = ({
-  heroHeaderText = "Hero Header Text",
-  heroSubtitleText = "Hero Subtitle Text",
-  heroPrimaryCtaButtonText = "Enroll Now",
-  heroSecondaryCtaButtonText = "Browse Courses",
+  heroTitle = "Hero Header Text",
+  heroSubtitle = "Hero Subtitle Text",
+  heroPrimaryCta = "Enroll Now",
+  heroSecondaryCta = "Browse Courses",
 }: {
-  heroHeaderText: string
-  heroSubtitleText: string
-  heroPrimaryCtaButtonText: string
-  heroSecondaryCtaButtonText: string
+  heroTitle?: string
+  heroSubtitle?: string
+  heroPrimaryCta?: string
+  heroSecondaryCta?: string
 }) => {
   const scrollToCourses = () => {
     const element = document.getElementById("courses")
@@ -24,12 +24,11 @@ export const HomePageHeroCta = ({
   return (
     <div className="flex flex-col gap-8 md:mb-16 max-w-3xl justify-center items-center">
       <div className="flex flex-col gap-2 text-center md:text-left">
-        <H1>{heroHeaderText}</H1>
-        <div className="hidden md:block">
-          <Subheading variant="secondary" as="div">
-            {heroSubtitleText}
-          </Subheading>
-        </div>
+        <H1>{heroTitle}</H1>
+
+        <Subheading variant="primary" as="div">
+          {heroSubtitle}
+        </Subheading>
       </div>
 
       <div className="flex gap-4 md:flex-row flex-col w-full">
@@ -40,7 +39,7 @@ export const HomePageHeroCta = ({
           scroll={false}
           href={{ pathname: "/contact", query: { lang: "en" } }}
         >
-          {heroPrimaryCtaButtonText}
+          {heroPrimaryCta}
         </Button>
 
         <Button
@@ -50,7 +49,7 @@ export const HomePageHeroCta = ({
           icon={<ArrowDownIcon className="h-6 w-6 stroke-current stroke-1" />}
           iconPosition="right"
         >
-          {heroSecondaryCtaButtonText}
+          {heroSecondaryCta}
         </Button>
       </div>
     </div>

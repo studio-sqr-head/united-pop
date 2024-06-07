@@ -5,7 +5,7 @@ import { Button } from "@headlessui/react"
 
 export const MetaDataChip = ({
   variant = "default",
-  size = "small",
+  size = "medium",
   children,
   active = false,
   onClick,

@@ -19,30 +19,43 @@ const fontColor = {
 interface TitleProps {
   children: React.ReactNode
   variant?: "primary" | "secondary"
+  className?: string
 }
 
-const H1 = ({ children, variant = "primary" }: TitleProps) => (
-  <h1 className={`${fontSize.h1} ${fontColor[variant]} `}>{children}</h1>
+const H1 = ({ children, variant = "primary", className }: TitleProps) => (
+  <h1 className={`${fontSize.h1} ${fontColor[variant]} ${className}`}>
+    {children}
+  </h1>
 )
 
-const H2 = ({ children, variant = "primary" }: TitleProps) => (
-  <h2 className={`${fontSize.h2} ${fontColor[variant]} `}>{children}</h2>
+const H2 = ({ children, variant = "primary", className }: TitleProps) => (
+  <h2 className={`${fontSize.h2} ${fontColor[variant]} ${className}`}>
+    {children}
+  </h2>
 )
 
-const H3 = ({ children, variant = "primary" }: TitleProps) => (
-  <h3 className={`${fontSize.h3} ${fontColor[variant]} `}>{children}</h3>
+const H3 = ({ children, variant = "primary", className }: TitleProps) => (
+  <h3 className={`${fontSize.h3} ${fontColor[variant]} ${className}`}>
+    {children}
+  </h3>
 )
 
-const H4 = ({ children, variant = "primary" }: TitleProps) => (
-  <h4 className={`${fontSize.h4} ${fontColor[variant]} `}>{children}</h4>
+const H4 = ({ children, variant = "primary", className }: TitleProps) => (
+  <h4 className={`${fontSize.h4} ${fontColor[variant]} ${className}`}>
+    {children}
+  </h4>
 )
 
-const H5 = ({ children, variant = "primary" }: TitleProps) => (
-  <h5 className={`${fontSize.h5} ${fontColor[variant]} `}>{children}</h5>
+const H5 = ({ children, variant = "primary", className }: TitleProps) => (
+  <h5 className={`${fontSize.h5} ${fontColor[variant]} ${className}`}>
+    {children}
+  </h5>
 )
 
-const H6 = ({ children, variant = "primary" }: TitleProps) => (
-  <h6 className={`${fontSize.h6} ${fontColor[variant]} `}>{children}</h6>
+const H6 = ({ children, variant = "primary", className }: TitleProps) => (
+  <h6 className={`${fontSize.h6} ${fontColor[variant]} ${className}`}>
+    {children}
+  </h6>
 )
 
 const Paragraph = ({

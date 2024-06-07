@@ -8,8 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write .",
-    "pull-components": "npx storyblok pull-components --space #288932",
-    "generate-types": "npm run pull-components && npx storyblok generate-typescript-typedefs --sourceFilePaths ./components.288932.json --destinationFilePath ./types.ts",
+    "pull-components": "storyblok pull-components --space 288932",
+    "generate-types": "npm run pull-components && storyblok generate-typescript-typedefs --sourceFilePaths ./components.288932.json --destinationFilePath ./types.ts",
     "prepare": "husky"
   },
   "dependencies": {

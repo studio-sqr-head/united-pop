@@ -1,7 +1,7 @@
 import { ISbStoryData } from "@storyblok/react/rsc"
 import clsx from "clsx"
 
-import { Container, HeroSection } from "@/app/components/structure"
+import { Container, Divider, HeroSection } from "@/app/components/structure"
 import { HomePageHeroCta } from "@/app/[lang]/components/home-page-hero-cta"
 import { CourseSection } from "@/app/[lang]/components/course-list"
 import { CourseStoryblok } from "@/types"
@@ -14,34 +14,50 @@ export default async function Home({
   params: { lang: "en" | "nl" }
 }) {
   const { stories } = await getAllCourses({ lang })
-  const { story } = await getHome({ lang })
+  const { homePageContent } = await getHome({ lang })
+  const {
+    heroImage,
+    heroPrimaryCta,
+    courseSectionTitle,
+    courseSectionSubtitle,
+    heroSecondaryCta,
+    heroSubtitle,
+    heroTitle,
+  } = homePageContent?.content
   const allCourses = stories as ISbStoryData<CourseStoryblok>[]
-  const home = story.content
 
   return (
     <div className="flex flex-col md:gap-8 gap-4">
       <HeroSection
-        src={home?.heroImage?.filename}
-        alt="Hero Image"
+        src={heroImage?.filename}
+        alt={heroImage?.alt ?? "Hero Image"}
         height={"hero"}
-        imageClassName="filter brightness-50 md:no-filter"
+        imageClassName="filter brightness-50 md:brightness-100"
       >
         <Container
           className={clsx(
-            "flex flex-col justify-end items-start h-full w-full",
+            "flex flex-col md:justify-end md:items-start h-full w-full justify-center items-center",
             "absolute top-0 left-0 right-0 bottom-0"
           )}
         >
           <HomePageHeroCta
-            heroHeaderText={home.heroHeaderText}
-            heroSubtitleText={home.heroSubtitleText}
-            heroPrimaryCtaButtonText={home.heroPrimaryCtaButtonText}
-            heroSecondaryCtaButtonText={home.heroSecondaryCtaButtonText}
+            heroTitle={heroTitle}
+            heroSubtitle={heroSubtitle}
+            heroPrimaryCta={heroPrimaryCta}
+            heroSecondaryCta={heroSecondaryCta}
           />
         </Container>
       </HeroSection>
 
-      {allCourses != null && <CourseSection courses={allCourses} />}
+      <Divider />
+
+      {allCourses != null && (
+        <CourseSection
+          courses={allCourses}
+          courseSectionTitle={courseSectionTitle}
+          courseSectionSubtitle={courseSectionSubtitle}
+        />
+      )}
     </div>
   )
 }

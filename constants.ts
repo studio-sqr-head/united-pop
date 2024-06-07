@@ -87,28 +87,34 @@ export const CATEGORIES = [
   },
 ]
 
+const FACEBOOK_URL = "https://www.facebook.com/UnitedPOPNetherlands/"
+const INSTAGRAM_URL = "https://www.instagram.com/unitedpopamsterdam/"
+const LINKEDIN_URL = "https://www.linkedin.com/school/unitedpop"
+const YOUTUBE_URL = "https://www.youtube.com/unitedpop"
+export const BROCHURE_URL = "https://brochure.united-pop.com/#page=2"
+
 export const SOCIAL_MEDIA = [
   {
     id: "facebook",
-    href: "https://www.facebook.com/UnitedPOPNetherlands/",
+    href: FACEBOOK_URL,
     title: "Facebook",
     Svg: FacebookSvg,
   },
   {
     id: "instagram",
-    href: "https://www.instagram.com/unitedpopamsterdam/",
+    href: INSTAGRAM_URL,
     title: "Instagram",
     Svg: InstagramSvg,
   },
   {
     id: "linkedin",
-    href: "https://www.linkedin.com/school/unitedpop",
+    href: LINKEDIN_URL,
     title: "LinkedIn",
     Svg: LinkedInSvg,
   },
   {
     id: "youtube",
-    href: "https://www.youtube.com/unitedpop",
+    href: YOUTUBE_URL,
     title: "YouTube",
     Svg: YoutubeSvg,
   },

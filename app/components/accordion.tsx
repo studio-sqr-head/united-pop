@@ -6,14 +6,16 @@ import {
 import { ChevronDownIcon } from "@heroicons/react/20/solid"
 
 import { IconButton } from "@/app/components/button"
-import { H6, Paragraph } from "@/app/components/typography"
+import { H6 } from "@/app/components/typography"
+import { RichText } from "./rich-text"
+import { ISbRichtext } from "@storyblok/react"
 
 export const Accordion = ({
   title,
   description,
 }: {
-  title: string
-  description: string
+  title?: string
+  description?: ISbRichtext
 }) => {
   return (
     <Disclosure as="div" className="flex flex-col divide-gray-500">
@@ -37,7 +39,7 @@ export const Accordion = ({
         </div>
       </DisclosureButton>
       <DisclosurePanel>
-        <Paragraph variant="secondary">{description}</Paragraph>
+        <RichText document={description} />
       </DisclosurePanel>
     </Disclosure>
   )
