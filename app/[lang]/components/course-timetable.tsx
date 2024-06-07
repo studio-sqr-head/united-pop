@@ -11,7 +11,7 @@ export const CourseTimetable = ({
       <RichText
         document={timetable}
         classNameOverrides={{
-          h6: "text-sm font-regular text-secondary",
+          h6: "text-secondary font-regular text-sm",
         }}
       />
     </div>

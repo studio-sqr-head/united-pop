@@ -66,7 +66,7 @@ const Paragraph = ({
 }: {
   className?: string
   variant?: "primary" | "secondary"
-  as?: "p" | "div" | "span"
+  as?: "p" | "div" | "span" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
   children: ReactNode
 }) => {
   return createElement(as, {

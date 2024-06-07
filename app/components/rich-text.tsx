@@ -111,7 +111,13 @@ export const RichText = ({
               )
             if (level === 6)
               return (
-                <H6 className={`my-2 ${classNameOverrides?.h6}`}>{children}</H6>
+                // This is reserved for small, thin headings.
+                <Paragraph
+                  as="h6"
+                  className={`my-2 font-sm text-secondary ${classNameOverrides?.h6}`}
+                >
+                  {children}
+                </Paragraph>
               )
 
             return null
