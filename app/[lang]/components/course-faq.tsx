@@ -1,7 +1,7 @@
 import { ISbStoryData } from "@storyblok/react"
 import { FaqStoryblok } from "@/types"
 import { Accordion } from "@/app/components/accordion"
-import { H4 } from "@/app/components/typography"
+import { H4, Paragraph } from "@/app/components/typography"
 
 export const CourseFaq = ({
   faqs,
@@ -9,16 +9,25 @@ export const CourseFaq = ({
   faqs?: ISbStoryData<FaqStoryblok>[]
 }) => {
   return (
-    <div className="flex flex-col gap-4">
-      <H4>Frequently Asked Questions</H4>
+    <div>
+      <div className="flex flex-col gap-4 mb-8">
+        <H4>Frequently Asked Questions</H4>
+        <Paragraph variant="secondary">
+          Here are some of the most frequently asked questions about this
+          course. If you have any other questions, please feel free to reach out
+          to us.
+        </Paragraph>
+      </div>
 
-      {faqs?.map(({ content }, index) => (
-        <Accordion
-          key={index}
-          description={content?.description}
-          title={content?.title}
-        />
-      ))}
+      <div className="flex flex-col gap-2">
+        {faqs?.map(({ content }, index) => (
+          <Accordion
+            key={index}
+            description={content?.description}
+            title={content?.title}
+          />
+        ))}
+      </div>
     </div>
   )
 }

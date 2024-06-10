@@ -14,7 +14,7 @@ export const config: Config = {
       },
       textColor: {
         primary: "var(--color-white)",
-        secondary: "var(--color-gray-400)",
+        secondary: "var(--color-gray-300)",
         orange: "var(--color-primary)",
       },
       colors: {

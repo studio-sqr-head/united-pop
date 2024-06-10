@@ -15,12 +15,7 @@ export default function Contact() {
   const { hero, header, paragraph } = data
   return (
     <div>
-      <HeroSection
-        height={"banner"}
-        src={hero.src}
-        alt={hero.alt}
-        imageClassName="filter brightness-75"
-      />
+      <HeroSection height={"banner"} src={hero.src} alt={hero.alt} />
 
       <div className="bg-slate">
         <Container className="py-16 max-w-3xl">

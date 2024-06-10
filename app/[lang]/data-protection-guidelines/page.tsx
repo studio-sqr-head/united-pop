@@ -18,7 +18,6 @@ export default async function DataProtectionGuidelines({
         height={"banner"}
         src={heroImage?.filename}
         alt={heroImage?.alt ?? "Hero Image"}
-        imageClassName="filter brightness-75"
       />
 
       <div className="bg-slate">

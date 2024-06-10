@@ -232,7 +232,7 @@ export const CourseSection = ({
   })
 
   return (
-    <div className="bg-gradient-to-b from-black to-slate">
+    <div className="bg-gradient-to-b from-black to-slate" id="courses">
       <Container as="section" className="py-8 md:py-16 min-h-300">
         <div className="flex flex-col gap-8">
           <CourseSectionHeader

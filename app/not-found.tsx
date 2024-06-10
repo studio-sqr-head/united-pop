@@ -1,20 +1,19 @@
 import { H2, Subheading, Paragraph } from "@/app/components/typography"
 import { Button } from "@/app/components/button"
 import { Container } from "@/app/components/structure"
+import { getNotFound } from "@/api/page"
 
-const NotFound = () => {
+export async function NotFound({ params }: { params: { lang: "en" | "nl" } }) {
+  const { notFoundPageContent } = await getNotFound({ lang: params.lang })
+  const { heading, subtitle, text, button } = notFoundPageContent.content
   return (
     <Container className="flex flex-col items-center justify-center h-screen gap-4">
-      <H2>404 - Page Not Found</H2>
-      <Subheading>
-        Sorry, the page you are looking for does not exist.
-      </Subheading>
-      <Paragraph>
-        Try going back to the previous page or visit our Home page.
-      </Paragraph>
+      <H2>{heading}</H2>
+      <Subheading>{subtitle}</Subheading>
+      <Paragraph>{text}</Paragraph>
       <div className="flex gap-4 mt-4">
         <Button href={{ pathname: "/", query: { lang: "en" } }} as="a">
-          Go back home
+          {button}
         </Button>
       </div>
     </Container>

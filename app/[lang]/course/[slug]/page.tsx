@@ -42,7 +42,6 @@ export default async function CoursePage({
           height={"banner"}
           src={image?.filename}
           alt={image?.alt ?? title ?? "Course Image"}
-          imageClassName="filter brightness-75"
         />
       )}
       <div className="bg-slate text-white py-4 full-w">
@@ -51,24 +50,26 @@ export default async function CoursePage({
         </Container>
       </div>
 
-      <CourseTabPanel
-        tabs={tabs}
-        allFaqs={allFaqs}
-        description={description}
-        downloadBrochureButtonText={downloadBrochureButtonText}
-        feesNotes={courseFeesNotes}
-        feesTable={courseFeesTable}
-        fulltime={fulltime}
-        overview={overview}
-        params={params}
-        parttime={parttime}
-        primaryButtonText={primaryButtonText}
-        timetable={timetable}
-        title={title}
-        type={type}
-        fulltimeDuration={fulltimeDuration}
-        parttimeDuration={partimeDuration}
-      />
+      <div className="bg-gradient-to-b from-black to-slate">
+        <CourseTabPanel
+          tabs={tabs}
+          allFaqs={allFaqs}
+          description={description}
+          downloadBrochureButtonText={downloadBrochureButtonText}
+          feesNotes={courseFeesNotes}
+          feesTable={courseFeesTable}
+          fulltime={fulltime}
+          overview={overview}
+          params={params}
+          parttime={parttime}
+          primaryButtonText={primaryButtonText}
+          timetable={timetable}
+          title={title}
+          type={type}
+          fulltimeDuration={fulltimeDuration}
+          parttimeDuration={partimeDuration}
+        />
+      </div>
 
       <BottomNavigation>
         <DownloadBrochureMobileButton

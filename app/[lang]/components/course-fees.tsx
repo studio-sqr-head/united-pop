@@ -13,7 +13,7 @@ export const CourseFees = ({
   const { tbody, thead } = feesTable ?? {}
   return (
     <div className="flex flex-col gap-8 overflow-x-auto">
-      <table className="w-full text-left table-auto overflow-x-scroll">
+      <table className="w-full text-left overflow-x-scroll md:table-auto">
         <thead className="text-secondary font-normal">
           <tr className="border-b border-gray-800">
             {thead?.map(({ value }, index) => (
@@ -25,21 +25,24 @@ export const CourseFees = ({
         </thead>
         <tbody>
           {tbody?.map((row, index) => (
-            <tr key={index} className="border-b border-gray-800 w-full">
+            <tr key={index} className="border-b border-gray-800">
               {row?.body.map(({ value }, index) => {
                 if (index === 0) {
                   return (
-                    <th
-                      scope="row"
-                      className="py-5 min-w-40 md:min-w-48"
-                      key={index}
-                    >
+                    <th scope="row" className="py-5 min-w-80" key={index}>
                       {value}
                     </th>
                   )
                 }
+                if (index === 3) {
+                  return (
+                    <td className="py-4 min-w-128" key={index}>
+                      {value}
+                    </td>
+                  )
+                }
                 return (
-                  <td className="py-4 min-w-40 md:min-w-48" key={index}>
+                  <td className="py-4 min-w-40" key={index}>
                     {value}
                   </td>
                 )

@@ -1,7 +1,7 @@
 "use client"
 
-import { useEffect, useLayoutEffect, useState } from "react"
-import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { useEffect, useState } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
 
 import { Container } from "@/app/components/structure"
 import { Tab, TabGroup, TabList, TabPanel } from "@/app/components/tabs"
@@ -53,20 +53,31 @@ export const CourseTabPanel = ({
   fulltimeDuration,
 }: CourseTabPanelProps) => {
   const router = useRouter()
-  const [activeTab, setActiveTab] = useState(0)
+  const searchParams = useSearchParams()
+  const tabParam = searchParams.get("tab") ?? tabs?.[0]?.toLowerCase()
+  const initialTabIndex =
+    tabs?.findIndex((tab) => tab.toLowerCase() === tabParam?.toLowerCase()) ?? 0
+  const [tabIndex, setTabIndex] = useState(initialTabIndex)
 
   const handleRouteChange = (tabIndex: number) => {
-    setActiveTab(tabIndex)
+    setTabIndex(tabIndex)
+    const tab = tabs?.[tabIndex].toLowerCase()
+    router.push(`?tab=${tab}`, { scroll: false })
   }
 
   useEffect(() => {
-    const tab = tabs?.[activeTab]?.toLowerCase()
-    router.push(`?tab=${tab}`, { scroll: false })
-  }, [activeTab, router, tabs])
+    if (tabParam !== tabs?.[tabIndex]?.toLowerCase()) {
+      setTabIndex(
+        tabs?.findIndex(
+          (tab) => tab.toLowerCase() === tabParam?.toLowerCase()
+        ) ?? 0
+      )
+    }
+  }, [tabParam, tabs, tabIndex])
 
   return (
-    <TabGroup onChange={handleRouteChange} selectedIndex={activeTab}>
-      <div className="full-w text-white pt-4 gradient bg-black">
+    <TabGroup onChange={handleRouteChange} selectedIndex={tabIndex}>
+      <div className="full-w text-white pt-4">
         <Container as="section" className="pt-8">
           <CourseHeader
             fulltime={fulltime}
@@ -90,7 +101,7 @@ export const CourseTabPanel = ({
                   .toLowerCase()
                   .split(" ")
                   .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                  .join("")}
+                  .join(" ")}
                 key={index}
               />
             ))}
