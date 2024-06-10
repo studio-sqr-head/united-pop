@@ -1,7 +1,6 @@
 import { Container, HeroSection } from "@/app/components/structure"
 import { H2, H4, Paragraph } from "@/app/components/typography"
 import { Accordion } from "@/app/components/accordion"
-import { FAQ_ITEMS } from "@/constants"
 
 import { getAbout } from "@/api/page"
 import { getAllFaqs } from "@/api/faq"

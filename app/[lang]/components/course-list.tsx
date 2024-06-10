@@ -6,7 +6,7 @@ import { useParams, useRouter } from "next/navigation"
 import { ISbStoryData } from "@storyblok/react"
 
 import { formatDate, getClosestFutureDateToToday } from "@/utils"
-import { Container, Divider } from "@/app/components/structure"
+import { Container } from "@/app/components/structure"
 import { H3, H5, H6, Paragraph, Subheading } from "@/app/components/typography"
 import { MetaDataChip } from "@/app/components/chip"
 import { Button } from "@/app/components/button"
