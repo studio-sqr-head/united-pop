@@ -3,10 +3,9 @@ import { BottomNavigation } from "@/app/components/bottom-navigation"
 import { BreadCrumbs } from "@/app/components/breadcrumbs"
 import { EnrollButtonMobile } from "@/app/[lang]/components/enroll-button"
 import { DownloadBrochureMobileButton } from "@/app/[lang]/components/download-brochure-button"
-import { CourseStoryblok } from "@/types"
 import { getCourseBySlug, getCourseFees } from "@/api/course"
 import { getAllFaqs } from "@/api/faq"
-import { CourseTabPanel } from "../../components/course-tab-panel"
+import { CourseTabPanel } from "@/app/[lang]/components/course-tab-panel"
 
 export default async function CoursePage({
   params,

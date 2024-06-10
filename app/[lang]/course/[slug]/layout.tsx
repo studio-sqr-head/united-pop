@@ -33,7 +33,7 @@ export async function generateMetadata({
     openGraph: {
       type: "website",
       locale: lang,
-      url: env.NEXT_PUBLIC_BASE_URL,
+      url: `${env.NEXT_PUBLIC_BASE_URL}/${lang}/course/${slug}`,
       title: "United Pop",
       description: "United Pop is an academy for music and media.",
       images: [
