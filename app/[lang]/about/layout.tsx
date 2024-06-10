@@ -1,4 +1,3 @@
-import { ReactNode } from "react"
 import { Metadata } from "next"
 
 import { getAbout } from "@/api/page"
@@ -43,4 +42,8 @@ export async function generateMetadata({
   }
 }
 
-export const AboutLayout = ({ children }: { children: ReactNode }) => children
+const Layout = ({ children }: { children: React.ReactNode }) => {
+  return <>{children}</>
+}
+
+export default Layout
