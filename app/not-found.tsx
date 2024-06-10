@@ -3,8 +3,8 @@ import { Button } from "@/app/components/button"
 import { Container } from "@/app/components/structure"
 import { getNotFound } from "@/api/page"
 
-export async function NotFound({ params }: { params: { lang: "en" | "nl" } }) {
-  const { notFoundPageContent } = await getNotFound({ lang: params.lang })
+export async function NotFound() {
+  const { notFoundPageContent } = await getNotFound({ lang: "en" })
   const { heading, subtitle, text, button } = notFoundPageContent.content
   return (
     <Container className="flex flex-col items-center justify-center h-screen gap-4">
