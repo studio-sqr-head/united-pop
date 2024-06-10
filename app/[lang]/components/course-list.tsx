@@ -33,7 +33,9 @@ const CourseListFilter = ({
               size="medium"
               active={activeCategory === category?.id}
             >
-              {category?.title}{" "}
+              <span className="text-ellipsis max-w-24 md:max-w-full w-full text-center overflow-hidden">
+                {category?.title}{" "}
+              </span>
               {category?.id === CategoryEnum.ALL ? (
                 <span className="ml-1">({courses?.length})</span>
               ) : (
@@ -68,7 +70,7 @@ const CourseListItem = ({
   const closestStartDate = getClosestFutureDateToToday(START_DATES)
   return (
     <div
-      className="flex w-full gap-4 h-full flex-col md:flex-row cursor-pointer hover:opacity-80"
+      className="flex w-full gap-4 h-full flex-col md:flex-row cursor-pointer hover:opacity-80 border border-gray-800 rounded p-4 md:p-8 "
       onClick={() => {
         handleCourseClick(slug)
       }}
@@ -135,7 +137,7 @@ const CourseListHeader = ({
     (c) => c.id === activeCategory
   )?.title
 
-  return <H5> {activeCategoryTitle ?? "All"} Courses </H5>
+  return <H5>{activeCategoryTitle ?? "All"} Courses</H5>
 }
 
 const CourseList = ({
@@ -164,25 +166,19 @@ const CourseList = ({
       <div className="flex flex-col gap-10 justify-center items-center h-full">
         <div className="flex gap-2 justify-between w-full">
           <CourseListHeader activeCategory={activeCategory} />
-          <Paragraph variant="secondary">
+          <Paragraph variant="secondary" className="whitespace-nowrap">
             {filteredCourses.length === 1
               ? `${filteredCourses.length} course`
               : `${filteredCourses.length} courses`}
           </Paragraph>
         </div>
         {filteredCourses?.map((course, index) => (
-          <span key={index} className="w-full h-full">
-            <CourseListItem
-              course={course}
-              handleCourseClick={handleCourseClick}
-              lang={lang}
-            />
-            {index < filteredCourses.length - 1 && (
-              <div className="w-full mt-8">
-                <Divider />
-              </div>
-            )}
-          </span>
+          <CourseListItem
+            key={index}
+            course={course}
+            handleCourseClick={handleCourseClick}
+            lang={lang}
+          />
         ))}
       </div>
     </div>
@@ -236,7 +232,7 @@ export const CourseSection = ({
   })
 
   return (
-    <div className="black" id="courses">
+    <div className="bg-gradient-to-b from-black to-slate">
       <Container as="section" className="py-8 md:py-16 min-h-300">
         <div className="flex flex-col gap-8">
           <CourseSectionHeader

@@ -46,13 +46,37 @@ export interface CourseStoryblok {
   downloadBrochureButtonText?: string
   downloadBrochureUrl?: string
   timetable?: RichtextStoryblok
-  fees: RichtextStoryblok
+  partimeDuration?: string
+  fulltimeDuration?: string
   component: "course"
   _uid: string
   [k: string]: any
 }
 
+export interface TableStoryblok {
+  thead: {
+    _uid: string
+    value?: string
+    component: number
+    [k: string]: any
+  }[]
+  tbody: {
+    _uid: string
+    body: {
+      _uid?: string
+      value?: string
+      component?: number
+      [k: string]: any
+    }[]
+    component: number
+    [k: string]: any
+  }[]
+  [k: string]: any
+}
+
 export interface CoursePageStoryblok {
+  courseFeesTable?: TableStoryblok
+  courseFeesNotes?: RichtextStoryblok
   tabs?: ("" | "OVERVIEW" | "TIMETABLE" | "FEES" | "FAQS" | "CONTACT")[]
   component: "course page"
   _uid: string
@@ -76,6 +100,27 @@ export interface FaqStoryblok {
   [k: string]: any
 }
 
+export interface GeneralStoryblok {
+  facebookUrl?: string
+  youtubeUrl?: string
+  linkedInUrl?: string
+  instagramUrl?: string
+  logo: AssetStoryblok
+  favicon16x16?: AssetStoryblok
+  favicon32x32?: AssetStoryblok
+  appleTouchIcon?: AssetStoryblok
+  androidChrome192x192?: AssetStoryblok
+  androidChrome512x512?: AssetStoryblok
+  hubspotFormId: string
+  metaDataName?: string
+  metaDataShortName?: string
+  metaDataDescription?: string
+  opengraphImage?: AssetStoryblok
+  component: "general"
+  _uid: string
+  [k: string]: any
+}
+
 export interface HomePageStoryblok {
   heroImage?: AssetStoryblok
   heroTitle?: string
@@ -89,13 +134,6 @@ export interface HomePageStoryblok {
   [k: string]: any
 }
 
-export interface NavbarStoryblok {
-  primaryButtonText?: string
-  component: "navbar"
-  _uid: string
-  [k: string]: any
-}
-
 export interface PageStoryblok {
   content?: (
     | AboutPageStoryblok
@@ -103,8 +141,8 @@ export interface PageStoryblok {
     | CoursePageStoryblok
     | DataProtectionGuidelinesStoryblok
     | FaqStoryblok
+    | GeneralStoryblok
     | HomePageStoryblok
-    | NavbarStoryblok
     | PageStoryblok
   )[]
   component: "page"

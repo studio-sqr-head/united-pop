@@ -2,9 +2,17 @@
 
 import { useEffect, useState } from "react"
 import { clsx } from "clsx"
-import { Navigation } from "@/app/components/navigation"
 
-export const Header = ({ lang }: { lang: "en" | "nl" }) => {
+import { Navigation } from "@/app/components/navigation"
+import { AssetStoryblok } from "@/types"
+
+export const Header = ({
+  lang,
+  logo,
+}: {
+  lang: "en" | "nl"
+  logo: AssetStoryblok
+}) => {
   const [scroll, setScroll] = useState(false)
 
   useEffect(() => {
@@ -35,7 +43,7 @@ export const Header = ({ lang }: { lang: "en" | "nl" }) => {
 
   return (
     <header className={headerClasses}>
-      <Navigation />
+      <Navigation logo={logo} />
     </header>
   )
 }

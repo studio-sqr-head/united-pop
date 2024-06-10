@@ -23,8 +23,11 @@ export default async function DataProtectionGuidelines({
 
       <div className="bg-slate">
         <Container className="py-16 max-w-3xl">
-          <H3>{title}</H3>
-          <RichText document={body} />
+          <H3 className="mb-6">{title}</H3>
+          <RichText
+            document={body}
+            classNameOverrides={{ p: "text-secondary" }}
+          />
         </Container>
       </div>
     </div>

@@ -35,7 +35,7 @@ export const RichText = ({
   classNameOverrides?: { [key in Elements]?: string }
 }) => {
   return (
-    <div>
+    <div className="space-y-4 overflow-hidden break-words">
       {render(document, {
         markResolvers: {
           [MARK_ANCHOR](children) {
@@ -91,23 +91,23 @@ export const RichText = ({
             const { level } = props
             if (level === 1)
               return (
-                <H1 className={`my-2 ${classNameOverrides?.h1}`}>{children}</H1>
+                <H1 className={`${classNameOverrides?.h1} my-2`}>{children}</H1>
               )
             if (level === 2)
               return (
-                <H2 className={`my-2 ${classNameOverrides?.h2}`}>{children}</H2>
+                <H2 className={`${classNameOverrides?.h2} my-2`}>{children}</H2>
               )
             if (level === 3)
               return (
-                <H3 className={`my-2 ${classNameOverrides?.h3}`}>{children}</H3>
+                <H3 className={`${classNameOverrides?.h3} my-2`}>{children}</H3>
               )
             if (level === 4)
               return (
-                <H4 className={`my-2 ${classNameOverrides?.h4}`}>{children}</H4>
+                <H4 className={`${classNameOverrides?.h4} my-2`}>{children}</H4>
               )
             if (level === 5)
               return (
-                <H5 className={`my-2 ${classNameOverrides?.h5}`}>{children}</H5>
+                <H5 className={`${classNameOverrides?.h5} my-2`}>{children}</H5>
               )
             if (level === 6)
               return (

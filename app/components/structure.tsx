@@ -11,7 +11,7 @@ export const Container = ({
   className?: string
   as?: "div" | "section" | "article" | "main" | "header" | "footer"
 }) => {
-  const base = "container mx-auto px-8"
+  const base = "container mx-auto px-4 md:px-8"
   const containerClassNames = clsx(base, className)
   return createElement(as, { className: containerClassNames }, children)
 }
@@ -42,7 +42,7 @@ export const HeroSection = ({
   const heightClass = {
     banner: "h-[300px] md:h-[500px]",
     largeBanner: "h-[400px] md:h-[600px]",
-    hero: "h-[500px] md:h-[100vh]",
+    hero: "h-[600px] md:h-[100vh]",
   }
 
   return (

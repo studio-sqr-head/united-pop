@@ -1,12 +1,55 @@
-import { RichText } from "@/app/components/rich-text"
 import { ISbRichtext } from "@storyblok/react"
 
-export const CourseFees = ({ courseFees }: { courseFees?: ISbRichtext }) => {
+import { TableStoryblok } from "@/types"
+import { RichText } from "@/app/components/rich-text"
+
+export const CourseFees = ({
+  feesTable,
+  feesNotes,
+}: {
+  feesNotes?: ISbRichtext
+  feesTable: TableStoryblok
+}) => {
+  const { tbody, thead } = feesTable ?? {}
   return (
-    <div className="flex flex-col gap-8">
-      <div className="flex flex-col gap-2">
-        <RichText document={courseFees} />
-      </div>
+    <div className="flex flex-col gap-8 overflow-x-auto">
+      <table className="w-full text-left table-auto overflow-x-scroll">
+        <thead className="text-secondary font-normal">
+          <tr className="border-b border-gray-800">
+            {thead?.map(({ value }, index) => (
+              <th scope="col" className="py-5 font-normal" key={index}>
+                {value}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {tbody?.map((row, index) => (
+            <tr key={index} className="border-b border-gray-800 w-full">
+              {row?.body.map(({ value }, index) => {
+                if (index === 0) {
+                  return (
+                    <th
+                      scope="row"
+                      className="py-5 min-w-40 md:min-w-48"
+                      key={index}
+                    >
+                      {value}
+                    </th>
+                  )
+                }
+                return (
+                  <td className="py-4 min-w-40 md:min-w-48" key={index}>
+                    {value}
+                  </td>
+                )
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <RichText document={feesNotes} />
     </div>
   )
 }

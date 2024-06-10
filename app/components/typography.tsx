@@ -35,7 +35,7 @@ const H2 = ({ children, variant = "primary", className }: TitleProps) => (
 )
 
 const H3 = ({ children, variant = "primary", className }: TitleProps) => (
-  <h3 className={`${fontSize.h3} ${fontColor[variant]} ${className}`}>
+  <h3 className={`${className} ${fontSize.h3} ${fontColor[variant]}`}>
     {children}
   </h3>
 )

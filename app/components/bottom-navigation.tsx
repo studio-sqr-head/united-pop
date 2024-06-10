@@ -26,9 +26,7 @@ export const BottomNavigation = ({
 }) => {
   return (
     <div className="md:hidden sticky bottom-0 left-0 z-45 w-full bg-black">
-      <div className="grid h-full grid-cols-2 w-full max-w-6xl mx-auto">
-        {children}
-      </div>
+      <div className="grid h-full grid-cols-2 w-full mx-auto">{children}</div>
     </div>
   )
 }

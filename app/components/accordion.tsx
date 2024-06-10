@@ -39,7 +39,12 @@ export const Accordion = ({
         </div>
       </DisclosureButton>
       <DisclosurePanel>
-        <RichText document={description} />
+        <RichText
+          document={description}
+          classNameOverrides={{
+            p: "text-secondary",
+          }}
+        />
       </DisclosurePanel>
     </Disclosure>
   )

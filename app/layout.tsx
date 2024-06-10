@@ -1,5 +1,5 @@
 import type { ReactNode } from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { DM_Sans } from "next/font/google"
 
 import "./globals.css"
@@ -7,57 +7,74 @@ import { env } from "@/env"
 import { Footer } from "@/app/components/footer"
 import { Header } from "@/app/components/header"
 import { Main } from "@/app/components/structure"
+import { getGeneralContent } from "@/api/general"
 
 const dmSans = DM_Sans({ subsets: ["latin"] })
+
+export const viewport: Viewport = {
+  themeColor: "#ff5e00",
+  colorScheme: "dark light",
+  initialScale: 1,
+  width: "device-width",
+  height: "device-height",
+  minimumScale: 1,
+  maximumScale: 1,
+  viewportFit: "cover",
+}
 
 export async function generateMetadata({
   params,
 }: {
   params: { lang: "en" | "nl" }
 }): Promise<Metadata> {
+  const { generalContent } = await getGeneralContent()
+  const { metaDataName, metaDataDescription, opengraphImage } =
+    generalContent.content
   const lang = params.lang
   return {
-    title: "United Pop",
-    description: "United Pop is an academy for music and media.",
+    title: metaDataName,
+    description: metaDataDescription,
     keywords: ["music", "media", "academy"],
     twitter: {
       images: [
         {
-          url: `${env.NEXT_PUBLIC_BASE_URL}/${lang}/og-image.jpg`,
+          url: opengraphImage?.filename ?? "/favicon.ico",
           width: 800,
           height: 600,
-          alt: "United Pop",
+          alt: metaDataName,
         },
       ],
-      title: "United Pop",
-      description: "United Pop is an academy for music and media.",
+      title: metaDataName,
+      description: metaDataDescription,
     },
     openGraph: {
       type: "website",
-
       locale: lang,
       url: env.NEXT_PUBLIC_BASE_URL,
-      title: "United Pop",
-      description: "United Pop is an academy for music and media.",
+      title: metaDataName,
+      description: metaDataDescription,
       images: [
         {
-          url: `${env.NEXT_PUBLIC_BASE_URL}/${lang}/og-image.jpg`,
+          url: opengraphImage?.filename ?? "/favicon.ico",
           width: 800,
           height: 600,
-          alt: "United Pop",
+          alt: `${metaDataName} - ${metaDataDescription}`,
         },
       ],
     },
   }
 }
 
-export default function RootLayout(
+export default async function RootLayout(
   props: Readonly<{
     children: React.ReactNode
     params: { lang: "en" | "nl" }
     contact: ReactNode
   }>
 ) {
+  const { generalContent } = await getGeneralContent()
+  const { facebookUrl, instagramUrl, linkedInUrl, youtubeUrl, logo } =
+    generalContent.content
   const { children, params } = props
 
   return (
@@ -66,9 +83,14 @@ export default function RootLayout(
       className={`${dmSans.className} bg-black text-primary`}
     >
       <body>
-        <Header lang={params.lang} />
+        <Header lang={params.lang} logo={logo} />
         <Main>{children}</Main>
-        <Footer />
+        <Footer
+          facebookUrl={facebookUrl}
+          instagramUrl={instagramUrl}
+          linkedInUrl={linkedInUrl}
+          youtubeUrl={youtubeUrl}
+        />
       </body>
     </html>
   )

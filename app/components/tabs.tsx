@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react"
-
 import clsx from "clsx"
+
 import {
   Tab as HeadlessUiTab,
   TabGroup as HeadlessUiTabGroup,
@@ -9,32 +9,15 @@ import {
   TabPanels as HeadlessUiTabPanels,
 } from "@headlessui/react"
 
-export const Tabs = ({
-  tabs,
+export const Tab = ({
+  name,
+  className,
 }: {
-  tabs: {
-    name: string
-    component: () => ReactNode
-  }[]
-}) => (
-  <TabGroup>
-    <TabList>
-      {tabs.map(({ name }) => (
-        <Tab key={name} name={name} />
-      ))}
-    </TabList>
-
-    <TabPanels>
-      {tabs.map(({ name, component }) => (
-        <TabPanel key={name}>{component()}</TabPanel>
-      ))}
-    </TabPanels>
-  </TabGroup>
-)
-
-export const Tab = ({ name }: { name: string }) => {
+  name: string
+  className?: string
+}) => {
   const baseClasses =
-    "px-3 py-2 font-semibold text-white cursor-pointer font-xl"
+    "px-3 py-2 font-semibold text-white cursor-pointer font-xl border-b-4 border-transparent transition-colors ease-in-out duration-200 hover:bg-gray-800"
   const selectedClasses =
     "data-[selected]:border-b-4 data-[selected]:border-primary"
   const hoverClasses = "data-[hover]:bg-gray-800"
@@ -50,7 +33,8 @@ export const Tab = ({ name }: { name: string }) => {
         selectedClasses,
         hoverClasses,
         selectedHoverClasses,
-        focusClasses
+        focusClasses,
+        className
       )}
     >
       {name}
@@ -58,13 +42,39 @@ export const Tab = ({ name }: { name: string }) => {
   )
 }
 
-export const TabGroup = ({ children }: { children: ReactNode }) => (
-  <HeadlessUiTabGroup>{children}</HeadlessUiTabGroup>
-)
-
-export const TabList = ({ children }: { children: ReactNode }) => {
+export const TabGroup = ({
+  children,
+  className,
+  onChange,
+  selectedIndex,
+}: {
+  children: ReactNode
+  className?: string
+  onChange?: (index: number) => void
+  selectedIndex?: number
+}) => {
   return (
-    <HeadlessUiTabList className="flex gap-4 overflow-x-auto no-scrollbar">
+    <HeadlessUiTabGroup
+      className={className}
+      onChange={onChange}
+      selectedIndex={selectedIndex}
+    >
+      {children}
+    </HeadlessUiTabGroup>
+  )
+}
+
+export const TabList = ({
+  children,
+  className,
+}: {
+  children: ReactNode
+  className?: string
+}) => {
+  return (
+    <HeadlessUiTabList
+      className={`flex gap-2 md:gap-4 overflow-x-auto no-scrollbar ${className}`}
+    >
       {children}
     </HeadlessUiTabList>
   )

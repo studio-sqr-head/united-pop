@@ -1,8 +1,39 @@
-import { ISbStory, ISbStories } from "@storyblok/react"
+import { ISbStory, ISbStories, ISbStoryData } from "@storyblok/react"
 
 import { env } from "@/env"
 import { STORYBLOK_BASE_URL } from "@/constants"
+import { CoursePageStoryblok } from "@/types"
 
+export const getCourseFees = async ({
+  lang,
+}: {
+  lang: "en" | "nl"
+}): Promise<{
+  courseFees: ISbStoryData<CoursePageStoryblok>
+}> => {
+  if (env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN === undefined) {
+    throw new Error("Storyblok preview token is not set")
+  }
+  const version = "published"
+  const token = env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN
+  const url = `${STORYBLOK_BASE_URL}/course?language=${lang}&version=${version}&token=${token}`
+
+  try {
+    const response = await fetch(url, { next: { revalidate: 10 } })
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch course fees")
+    }
+
+    const { story } = await response.json()
+
+    return {
+      courseFees: story,
+    }
+  } catch (error) {
+    throw new Error("Failed to fetch course fees")
+  }
+}
 export const getCourseBySlug = async ({
   slug,
   lang,

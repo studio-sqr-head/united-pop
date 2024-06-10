@@ -8,12 +8,14 @@ export const MetaDataChip = ({
   size = "medium",
   children,
   active = false,
+  className,
   onClick,
 }: {
   variant?: "primary" | "secondary" | "default" | "info" | "warning"
   size?: "small" | "medium" | "large"
   children: React.ReactNode
   active?: boolean
+  className?: string
   onClick?: () => void
 }) => {
   const baseClasses =
@@ -46,7 +48,7 @@ export const MetaDataChip = ({
     <Button
       as="button"
       onClick={onClick}
-      className={clsx(classes, buttonClasses)}
+      className={clsx(classes, buttonClasses, className)}
     >
       {children}
     </Button>

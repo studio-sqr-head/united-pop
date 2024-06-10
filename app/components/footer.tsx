@@ -12,12 +12,27 @@ const UnitedPopRightsReserved = () => {
   )
 }
 
-export const Footer = (): ReactElement => {
+export const Footer = ({
+  facebookUrl,
+  instagramUrl,
+  linkedInUrl,
+  youtubeUrl,
+}: {
+  facebookUrl?: string
+  instagramUrl?: string
+  linkedInUrl?: string
+  youtubeUrl?: string
+}): ReactElement => {
   return (
     <footer className="bg-black border-t-2 border-gray-800">
       <Container className="py-8">
         <div className="flex flex-col md:flex-row gap-8 justify-between items-center md:items-end">
-          <SocialMediaLinks />
+          <SocialMediaLinks
+            facebookUrl={facebookUrl}
+            instagramUrl={instagramUrl}
+            linkedInUrl={linkedInUrl}
+            youtubeUrl={youtubeUrl}
+          />
           <UnitedPopRightsReserved />
         </div>
       </Container>
