@@ -77,37 +77,35 @@ export const CourseTabPanel = ({
 
   return (
     <TabGroup onChange={handleRouteChange} selectedIndex={tabIndex}>
-      <div className="full-w text-white pt-4">
-        <Container as="section" className="pt-8">
-          <CourseHeader
-            fulltime={fulltime}
-            parttime={parttime}
-            type={type as TypeEnum}
-            params={params}
-            primaryButtonText={primaryButtonText}
-            downloadBrochureButtonText={downloadBrochureButtonText}
-          />
-          <div className="flex justify-between items-start gap-4 mb-12 md:flex-row flex-col">
-            <div className="flex flex-col gap-4">
-              <H2>{title}</H2>
-              <Paragraph variant="secondary">{description}</Paragraph>
-            </div>
+      <Container as="section" className="pt-4 md:pt-8">
+        <CourseHeader
+          fulltime={fulltime}
+          parttime={parttime}
+          type={type as TypeEnum}
+          params={params}
+          primaryButtonText={primaryButtonText}
+          downloadBrochureButtonText={downloadBrochureButtonText}
+        />
+        <div className="flex justify-between items-start gap-4 mb-8 md:flex-row flex-col">
+          <div className="flex flex-col gap-4">
+            <H2>{title}</H2>
+            <Paragraph variant="secondary">{description}</Paragraph>
           </div>
+        </div>
 
-          <TabList>
-            {tabs?.map((name, index) => (
-              <Tab
-                name={name
-                  .toLowerCase()
-                  .split(" ")
-                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                  .join(" ")}
-                key={index}
-              />
-            ))}
-          </TabList>
-        </Container>
-      </div>
+        <TabList>
+          {tabs?.map((name, index) => (
+            <Tab
+              name={name
+                .toLowerCase()
+                .split(" ")
+                .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(" ")}
+              key={index}
+            />
+          ))}
+        </TabList>
+      </Container>
 
       <div className="bg-slate text-white full-w">
         <Container as="section" className="md:py-12 py-8 min-h-96">

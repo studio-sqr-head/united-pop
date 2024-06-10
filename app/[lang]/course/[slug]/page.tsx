@@ -49,26 +49,24 @@ export default async function CoursePage({
         </Container>
       </div>
 
-      <div className="bg-gradient-to-b from-black to-slate">
-        <CourseTabPanel
-          tabs={tabs}
-          allFaqs={allFaqs}
-          description={description}
-          downloadBrochureButtonText={downloadBrochureButtonText}
-          feesNotes={courseFeesNotes}
-          feesTable={courseFeesTable}
-          fulltime={fulltime}
-          overview={overview}
-          params={params}
-          parttime={parttime}
-          primaryButtonText={primaryButtonText}
-          timetable={timetable}
-          title={title}
-          type={type}
-          fulltimeDuration={fulltimeDuration}
-          parttimeDuration={partimeDuration}
-        />
-      </div>
+      <CourseTabPanel
+        tabs={tabs}
+        allFaqs={allFaqs}
+        description={description}
+        downloadBrochureButtonText={downloadBrochureButtonText}
+        feesNotes={courseFeesNotes}
+        feesTable={courseFeesTable}
+        fulltime={fulltime}
+        overview={overview}
+        params={params}
+        parttime={parttime}
+        primaryButtonText={primaryButtonText}
+        timetable={timetable}
+        title={title}
+        type={type}
+        fulltimeDuration={fulltimeDuration}
+        parttimeDuration={partimeDuration}
+      />
 
       <BottomNavigation>
         <DownloadBrochureMobileButton

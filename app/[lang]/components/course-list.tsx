@@ -70,7 +70,7 @@ const CourseListItem = ({
   const closestStartDate = getClosestFutureDateToToday(START_DATES)
   return (
     <div
-      className="flex w-full gap-4 h-full flex-col md:flex-row cursor-pointer hover:opacity-80 md:border md:border-gray-800 rounded md:p-8"
+      className="flex w-full gap-4 h-full flex-col md:flex-row cursor-pointer hover:opacity-80"
       onClick={() => {
         handleCourseClick(slug)
       }}
@@ -103,6 +103,7 @@ const CourseListItem = ({
             <Paragraph variant="secondary">Next Course Starts:</Paragraph>
 
             <CourseStartDateChip
+              size="small"
               date={formatDate({ date: closestStartDate, lang: "en" })}
             />
           </div>
@@ -163,7 +164,7 @@ const CourseList = ({
   }
   return (
     <div className="flex flex-col">
-      <div className="flex flex-col gap-10 justify-center items-center h-full">
+      <div className="flex flex-col gap-12 justify-center items-center h-full">
         <div className="flex gap-2 justify-between w-full">
           <CourseListHeader activeCategory={activeCategory} />
           <Paragraph variant="secondary" className="whitespace-nowrap">
