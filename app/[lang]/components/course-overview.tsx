@@ -65,7 +65,7 @@ const CourseMetaData = ({
           <AddressDetails />
         </div>
 
-        {parttime && (
+        {parttime && parttimeDuration != null && (
           <div className="flex flex-col gap-2">
             <Paragraph variant="secondary" className="text-sm">
               Part-time Duration
@@ -74,7 +74,7 @@ const CourseMetaData = ({
           </div>
         )}
 
-        {fulltime && (
+        {fulltime && fulltimeDuration != null && (
           <div className="flex flex-col gap-2">
             <Paragraph variant="secondary" className="text-sm">
               Full-time Duration
