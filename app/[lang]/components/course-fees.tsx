@@ -2,6 +2,8 @@ import { ISbRichtext } from "@storyblok/react"
 
 import { TableStoryblok } from "@/types"
 import { RichText } from "@/app/components/rich-text"
+import { H5, Paragraph } from "@/app/components/typography"
+import { Divider } from "@/app/components/structure"
 
 export const CourseFees = ({
   feesTable,
@@ -13,7 +15,7 @@ export const CourseFees = ({
   const { tbody, thead } = feesTable ?? {}
   return (
     <div className="flex flex-col gap-8 overflow-x-auto">
-      <table className="w-full text-left overflow-x-scroll md:table-auto">
+      <table className="hidden md:block w-full text-left overflow-x-scroll md:table-auto">
         <thead className="text-secondary font-normal">
           <tr className="border-b border-gray-800">
             {thead?.map(({ value }, index) => (
@@ -34,13 +36,6 @@ export const CourseFees = ({
                     </th>
                   )
                 }
-                if (index === 3) {
-                  return (
-                    <td className="py-4 min-w-128" key={index}>
-                      {value}
-                    </td>
-                  )
-                }
                 return (
                   <td className="py-4 min-w-40" key={index}>
                     {value}
@@ -51,6 +46,33 @@ export const CourseFees = ({
           ))}
         </tbody>
       </table>
+
+      <div className="md:hidden flex flex-col gap-8">
+        {tbody?.map((row, index) => (
+          <div key={index} className="flex flex-col gap-4">
+            {row?.body.map(({ value }, index) => {
+              return (
+                <div key={index}>
+                  {index === 0 ? (
+                    <H5 className="font-semibold">{value}</H5>
+                  ) : (
+                    <>
+                      <Paragraph className="font-semibold">
+                        {thead?.[index]?.value}
+                      </Paragraph>
+                      <Paragraph variant="secondary">{value}</Paragraph>
+                    </>
+                  )}
+                </div>
+              )
+            })}
+
+            <div className="mt-4">
+              <Divider />
+            </div>
+          </div>
+        ))}
+      </div>
 
       <RichText document={feesNotes} />
     </div>

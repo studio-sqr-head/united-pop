@@ -77,7 +77,7 @@ export const Navigation = ({ logo }: { logo: AssetStoryblok }) => {
         </div>
 
         <ul
-          className={`absolute top-0 top-0 left-0 right-0 bg-black flex flex-col gap-8 py-4 px-8 gap-4 ${
+          className={`absolute top-0 top-0 left-0 right-0 bg-black flex flex-col gap-8 py-4 px-4 gap-4 ${
             showMenu
               ? "opacity-100 w-full h-screen z-50`"
               : "opacity-0 pointer-events-none"
