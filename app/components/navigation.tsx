@@ -25,6 +25,7 @@ const NavItems = ({ items }: { items: typeof NAV_ITEMS }) => {
         return (
           <li key={id}>
             <Link
+              className="font-bold text-white text-xl"
               active={isActive}
               href={{
                 pathname: path,
@@ -82,13 +83,13 @@ export const Navigation = ({ logo }: { logo: AssetStoryblok }) => {
               : "opacity-0 pointer-events-none"
           } transition-all duration-300 ease-in-out`}
         >
-          <li className="flex gap-8 align-center md:hidden justify-between w-full mb-4">
+          <li className="flex gap-8 justify-between items-center">
             <Logo logo={logo} />
             <IconButton
               variant="secondary"
               onClick={() => setShowMenu(false)}
               icon={<XMarkIcon className="h-8 w-8 text-white" />}
-              size="small"
+              size="medium"
               iconDescription="Close Menu"
             />
           </li>
@@ -99,7 +100,7 @@ export const Navigation = ({ logo }: { logo: AssetStoryblok }) => {
             <Button
               scroll={false}
               variant="secondary"
-              size="small"
+              size="medium"
               as="a"
               href={{
                 pathname: "/contact",

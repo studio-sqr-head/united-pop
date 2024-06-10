@@ -70,7 +70,7 @@ const CourseListItem = ({
   const closestStartDate = getClosestFutureDateToToday(START_DATES)
   return (
     <div
-      className="flex w-full gap-4 h-full flex-col md:flex-row cursor-pointer hover:opacity-80 border border-gray-800 rounded p-4 md:p-8 "
+      className="flex w-full gap-4 h-full flex-col md:flex-row cursor-pointer hover:opacity-80 md:border md:border-gray-800 rounded md:p-8"
       onClick={() => {
         handleCourseClick(slug)
       }}

@@ -10,9 +10,8 @@ export async function generateMetadata({
   params: { lang: "en" | "nl"; slug: string }
 }): Promise<Metadata> {
   const { lang, slug } = params
-  const { story: course } = await getCourseBySlug({ lang, slug })
-  const { content } = course
-  const { title, description, image } = content
+  const { course } = await getCourseBySlug({ lang, slug })
+  const { title, description, image } = course?.content
 
   return {
     title: `${title} | United Pop`,
@@ -34,8 +33,8 @@ export async function generateMetadata({
       type: "website",
       locale: lang,
       url: `${env.NEXT_PUBLIC_BASE_URL}/${lang}/course/${slug}`,
-      title: "United Pop",
-      description: "United Pop is an academy for music and media.",
+      title: `${title} | United Pop`,
+      description: description,
       images: [
         {
           url: image?.filename,

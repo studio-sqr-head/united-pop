@@ -1,26 +1,23 @@
 import { HubSpotForm } from "@/app/components/hubspot-form"
 import { Container, HeroSection } from "@/app/components/structure"
 import { H3, Paragraph } from "@/app/components/typography"
+import { getContact } from "@/api/page"
 
-const data = {
-  hero: {
-    alt: "Hero Image",
-    src: "/hero.jpeg",
-  },
-
-  header: "Get in touch",
-  paragraph: "Fill out the form below to get in touch with us.",
-}
-export default function Contact() {
-  const { hero, header, paragraph } = data
+export default async function Contact() {
+  const { contactPageContent } = await getContact({ lang: "en" })
+  const { hero, heading, subheading } = contactPageContent.content
   return (
     <div>
-      <HeroSection height={"banner"} src={hero.src} alt={hero.alt} />
+      <HeroSection
+        height={"banner"}
+        src={hero?.filename}
+        alt={hero?.alt ?? "Contact image"}
+      />
 
       <div className="bg-slate">
         <Container className="py-16 max-w-3xl">
-          <H3>{header}</H3>
-          <Paragraph variant="secondary">{paragraph}</Paragraph>
+          <H3>{heading}</H3>
+          <Paragraph variant="secondary">{subheading}</Paragraph>
 
           <div className="mt-8">
             <HubSpotForm lang="en" />

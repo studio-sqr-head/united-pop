@@ -14,7 +14,7 @@ export default async function CoursePage({
 }) {
   const { courseFees } = await getCourseFees({ lang: params.lang })
   const { allFaqs } = await getAllFaqs({ lang: params.lang })
-  const { story: course } = await getCourseBySlug({
+  const { course } = await getCourseBySlug({
     slug: params?.slug,
     lang: params.lang,
   })

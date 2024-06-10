@@ -2,7 +2,7 @@ import { ISbStory, ISbStories, ISbStoryData } from "@storyblok/react"
 
 import { env } from "@/env"
 import { STORYBLOK_BASE_URL } from "@/constants"
-import { CoursePageStoryblok } from "@/types"
+import { CoursePageStoryblok, CourseStoryblok } from "@/types"
 
 export const getCourseFees = async ({
   lang,
@@ -40,7 +40,9 @@ export const getCourseBySlug = async ({
 }: {
   slug: string
   lang: "en" | "nl"
-}): Promise<ISbStory["data"]> => {
+}): Promise<{
+  course: ISbStoryData<CourseStoryblok>
+}> => {
   const version = "published"
   const token = env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN
   const url = `${STORYBLOK_BASE_URL}/courses/${slug}?&version=${version}&token=${token}`
@@ -52,9 +54,13 @@ export const getCourseBySlug = async ({
       throw new Error("Failed to fetch course")
     }
 
-    const data: ISbStory["data"] = await response.json()
+    const { story } = await response.json()
 
-    return data
+    console.log(story)
+
+    return {
+      course: story,
+    }
   } catch (error) {
     throw new Error("Failed to fetch course")
   }
