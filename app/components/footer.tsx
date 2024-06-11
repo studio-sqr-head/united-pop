@@ -18,18 +18,29 @@ export const Footer = ({
   instagramUrl,
   linkedInUrl,
   youtubeUrl,
+  address,
 }: {
   facebookUrl?: string
   instagramUrl?: string
   linkedInUrl?: string
   youtubeUrl?: string
+  address: {
+    name?: string
+    street?: string
+    postalCode?: string
+    city?: string
+  }
 }): ReactElement => {
   return (
     <footer className="bg-black">
-      <Container className="py-8">
-        <div className="flex flex-col md:flex-row gap-8 justify-between md:items-center">
-          <AddressDetails variant="secondary" />
-          <div className="flex justify-center md:justify-end flex-col gap-4">
+      <Container className="md:py-8 py-12">
+        <div className="flex flex-col md:flex-row gap-8 justify-between items-center">
+          <AddressDetails
+            variant="secondary"
+            address={address}
+            className={"text-center md:text-start"}
+          />
+          <div className="flex justify-center md:justify-end flex-col gap-4 order-first md:order-none">
             <SocialMediaLinks
               facebookUrl={facebookUrl}
               instagramUrl={instagramUrl}

@@ -5,6 +5,7 @@ import { EnrollButtonMobile } from "@/app/[lang]/components/enroll-button"
 import { DownloadBrochureMobileButton } from "@/app/[lang]/components/download-brochure-button"
 import { getCourseBySlug, getCourseFees } from "@/api/course"
 import { getAllFaqs } from "@/api/faq"
+import { getGeneralContent } from "@/api/general"
 import { CourseTabPanel } from "@/app/[lang]/components/course-tab-panel"
 
 export default async function CoursePage({
@@ -12,6 +13,7 @@ export default async function CoursePage({
 }: {
   params: { lang: "en" | "nl"; slug: string }
 }) {
+  const { generalContent } = await getGeneralContent()
   const { courseFees } = await getCourseFees({ lang: params.lang })
   const { allFaqs } = await getAllFaqs({ lang: params.lang })
   const { course } = await getCourseBySlug({
@@ -33,7 +35,18 @@ export default async function CoursePage({
     downloadBrochureButtonText,
     primaryButtonText,
   } = course?.content
-  const { courseFeesNotes, courseFeesTable, tabs } = courseFees?.content
+  const {
+    courseFeesNotes,
+    courseFeesTable,
+    tabs,
+    headerStartDates,
+    collaborationText,
+    headerCollaboration,
+    headerFullTimeDuration,
+    headerLocation,
+    headerPartTimeDuration,
+  } = courseFees?.content
+  const { name, street, postalCode, city } = generalContent?.content
   return (
     <div>
       {image != null && (
@@ -66,6 +79,18 @@ export default async function CoursePage({
         type={type}
         fulltimeDuration={fulltimeDuration}
         parttimeDuration={partimeDuration}
+        address={{
+          name,
+          street,
+          postalCode,
+          city,
+        }}
+        headerLocation={headerLocation}
+        headerPartTimeDuration={headerPartTimeDuration}
+        headerFullTimeDuration={headerFullTimeDuration}
+        headerStartDates={headerStartDates}
+        headerCollaboration={headerCollaboration}
+        collaborationText={collaborationText}
       />
 
       <BottomNavigation>

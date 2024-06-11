@@ -1,12 +1,11 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useRouter, useSearchParams } from "next/navigation"
+import { useSearchParams } from "next/navigation"
 
 import { Container } from "@/app/components/structure"
 import { Tab, TabGroup, TabList, TabPanel } from "@/app/components/tabs"
 import { H2, Paragraph } from "@/app/components/typography"
-import { ContactDetails } from "@/app/[lang]/components/course-contact-details"
 import { CourseFaq } from "@/app/[lang]/components/course-faq"
 import { CourseFees } from "@/app/[lang]/components/course-fees"
 import { CourseOverview } from "@/app/[lang]/components/course-overview"
@@ -14,6 +13,7 @@ import { CourseTimetable } from "@/app/[lang]/components/course-timetable"
 import { CourseHeader } from "@/app/[lang]/components/course-header"
 import { TypeEnum } from "@/constants"
 import { RichtextStoryblok, CoursePageStoryblok } from "@/types"
+import { CourseMetaData } from "@/app/[lang]/components/course-meta-data"
 
 interface CourseTabPanelProps {
   title: string
@@ -32,6 +32,18 @@ interface CourseTabPanelProps {
   tabs: CoursePageStoryblok["tabs"]
   parttimeDuration?: string
   fulltimeDuration?: string
+  address: {
+    name?: string
+    street?: string
+    postalCode?: string
+    city?: string
+  }
+  headerLocation?: string
+  headerPartTimeDuration?: string
+  headerFullTimeDuration?: string
+  headerStartDates?: string
+  headerCollaboration?: string
+  collaborationText?: RichtextStoryblok
 }
 
 export const CourseTabPanel = ({
@@ -51,8 +63,14 @@ export const CourseTabPanel = ({
   tabs,
   parttimeDuration,
   fulltimeDuration,
+  address,
+  headerLocation,
+  headerPartTimeDuration,
+  headerFullTimeDuration,
+  headerStartDates,
+  headerCollaboration,
+  collaborationText,
 }: CourseTabPanelProps) => {
-  const router = useRouter()
   const searchParams = useSearchParams()
   const tabParam = searchParams.get("tab") ?? tabs?.[0]?.toLowerCase()
   const initialTabIndex =
@@ -121,18 +139,27 @@ export const CourseTabPanel = ({
           {tabs?.map((tab, index) => (
             <TabPanel key={index}>
               {tab === "OVERVIEW" && (
-                <CourseOverview
-                  courseOverview={overview}
-                  type={type as TypeEnum}
-                  fulltimeDuration={fulltimeDuration}
-                  parttimeDuration={parttimeDuration}
-                  fulltime={fulltime}
-                  parttime={parttime}
-                />
+                <div className="grid md:grid-cols-2 gap-8 grid-cols-1">
+                  <CourseOverview courseOverview={overview} />
+
+                  <CourseMetaData
+                    fulltime={fulltime}
+                    parttime={parttime}
+                    type={type}
+                    fulltimeDuration={fulltimeDuration}
+                    parttimeDuration={parttimeDuration}
+                    address={address}
+                    headerLocation={headerLocation}
+                    headerPartTimeDuration={headerPartTimeDuration}
+                    headerFullTimeDuration={headerFullTimeDuration}
+                    headerStartDates={headerStartDates}
+                    headerCollaboration={headerCollaboration}
+                    collaborationText={collaborationText}
+                  />
+                </div>
               )}
               {tab === "TIMETABLE" && <CourseTimetable timetable={timetable} />}
               {tab === "FAQS" && <CourseFaq faqs={allFaqs} />}
-              {tab === "CONTACT" && <ContactDetails courseName={title} />}
               {tab === "FEES" && (
                 <CourseFees feesTable={feesTable} feesNotes={feesNotes} />
               )}

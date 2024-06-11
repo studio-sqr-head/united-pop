@@ -69,8 +69,17 @@ export default async function RootLayout(
   }>
 ) {
   const { generalContent } = await getGeneralContent()
-  const { facebookUrl, instagramUrl, linkedInUrl, youtubeUrl, logo } =
-    generalContent.content
+  const {
+    facebookUrl,
+    instagramUrl,
+    linkedInUrl,
+    youtubeUrl,
+    logo,
+    name,
+    street,
+    postalCode,
+    city,
+  } = generalContent.content
   const { children, params } = props
 
   return (
@@ -82,6 +91,12 @@ export default async function RootLayout(
         <Header lang={params.lang} logo={logo} />
         <Main>{children}</Main>
         <Footer
+          address={{
+            name,
+            street,
+            postalCode,
+            city,
+          }}
           facebookUrl={facebookUrl}
           instagramUrl={instagramUrl}
           linkedInUrl={linkedInUrl}
