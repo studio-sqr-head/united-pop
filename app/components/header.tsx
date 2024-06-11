@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useState } from "react"
 import { clsx } from "clsx"
 
 import { Navigation } from "@/app/components/navigation"
@@ -18,14 +18,19 @@ export const Header = ({
   useEffect(() => {
     if (typeof window === "undefined") return
     let prevScrollPos = window.scrollY
+    window.onscroll = () => {
+      const currentScrollPos = window.scrollY
+      setScroll(currentScrollPos > 80)
+      prevScrollPos = currentScrollPos
+    }
+  }, [])
+
+  useLayoutEffect(() => {
+    if (typeof window === "undefined") return
     const currentScrollPos = window.scrollY
 
     if (currentScrollPos > 80) {
       setScroll(true)
-    }
-    window.onscroll = () => {
-      setScroll(currentScrollPos > 80)
-      prevScrollPos = currentScrollPos
     }
   }, [])
 

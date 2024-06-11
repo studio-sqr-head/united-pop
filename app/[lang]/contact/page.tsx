@@ -20,7 +20,7 @@ export default async function Contact() {
           <Paragraph variant="secondary">{subheading}</Paragraph>
 
           <div className="mt-8">
-            <HubSpotForm lang="en" />
+            <HubSpotForm lang="en" target="hubspotFormPage" />
           </div>
         </Container>
       </div>

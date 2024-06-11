@@ -5,7 +5,13 @@ import { useGenerateButtonClasses } from "@/app/components/button"
 import { HUBSPOT_REGION, HUBSPOT_SRC, formToLang } from "@/constants"
 import { env } from "@/env"
 
-export function HubSpotForm({ lang = "en" }: { lang: "en" | "nl" }) {
+export function HubSpotForm({
+  lang = "en",
+  target = "hubspotFormModal",
+}: {
+  lang: "en" | "nl"
+  target?: "hubspotFormModal" | "hubspotFormPage"
+}) {
   const [loading, setLoading] = useState(true)
 
   const buttonClasses = useGenerateButtonClasses({
@@ -21,7 +27,7 @@ export function HubSpotForm({ lang = "en" }: { lang: "en" | "nl" }) {
     document.body.appendChild(script)
 
     const cleanupForm = () => {
-      const formContainer = document.getElementById("hubspotForm")
+      const formContainer = document.getElementById(target)
       if (formContainer) {
         formContainer.innerHTML = ""
       }
@@ -34,14 +40,18 @@ export function HubSpotForm({ lang = "en" }: { lang: "en" | "nl" }) {
           region: HUBSPOT_REGION,
           portalId: env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID,
           formId: formToLang[lang],
-          target: "#hubspotForm",
+          target: `#${target}`,
           onFormReady: () => {
             setLoading(false)
-            const formContainer = document.getElementById("hubspotForm")
+            const formContainer = document.getElementById(target)
             if (formContainer) {
               setLoading(false)
               applyTailwindClasses(formContainer, buttonClasses)
-              const observer = observeMutations(formContainer, buttonClasses)
+              const observer = observeMutations(
+                formContainer,
+                buttonClasses,
+                target
+              )
               return () => {
                 observer.disconnect()
                 cleanupForm()
@@ -64,10 +74,7 @@ export function HubSpotForm({ lang = "en" }: { lang: "en" | "nl" }) {
   return (
     <>
       {loading && <FormLoading />}
-      <div
-        id="hubspotForm"
-        style={{ display: loading ? "none" : "block" }}
-      ></div>
+      <div id={target} style={{ display: loading ? "none" : "block" }}></div>
     </>
   )
 }
@@ -175,10 +182,14 @@ const applyTailwindClasses = (
 }
 
 // Observe mutations on the form container to apply Tailwind classes (otherwise they get removed)
-const observeMutations = (container: HTMLElement, buttonClasses: string) => {
+const observeMutations = (
+  container: HTMLElement,
+  buttonClasses: string,
+  target: string
+) => {
   const observer = new MutationObserver((mutations) => {
     if (mutations.length > 0) {
-      const formContainer = document.getElementById("hubspotForm")
+      const formContainer = document.getElementById(target)
       if (formContainer) {
         applyTailwindClasses(formContainer, buttonClasses)
       }

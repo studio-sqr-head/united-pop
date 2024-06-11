@@ -32,7 +32,7 @@ export const ContactModal = ({
   return (
     <Dialog open onClose={onDismiss} className="relative z-50">
       <div className="fixed inset-0 flex w-screen items-center justify-center md:p-4 filter backdrop-blur-lg">
-        <DialogPanel className="overflow-y-scroll relative h-full max-h-[90vh] md:h-auto md:max-w-xl w-full bg-slate md:rounded-lg border border-gray-800 border-opacity-50">
+        <DialogPanel className="overflow-y-scroll relative h-full md:max-h-[90vh] md:h-auto md:max-w-xl w-full bg-slate md:rounded-lg border border-gray-800 border-opacity-50">
           <div className="flex justify-between items-center p-6 md:px-12 md:py-6 border-b border-gray-800 border-opacity-50">
             <DialogTitle as="div">
               <H3>{heading}</H3>
@@ -49,7 +49,7 @@ export const ContactModal = ({
               <Paragraph variant="secondary">{subheading}</Paragraph>
             </Description>
             <div className="mt-4">
-              <HubSpotForm lang={lang ?? "en"} />
+              <HubSpotForm lang={lang ?? "en"} target="hubspotFormModal" />
             </div>
           </div>
         </DialogPanel>
