@@ -4,7 +4,7 @@ import { getContact } from "@/api/page"
 export async function generateMetadata({
   params,
 }: {
-  params: { lang: "en" | "nl"; slug: string }
+  params: { lang: "en" | "nl" }
 }): Promise<Metadata> {
   const { lang } = params
   const { contactPageContent } = await getContact({ lang })

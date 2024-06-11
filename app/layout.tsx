@@ -1,4 +1,3 @@
-import type { ReactNode } from "react"
 import type { Metadata, Viewport } from "next"
 import { DM_Sans } from "next/font/google"
 
@@ -65,7 +64,6 @@ export default async function RootLayout(
   props: Readonly<{
     children: React.ReactNode
     params: { lang: "en" | "nl" }
-    contact: ReactNode
   }>
 ) {
   const { generalContent } = await getGeneralContent()

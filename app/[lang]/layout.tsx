@@ -6,7 +6,9 @@ import { getHome } from "@/api/page"
 
 export async function generateMetadata({
   params,
+  contact, // something weird with the types here but need to keep it for now
 }: {
+  contact: ReactNode
   params: { lang: "en" | "nl" }
 }): Promise<Metadata> {
   const lang = params.lang
