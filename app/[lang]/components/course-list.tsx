@@ -30,11 +30,11 @@ const CourseListFilter = ({
           <div key={category.id}>
             <MetaDataChip
               onClick={() => handleCategoryChange(category.id)}
-              size="medium"
+              size="large"
               active={activeCategory === category?.id}
             >
               <span className="text-ellipsis max-w-24 md:max-w-full w-full text-center overflow-hidden">
-                {category?.title}{" "}
+                {category?.title}
               </span>
             </MetaDataChip>
           </div>
@@ -221,7 +221,7 @@ export const CourseSection = ({
   })
 
   return (
-    <div className="bg-gradient-to-b from-slate to-black" id="courses">
+    <div className="bg-black" id="courses">
       <Container as="section" className="py-8 md:py-16 min-h-300">
         <div className="flex flex-col gap-8">
           <CourseSectionHeader
