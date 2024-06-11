@@ -60,14 +60,15 @@ export const CourseTabPanel = ({
   const [tabIndex, setTabIndex] = useState(initialTabIndex)
 
   const handleRouteChange = (tabIndex: number) => {
-    if (!tabs) return
-    if (tabIndex < 0 || tabIndex >= tabs?.length) return
+    if (!tabs || !window || tabIndex < 0 || tabIndex >= tabs?.length) return
 
     setTabIndex(tabIndex)
-    // ensure tab is scrolled into view
-
     const tab = tabs?.[tabIndex].toLowerCase()
-    router.push(`?tab=${tab}`, { scroll: false })
+    window.history.replaceState(
+      null,
+      "",
+      `${window.location.pathname}?tab=${tab}`
+    )
   }
 
   useEffect(() => {

@@ -31,7 +31,7 @@ export const languages: LanguageItem<Language>[] = [
 
 const i18n = {
   languages,
-  base: languages.find((item) => item.isDefault)?.id,
+  base: languages.find((item) => item.isDefault)?.id ?? Language.en,
 }
 
 export { i18n }

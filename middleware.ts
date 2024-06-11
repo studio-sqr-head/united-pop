@@ -12,7 +12,7 @@ function getLocale(request: NextRequest): string | undefined {
   const locales: string[] = i18n.languages.map((lang) => lang.id)
   const languages = new Negotiator({ headers: negotiatorHeaders }).languages()
 
-  const locale = matchLocale(languages, locales, i18n.base || "id")
+  const locale = matchLocale(languages, locales, i18n.base)
   return locale
 }
 

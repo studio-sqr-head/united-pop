@@ -42,6 +42,7 @@ export const CourseOverview = ({
   )
 }
 
+// TODO: add to storyblok
 const CourseMetaData = ({
   type,
   fulltime,
