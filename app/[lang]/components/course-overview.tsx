@@ -63,7 +63,7 @@ const CourseMetaData = ({
           <Paragraph variant="secondary" className="text-sm">
             Location
           </Paragraph>
-          <AddressDetails />
+          <AddressDetails variant="primary" />
         </div>
 
         {parttime && parttimeDuration != null && (

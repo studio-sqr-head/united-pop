@@ -36,18 +36,6 @@ const CourseListFilter = ({
               <span className="text-ellipsis max-w-24 md:max-w-full w-full text-center overflow-hidden">
                 {category?.title}{" "}
               </span>
-              {category?.id === CategoryEnum.ALL ? (
-                <span className="ml-1">({courses?.length})</span>
-              ) : (
-                <span className="ml-1">
-                  (
-                  {
-                    courses?.filter((c) => c.content.category === category.id)
-                      .length
-                  }
-                  )
-                </span>
-              )}
             </MetaDataChip>
           </div>
         ))}
@@ -233,7 +221,7 @@ export const CourseSection = ({
   })
 
   return (
-    <div className="bg-gradient-to-b from-black to-slate" id="courses">
+    <div className="bg-gradient-to-b from-slate to-black" id="courses">
       <Container as="section" className="py-8 md:py-16 min-h-300">
         <div className="flex flex-col gap-8">
           <CourseSectionHeader

@@ -38,17 +38,23 @@ export const ContactDetails = ({ courseName }: { courseName?: string }) => {
   )
 }
 
-export const AddressDetails = () => {
+export const AddressDetails = ({
+  variant,
+}: {
+  variant?: "primary" | "secondary"
+}) => {
   return (
-    <address className="flex gap-2 flex-col font-normal hover:underline">
+    <address className="flex gap-2 flex-col font-normal hover:underline not-italic">
       <a
         href="https://www.google.com/maps/place/Q-Factory,+Atlantisplein+1,+Amsterdam"
         target="_blank"
         rel="noreferrer"
       >
-        <Paragraph>United POP B.V.</Paragraph>
-        <Paragraph>Q-Factory, Atlantisplein 1</Paragraph>
-        <Paragraph>1093 NE Amsterdam</Paragraph>
+        <Paragraph variant={variant} className="font-semibold">
+          United POP B.V.
+        </Paragraph>
+        <Paragraph variant={variant}>Q-Factory, Atlantisplein 1</Paragraph>
+        <Paragraph variant={variant}>1093 NE Amsterdam</Paragraph>
       </a>
     </address>
   )

@@ -49,8 +49,6 @@ export default async function Home({
         </Container>
       </HeroSection>
 
-      <Divider />
-
       {allCourses != null && (
         <CourseSection
           courses={allCourses}
