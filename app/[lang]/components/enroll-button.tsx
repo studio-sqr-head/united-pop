@@ -19,6 +19,7 @@ export const EnrollButton = ({
     <Button
       variant="primary"
       size="medium"
+      scroll={false}
       as="a"
       href={{
         pathname: "/contact",
