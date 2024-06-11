@@ -92,7 +92,7 @@ const CourseListItem = ({
           <div className="flex flex-col-reverse lg:flex-row justify-between w-full lg:items-center mb-1 md:gap-0 gap-4">
             <H3>{title}</H3>
             <div className="flex gap-2 flex mb-3 lg:mb-0">
-              {fulltime && <MetaDataChip>Full-time</MetaDataChip>}
+              d{fulltime && <MetaDataChip>Full-time</MetaDataChip>}
               {parttime && <MetaDataChip>Part-time</MetaDataChip>}
               <MetaDataChip>
                 {TYPES.find((t) => t.id === type)?.title}
