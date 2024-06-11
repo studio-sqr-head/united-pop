@@ -54,7 +54,9 @@ export const CourseFees = ({
               return (
                 <div key={index}>
                   {index === 0 ? (
-                    <H5 className="font-semibold">{value}</H5>
+                    <Paragraph className="text-sm" variant="secondary">
+                      {value}
+                    </Paragraph>
                   ) : (
                     <>
                       <Paragraph className="font-semibold">

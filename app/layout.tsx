@@ -13,13 +13,9 @@ const dmSans = DM_Sans({ subsets: ["latin"] })
 
 export const viewport: Viewport = {
   themeColor: "#ff5e00",
-  colorScheme: "dark light",
   initialScale: 1,
   width: "device-width",
   height: "device-height",
-  minimumScale: 1,
-  maximumScale: 1,
-  viewportFit: "cover",
 }
 
 export async function generateMetadata({

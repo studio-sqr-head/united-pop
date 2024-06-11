@@ -60,7 +60,12 @@ export const CourseTabPanel = ({
   const [tabIndex, setTabIndex] = useState(initialTabIndex)
 
   const handleRouteChange = (tabIndex: number) => {
+    if (!tabs) return
+    if (tabIndex < 0 || tabIndex >= tabs?.length) return
+
     setTabIndex(tabIndex)
+    // ensure tab is scrolled into view
+
     const tab = tabs?.[tabIndex].toLowerCase()
     router.push(`?tab=${tab}`, { scroll: false })
   }
@@ -74,6 +79,18 @@ export const CourseTabPanel = ({
       )
     }
   }, [tabParam, tabs, tabIndex])
+
+  useEffect(
+    function tabScrollIntoView() {
+      const tabId = tabs?.[tabIndex]
+      if (!tabId) return
+      const tab = document.getElementById(tabId)
+      if (tab) {
+        tab.scrollIntoView({ behavior: "smooth", block: "nearest" })
+      }
+    },
+    [tabIndex, tabs]
+  )
 
   return (
     <TabGroup onChange={handleRouteChange} selectedIndex={tabIndex}>
@@ -94,9 +111,10 @@ export const CourseTabPanel = ({
             </div>
           </div>
 
-          <TabList>
+          <TabList className="relative">
             {tabs?.map((name, index) => (
               <Tab
+                id={name}
                 name={name
                   .toLowerCase()
                   .split(" ")

@@ -10,9 +10,11 @@ import {
 } from "@headlessui/react"
 
 export const Tab = ({
+  id,
   name,
   className,
 }: {
+  id: string
   name: string
   className?: string
 }) => {
@@ -27,6 +29,7 @@ export const Tab = ({
 
   return (
     <HeadlessUiTab
+      id={id}
       key={name}
       className={clsx(
         baseClasses,
@@ -73,6 +76,7 @@ export const TabList = ({
 }) => {
   return (
     <HeadlessUiTabList
+      id="tab-list"
       className={`flex gap-2 md:gap-4 overflow-x-auto no-scrollbar ${className}`}
     >
       {children}
