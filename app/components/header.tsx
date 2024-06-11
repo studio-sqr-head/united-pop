@@ -18,8 +18,12 @@ export const Header = ({
   useEffect(() => {
     if (typeof window === "undefined") return
     let prevScrollPos = window.scrollY
+    const currentScrollPos = window.scrollY
+
+    if (currentScrollPos > 80) {
+      setScroll(true)
+    }
     window.onscroll = () => {
-      const currentScrollPos = window.scrollY
       setScroll(currentScrollPos > 80)
       prevScrollPos = currentScrollPos
     }
