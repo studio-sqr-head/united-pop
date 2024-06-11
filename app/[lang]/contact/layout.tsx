@@ -8,33 +8,33 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = params
   const { contactPageContent } = await getContact({ lang })
-  const { heading, hero, subheading } = contactPageContent.content
+  const { metaTitle, metaDescription, metaImage } = contactPageContent.content
   return {
-    title: `${heading} | United Pop`,
-    description: subheading,
+    title: metaTitle,
+    description: metaDescription,
     twitter: {
       images: [
         {
-          url: hero?.filename ?? "/favicon.ico",
+          url: metaImage?.filename ?? "/favicon.ico",
           width: 800,
           height: 600,
-          alt: hero?.alt ?? heading ?? "About Image",
+          alt: metaImage?.alt ?? metaTitle ?? "About Image",
         },
       ],
-      title: heading,
+      title: metaTitle,
     },
     openGraph: {
       type: "website",
       locale: lang,
-      url: hero?.filename,
-      title: heading,
-      description: subheading,
+      url: metaImage?.filename,
+      title: metaTitle,
+      description: metaDescription,
       images: [
         {
-          url: hero?.filename ?? "/favicon.ico",
+          url: metaImage?.filename ?? "/favicon.ico",
           width: 800,
           height: 600,
-          alt: hero?.alt ?? subheading ?? "About Image",
+          alt: metaImage?.alt ?? metaDescription ?? "About Image",
         },
       ],
     },

@@ -9,33 +9,33 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = params
   const { aboutPageContent } = await getAbout({ lang })
-  const { title, heroImage, description } = aboutPageContent.content
+  const { metaDescription, metaTitle, metaImage } = aboutPageContent.content
   return {
-    title: `${title} | United Pop`,
-    description,
+    title: metaTitle,
+    description: metaDescription,
     twitter: {
       images: [
         {
-          url: heroImage?.filename ?? "/favicon.ico",
+          url: metaImage?.filename ?? "/favicon.ico",
           width: 800,
           height: 600,
-          alt: heroImage?.alt ?? title ?? "About Image",
+          alt: metaImage?.alt ?? metaTitle ?? "About Image",
         },
       ],
-      title,
+      title: metaTitle,
     },
     openGraph: {
       type: "website",
       locale: lang,
-      url: heroImage?.filename,
-      title: title,
-      description,
+      url: metaImage?.filename,
+      title: metaTitle,
+      description: metaDescription,
       images: [
         {
-          url: heroImage?.filename ?? "/favicon.ico",
+          url: metaImage?.filename ?? "/favicon.ico",
           width: 800,
           height: 600,
-          alt: heroImage?.alt ?? title ?? "About Image",
+          alt: metaImage?.alt ?? metaTitle ?? "About Image",
         },
       ],
     },

@@ -5,7 +5,7 @@ import {
   DataProtectionGuidelinesStoryblok,
   HomePageStoryblok,
   NotFoundStoryblok,
-  ContactStoryblok,
+  ContactPageStoryblok,
 } from "@/types"
 import { env } from "@/env"
 import { STORYBLOK_BASE_URL } from "@/constants"
@@ -38,7 +38,7 @@ export const getContact = async ({
 }: {
   lang: "en" | "nl"
 }): Promise<{
-  contactPageContent: ISbStoryData<ContactStoryblok>
+  contactPageContent: ISbStoryData<ContactPageStoryblok>
 }> => {
   const version = "published"
   const token = env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN

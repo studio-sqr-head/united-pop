@@ -28,16 +28,22 @@ export interface AboutPageStoryblok {
   faqTitle?: string
   faqSubtitle?: string
   description?: string
+  metaTitle?: string
+  metaDescription?: string
+  metaImage?: AssetStoryblok
   component: "about page"
   _uid: string
   [k: string]: any
 }
 
-export interface ContactStoryblok {
+export interface ContactPageStoryblok {
   heading?: string
   subheading?: string
   hero?: AssetStoryblok
-  component: "contact"
+  metaTitle?: string
+  metaDescription?: string
+  metaImage?: AssetStoryblok
+  component: "contact page"
   _uid: string
   [k: string]: any
 }
@@ -94,6 +100,9 @@ export interface CoursePageStoryblok {
   headerStartDates?: string
   headerCollaboration?: string
   collaborationText?: RichtextStoryblok
+  metaTitle?: string
+  metaDescription?: string
+  metaImage?: AssetStoryblok
   component: "course page"
   _uid: string
   [k: string]: any
@@ -103,6 +112,8 @@ export interface DataProtectionGuidelinesStoryblok {
   title?: string
   body?: RichtextStoryblok
   heroImage?: AssetStoryblok
+  metaTitle?: string
+  metaDescription?: string
   component: "data protection guidelines"
   _uid: string
   [k: string]: any
@@ -149,6 +160,9 @@ export interface HomePageStoryblok {
   heroSecondaryCta?: string
   courseSectionTitle?: string
   courseSectionSubtitle?: string
+  metaTitle?: string
+  metaDescription?: string
+  metaImage?: AssetStoryblok
   component: "home page"
   _uid: string
   [k: string]: any
@@ -167,7 +181,7 @@ export interface NotFoundStoryblok {
 export interface PageStoryblok {
   content?: (
     | AboutPageStoryblok
-    | ContactStoryblok
+    | ContactPageStoryblok
     | CourseStoryblok
     | CoursePageStoryblok
     | DataProtectionGuidelinesStoryblok

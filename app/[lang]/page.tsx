@@ -1,7 +1,7 @@
 import { ISbStoryData } from "@storyblok/react/rsc"
 import clsx from "clsx"
 
-import { Container, Divider, HeroSection } from "@/app/components/structure"
+import { Container, HeroSection } from "@/app/components/structure"
 import { HomePageHeroCta } from "@/app/[lang]/components/home-page-hero-cta"
 import { CourseSection } from "@/app/[lang]/components/course-list"
 import { CourseStoryblok } from "@/types"

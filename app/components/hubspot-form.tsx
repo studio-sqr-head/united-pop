@@ -69,7 +69,7 @@ export function HubSpotForm({
       cleanupForm()
       document.body.removeChild(script)
     }
-  }, [lang, buttonClasses])
+  }, [lang, buttonClasses, target])
 
   return (
     <>
