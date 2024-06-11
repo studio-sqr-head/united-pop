@@ -28,7 +28,7 @@ export const Footer = ({
     <footer className="bg-black">
       <Container className="py-8">
         <div className="flex flex-col md:flex-row gap-8 justify-between md:items-center">
-          <AddressDetails />
+          <AddressDetails variant="secondary" />
           <div className="flex justify-center md:justify-end flex-col gap-4">
             <SocialMediaLinks
               facebookUrl={facebookUrl}
