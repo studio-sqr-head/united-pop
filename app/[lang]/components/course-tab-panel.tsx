@@ -80,18 +80,6 @@ export const CourseTabPanel = ({
     }
   }, [tabParam, tabs, tabIndex])
 
-  useEffect(
-    function tabScrollIntoView() {
-      const tabId = tabs?.[tabIndex]
-      if (!tabId) return
-      const tab = document.getElementById(tabId)
-      if (tab) {
-        tab.scrollIntoView({ behavior: "smooth", block: "nearest" })
-      }
-    },
-    [tabIndex, tabs]
-  )
-
   return (
     <TabGroup onChange={handleRouteChange} selectedIndex={tabIndex}>
       <div className="full-w">

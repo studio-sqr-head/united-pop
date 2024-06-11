@@ -19,7 +19,11 @@ export const CourseFees = ({
         <thead className="text-secondary font-normal">
           <tr className="border-b border-gray-800">
             {thead?.map(({ value }, index) => (
-              <th scope="col" className="py-5 font-normal" key={index}>
+              <th
+                scope="col"
+                className="py-5 text-sm text-secondary font-normal"
+                key={index}
+              >
                 {value}
               </th>
             ))}

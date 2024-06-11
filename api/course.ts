@@ -56,8 +56,6 @@ export const getCourseBySlug = async ({
 
     const { story } = await response.json()
 
-    console.log(story)
-
     return {
       course: story,
     }
