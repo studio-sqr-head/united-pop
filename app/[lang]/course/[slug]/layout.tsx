@@ -14,9 +14,8 @@ export async function generateMetadata({
   const { title, description, image } = course?.content
 
   return {
-    title: `${title} | United Pop`,
+    title: `United Pop | ${title}`,
     description,
-    keywords: ["music", "media", "academy"],
     twitter: {
       images: [
         {
@@ -33,7 +32,7 @@ export async function generateMetadata({
       type: "website",
       locale: lang,
       url: `${env.NEXT_PUBLIC_BASE_URL}/${lang}/course/${slug}`,
-      title: `${title} | United Pop`,
+      title: `United Pop | ${title}`,
       description: description,
       images: [
         {
