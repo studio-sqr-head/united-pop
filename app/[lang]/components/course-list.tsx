@@ -33,9 +33,7 @@ const CourseListFilter = ({
               size="large"
               active={activeCategory === category?.id}
             >
-              <span className="text-ellipsis max-w-24 md:max-w-full w-full text-center overflow-hidden">
-                {category?.title}
-              </span>
+              <span className="w-full text-center">{category?.title}</span>
             </MetaDataChip>
           </div>
         ))}
