@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next"
-import { DM_Sans } from "next/font/google"
+import { Open_Sans } from "next/font/google"
 
 import "./globals.css"
 import { env } from "@/env"
@@ -8,7 +8,7 @@ import { Header } from "@/app/components/header"
 import { Main } from "@/app/components/structure"
 import { getGeneralContent } from "@/api/general"
 
-const dmSans = DM_Sans({ subsets: ["latin"] })
+const openSans = Open_Sans({ subsets: ["latin"] })
 
 export const viewport: Viewport = {
   themeColor: "#ff5e00",
@@ -83,7 +83,7 @@ export default async function RootLayout(
   return (
     <html
       lang={params.lang}
-      className={`${dmSans.className} bg-black text-primary`}
+      className={`${openSans.className} bg-black text-primary`}
     >
       <body>
         <Header lang={params.lang} logo={logo} />
