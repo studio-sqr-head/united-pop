@@ -31,7 +31,7 @@ export const HomePageHeroCta = ({
         </Subheading>
       </div>
 
-      <div className="flex gap-4 md:flex-row flex-col w-full">
+      <div className="flex gap-4 w-full">
         <Button
           variant="primary"
           size={"large"}
