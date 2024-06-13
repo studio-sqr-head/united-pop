@@ -13,6 +13,7 @@ interface ButtonProps extends Partial<NextLinkProps<string | UrlObject>> {
   icon?: ReactNode
   as?: "button" | "a"
   iconPosition?: "left" | "right"
+  fullWidth?: boolean
 }
 
 // Using tailwind accessibilities classes so that we can also inject them into hubspot.
@@ -20,7 +21,13 @@ export const useGenerateButtonClasses = ({
   disabled = false,
   size = "medium",
   variant = "primary",
-}: Pick<ButtonProps, "variant" | "size" | "disabled">): string => {
+  className,
+  fullWidth,
+}: Pick<
+  ButtonProps,
+  "variant" | "size" | "disabled" | "className" | "fullWidth"
+>) => {
+  const width = fullWidth ? "w-full" : "w-auto"
   const baseClasses =
     "rounded font-semibold text-center inline-flex items-center justify-center cursor-pointer focus:outline-none whitespace-nowrap"
   const interactiveClasses = "transition-all ease-in-out duration-300"
@@ -55,7 +62,9 @@ export const useGenerateButtonClasses = ({
     sizeClasses[size],
     variantClasses[variant],
     interactiveClasses,
-    disabledClasses
+    disabledClasses,
+    width,
+    className
   )
 
   return buttonClasses
@@ -70,9 +79,17 @@ export const Button: React.FC<ButtonProps> = ({
   onClick,
   icon,
   iconPosition = "left",
+  className,
+  fullWidth,
   ...linkProps
 }) => {
-  const buttonClasses = useGenerateButtonClasses({ variant, size, disabled })
+  const buttonClasses = useGenerateButtonClasses({
+    variant,
+    size,
+    disabled,
+    fullWidth,
+    className,
+  })
   const render = (
     <>
       {icon && iconPosition === "left" && <span className="mr-2">{icon}</span>}

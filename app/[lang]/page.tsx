@@ -23,6 +23,8 @@ export default async function Home({
     heroSecondaryCta,
     heroSubtitle,
     heroTitle,
+    heroTertiaryCta,
+    heroTertiaryCtaDate,
   } = homePageContent?.content
   const allCourses = stories as ISbStoryData<CourseStoryblok>[]
 
@@ -45,6 +47,8 @@ export default async function Home({
             heroSubtitle={heroSubtitle}
             heroPrimaryCta={heroPrimaryCta}
             heroSecondaryCta={heroSecondaryCta}
+            heroTertiaryCta={heroTertiaryCta}
+            heroTertiaryCtaDate={heroTertiaryCtaDate}
           />
         </Container>
       </HeroSection>

@@ -9,11 +9,14 @@ export const formatDate = ({
   date,
   lang = "en",
 }: {
-  date: Date
+  date?: Date | string
   lang?: "en" | "nl"
 }) => {
+  if (date == null) return "Coming Soon"
+  if (typeof date === "string") date = new Date(date)
   return date?.toLocaleDateString(lang, {
     year: "numeric",
     month: "long",
+    day: "numeric",
   })
 }
