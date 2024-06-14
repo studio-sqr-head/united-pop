@@ -42,7 +42,7 @@ export const MobileOpenDayButton = ({
       as="a"
       href={{ pathname: "/contact", query: { lang: "en" } }}
     >
-      <div className="relative flex items-center justify-center gap-2 flex-col">
+      <div className="relative flex items-center justify-center gap-1 flex-col">
         <CalendarIcon className="h-6 w-6 stroke-current stroke-1 text-secondary" />
 
         <div className="flex">{heroTertiaryCta}</div>
