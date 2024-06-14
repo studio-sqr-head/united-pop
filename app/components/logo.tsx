@@ -11,7 +11,7 @@ export const Logo = ({ logo }: { logo: AssetStoryblok }) => (
     <img
       src={logo?.filename}
       alt={logo.alt ?? "United Pop Logo"}
-      className="h-10 md:h-16 lg:h-20 w-auto"
+      className="h-12 md:h-16 lg:h-18 w-auto"
     />
 
     <span className="sr-only">United Pop Logo</span>

@@ -36,18 +36,7 @@ export const HomePageHeroCta = ({
         </Subheading>
       </div>
 
-      <div className="flex flex-col gap-4 md:flex-row md:gap-4">
-        <Button
-          variant="primary"
-          size={"large"}
-          as="a"
-          scroll={false}
-          href={{ pathname: "/contact", query: { lang: "en" } }}
-          fullWidth={false}
-        >
-          {heroPrimaryCta}
-        </Button>
-
+      <div className="flex flex-col gap-4 md:gap-0 md:flex-row md:gap-4">
         <Button
           variant="secondary"
           size={"large"}
@@ -55,11 +44,10 @@ export const HomePageHeroCta = ({
           scroll={false}
           fullWidth={false}
           href={{ pathname: "/contact", query: { lang: "en" } }}
-          className="flex items-center gap-2"
-          icon={<CalendarIcon className="h-4 w-4 stroke-current stroke-1" />}
+          icon={<CalendarIcon className="h-6 w-6 stroke-current stroke-1" />}
         >
           {heroTertiaryCta}
-          <div className="text-sm text-orange font-bold">
+          <div className="text-sm text-orange font-bold ml-2">
             {formatDate({ date: heroTertiaryCtaDate, lang: "en" })}
           </div>
         </Button>
@@ -73,6 +61,17 @@ export const HomePageHeroCta = ({
           iconPosition="right"
         >
           {heroSecondaryCta}
+        </Button>
+
+        <Button
+          variant="primary"
+          size={"large"}
+          as="a"
+          scroll={false}
+          href={{ pathname: "/contact", query: { lang: "en" } }}
+          fullWidth={false}
+        >
+          {heroPrimaryCta}
         </Button>
       </div>
     </div>

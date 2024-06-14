@@ -64,14 +64,14 @@ export const Navigation = ({ logo }: { logo: AssetStoryblok }) => {
 
   return (
     <nav className="w-full relative h-full">
-      <Container className="flex items-start justify-between py-4 md:py-6">
+      <Container className="flex items-center justify-between  py-4 md:py-6">
         <Logo logo={logo} />
 
         <div className="flex gap-8 align-center items-center md:hidden">
           <IconButton
             variant="secondary"
             onClick={() => setShowMenu(true)}
-            icon={<Bars3Icon className="h-6 w-6 text-white" />}
+            icon={<Bars3Icon className="h-8 w-8 text-white" />}
             size="small"
           />
         </div>
