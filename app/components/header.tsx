@@ -46,8 +46,7 @@ export const Header = ({
     "flex",
     "justify-between",
     "items-center",
-    scroll &&
-      "bg-black md:backdrop-filter md:backdrop-blur-lg md:bg-transparent"
+    scroll && "backdrop-blur-3xl"
   )
 
   return (
