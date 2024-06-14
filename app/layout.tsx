@@ -8,7 +8,7 @@ import { Header } from "@/app/components/header"
 import { Main } from "@/app/components/structure"
 import { getGeneralContent } from "@/api/general"
 
-export const openSans = Open_Sans()
+export const openSans = Open_Sans({ subsets: ["latin"] })
 
 export const viewport: Viewport = {
   themeColor: "#000000",

@@ -42,7 +42,7 @@ export const HeroSection = ({
   const heightClass = {
     banner: "h-[300px] md:h-[500px]",
     largeBanner: "h-[400px] md:h-[600px]",
-    hero: "h-[100vh]",
+    hero: "md:h-[100vh] h-[75vh] my-16 md:my-0",
   }
 
   return (
