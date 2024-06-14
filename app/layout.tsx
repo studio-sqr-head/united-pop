@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next"
-import { Open_Sans } from "next/font/google"
+import localFont from "next/font/local"
 
 import "./globals.css"
 import { env } from "@/env"
@@ -8,7 +8,10 @@ import { Header } from "@/app/components/header"
 import { Main } from "@/app/components/structure"
 import { getGeneralContent } from "@/api/general"
 
-const openSans = Open_Sans({ subsets: ["latin"] })
+const frutiger = localFont({
+  src: "Frutiger.otf",
+  fallback: ["Open Sans"],
+})
 
 export const viewport: Viewport = {
   themeColor: "#000000",
@@ -83,7 +86,7 @@ export default async function RootLayout(
   return (
     <html
       lang={params.lang}
-      className={`${openSans.className} bg-black text-primary`}
+      className={`${frutiger.className} bg-black text-primary`}
     >
       <body className="relative">
         <Header lang={params.lang} logo={logo} />
