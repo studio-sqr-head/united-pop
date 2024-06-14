@@ -31,17 +31,13 @@ export default async function Home({
   } = homePageContent?.content
   const allCourses = stories as ISbStoryData<CourseStoryblok>[]
 
-  const downloadBrochure = () => {
-    console.log("Download Brochure")
-  }
-
   return (
     <div className="flex flex-col md:gap-8 gap-4">
       <HeroSection
         src={heroImage?.filename}
         alt={heroImage?.alt ?? "Hero Image"}
         height={"hero"}
-        imageClassName="filter brightness-50 md:brightness-100"
+        imageClassName="brightness-50 md:brightness-100"
       >
         <Container
           className={clsx(
