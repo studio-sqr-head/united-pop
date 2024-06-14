@@ -38,26 +38,25 @@ export const MobileOpenDayButton = ({
   heroTertiaryCtaDate?: string
 }) => {
   return (
-    <div className="relative">
-      <MobileNavButton
-        as="a"
-        href={{ pathname: "/contact", query: { lang: "en" } }}
-      >
+    <MobileNavButton
+      as="a"
+      href={{ pathname: "/contact", query: { lang: "en" } }}
+    >
+      <div className="relative flex items-center justify-center gap-2 flex-col">
         <CalendarIcon className="h-6 w-6 stroke-current stroke-1 text-secondary" />
 
         <div className="flex">{heroTertiaryCta}</div>
-      </MobileNavButton>
-      {/* badge */}
-      <div className="absolute top-2 right-3 bg-primary text-white rounded-full px-2 py-1 text-xs font-bold">
-        {formatDate({
-          date: heroTertiaryCtaDate,
-          lang: "en",
-          options: {
-            month: "short",
-            day: "numeric",
-          },
-        })}
+        <div className="absolute top-0 -right-5 bg-primary text-white rounded-full px-2 py-1 text-xs font-bold">
+          {formatDate({
+            date: heroTertiaryCtaDate,
+            lang: "en",
+            options: {
+              month: "short",
+              day: "numeric",
+            },
+          })}
+        </div>
       </div>
-    </div>
+    </MobileNavButton>
   )
 }
