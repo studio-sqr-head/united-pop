@@ -11,7 +11,7 @@ import { getGeneralContent } from "@/api/general"
 const openSans = Open_Sans({ subsets: ["latin"] })
 
 export const viewport: Viewport = {
-  themeColor: "#ff5e00",
+  themeColor: "#000000",
   initialScale: 1,
   width: "device-width",
   height: "device-height",
@@ -85,7 +85,7 @@ export default async function RootLayout(
       lang={params.lang}
       className={`${openSans.className} bg-black text-primary`}
     >
-      <body>
+      <body className="relative">
         <Header lang={params.lang} logo={logo} />
         <Main>{children}</Main>
         <Footer

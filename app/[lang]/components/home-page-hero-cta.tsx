@@ -1,10 +1,11 @@
 "use client"
 
-import { ArrowDownIcon, CalendarIcon } from "@heroicons/react/20/solid"
+import { ArrowDownIcon } from "@heroicons/react/20/solid"
 
 import { H1, Subheading } from "@/app/components/typography"
 import { Button } from "@/app/components/button"
-import { formatDate } from "@/utils"
+import { OpenDayButton } from "@/app/[lang]/components/open-day-button"
+import { EnrollButton } from "@/app/[lang]/components/enroll-button"
 
 export const HomePageHeroCta = ({
   heroTitle,
@@ -27,7 +28,7 @@ export const HomePageHeroCta = ({
   }
 
   return (
-    <div className="flex flex-col gap-8 md:mb-16 max-w-3xl">
+    <div className="flex flex-col gap-8 md:mb-16 max-w-3xl px-4 md:px-0 mx-auto md:mx-0">
       <div className="flex flex-col gap-2">
         <H1>{heroTitle}</H1>
 
@@ -37,20 +38,10 @@ export const HomePageHeroCta = ({
       </div>
 
       <div className="flex flex-col gap-4 md:gap-0 md:flex-row md:gap-4">
-        <Button
-          variant="secondary"
-          size={"large"}
-          as="a"
-          scroll={false}
-          fullWidth={false}
-          href={{ pathname: "/contact", query: { lang: "en" } }}
-          icon={<CalendarIcon className="h-6 w-6 stroke-current stroke-1" />}
-        >
-          {heroTertiaryCta}
-          <div className="text-sm text-orange font-bold ml-2">
-            {formatDate({ date: heroTertiaryCtaDate, lang: "en" })}
-          </div>
-        </Button>
+        <OpenDayButton
+          heroTertiaryCta={heroTertiaryCta}
+          heroTertiaryCtaDate={heroTertiaryCtaDate}
+        />
 
         <Button
           variant="secondary"
@@ -63,16 +54,11 @@ export const HomePageHeroCta = ({
           {heroSecondaryCta}
         </Button>
 
-        <Button
-          variant="primary"
-          size={"large"}
-          as="a"
-          scroll={false}
-          href={{ pathname: "/contact", query: { lang: "en" } }}
-          fullWidth={false}
-        >
-          {heroPrimaryCta}
-        </Button>
+        <EnrollButton
+          text={heroPrimaryCta}
+          params={{ lang: "en" }}
+          className="hidden md:flex"
+        />
       </div>
     </div>
   )

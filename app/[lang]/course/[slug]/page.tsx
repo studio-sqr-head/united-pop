@@ -1,7 +1,7 @@
 import { Container, HeroSection } from "@/app/components/structure"
 import { BottomNavigation } from "@/app/components/bottom-navigation"
 import { BreadCrumbs } from "@/app/components/breadcrumbs"
-import { EnrollButtonMobile } from "@/app/[lang]/components/enroll-button"
+import { MobileEnrollButton } from "@/app/[lang]/components/enroll-button"
 import { DownloadBrochureMobileButton } from "@/app/[lang]/components/download-brochure-button"
 import { getCourseBySlug, getCourseFees } from "@/api/course"
 import { getAllFaqs } from "@/api/faq"
@@ -98,7 +98,7 @@ export default async function CoursePage({
           text={downloadBrochureButtonText}
           downloadBrochureUrl={downloadBrochureUrl}
         />
-        <EnrollButtonMobile params={params} text={primaryButtonText} />
+        <MobileEnrollButton params={params} text={primaryButtonText} />
       </BottomNavigation>
     </div>
   )

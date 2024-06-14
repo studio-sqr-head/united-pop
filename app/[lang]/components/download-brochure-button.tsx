@@ -42,7 +42,7 @@ export const DownloadBrochureMobileButton = ({
   const downloadBrochure = useDownloadBrochure({ downloadBrochureUrl })
   return (
     <MobileNavButton onClick={downloadBrochure}>
-      <ArrowDownTrayIcon className="h-6 w-6 stroke-current stroke-1 text-primary" />
+      <ArrowDownTrayIcon className="h-6 w-6 stroke-current stroke-1 text-secondary" />
       <span>{text}</span>
     </MobileNavButton>
   )

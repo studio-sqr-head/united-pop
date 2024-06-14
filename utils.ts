@@ -8,15 +8,17 @@ export const getClosestFutureDateToToday = (startdates: Date[]) => {
 export const formatDate = ({
   date,
   lang = "en",
-}: {
-  date?: Date | string
-  lang?: "en" | "nl"
-}) => {
-  if (date == null) return "Coming Soon"
-  if (typeof date === "string") date = new Date(date)
-  return date?.toLocaleDateString(lang, {
+  options = {
     year: "numeric",
     month: "long",
     day: "numeric",
-  })
+  },
+}: {
+  date?: Date | string
+  lang?: "en" | "nl"
+  options?: Intl.DateTimeFormatOptions
+}) => {
+  if (date == null) return "Coming Soon"
+  if (typeof date === "string") date = new Date(date)
+  return date?.toLocaleDateString(lang, options)
 }

@@ -7,6 +7,9 @@ import { CourseSection } from "@/app/[lang]/components/course-list"
 import { CourseStoryblok } from "@/types"
 import { getAllCourses } from "@/api/course"
 import { getHome } from "@/api/page"
+import { BottomNavigation } from "@/app/components/bottom-navigation"
+import { MobileOpenDayButton } from "./components/open-day-button"
+import { MobileEnrollButton } from "./components/enroll-button"
 
 export default async function Home({
   params: { lang },
@@ -27,6 +30,10 @@ export default async function Home({
     heroTertiaryCtaDate,
   } = homePageContent?.content
   const allCourses = stories as ISbStoryData<CourseStoryblok>[]
+
+  const downloadBrochure = () => {
+    console.log("Download Brochure")
+  }
 
   return (
     <div className="flex flex-col md:gap-8 gap-4">
@@ -60,6 +67,14 @@ export default async function Home({
           courseSectionSubtitle={courseSectionSubtitle}
         />
       )}
+
+      <BottomNavigation>
+        <MobileOpenDayButton
+          heroTertiaryCta={heroTertiaryCta}
+          heroTertiaryCtaDate={heroTertiaryCtaDate}
+        />
+        <MobileEnrollButton text={heroPrimaryCta} params={{ lang }} />
+      </BottomNavigation>
     </div>
   )
 }

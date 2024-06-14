@@ -32,7 +32,7 @@ export const Footer = ({
   }
 }): ReactElement => {
   return (
-    <footer className="bg-black">
+    <footer className="bg-black pb-12 md:pb-0 border-t border-slate border-opacity-50">
       <Container className="md:py-8 py-12">
         <div className="flex flex-col md:flex-row gap-8 justify-between items-center">
           <AddressDetails
