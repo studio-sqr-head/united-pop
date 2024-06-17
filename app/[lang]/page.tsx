@@ -33,11 +33,13 @@ export default async function Home({
 
   return (
     <div className="flex flex-col md:gap-8 gap-4">
+      {/* desktop */}
       <HeroSection
         src={heroImage?.filename}
         alt={heroImage?.alt ?? "Hero Image"}
         height={"hero"}
         imageClassName="brightness-50 md:brightness-100"
+        sectionClassName="hidden md:block"
       >
         <Container
           className={clsx(
@@ -55,6 +57,25 @@ export default async function Home({
           />
         </Container>
       </HeroSection>
+
+      {/* mobile */}
+      <div className="h-[100vh] md:hidden">
+        <HeroSection
+          src={heroImage?.filename}
+          alt={heroImage?.alt ?? "Hero Image"}
+          height={"banner"}
+        />
+        <Container>
+          <HomePageHeroCta
+            heroTitle={heroTitle}
+            heroSubtitle={heroSubtitle}
+            heroPrimaryCta={heroPrimaryCta}
+            heroSecondaryCta={heroSecondaryCta}
+            heroTertiaryCta={heroTertiaryCta}
+            heroTertiaryCtaDate={heroTertiaryCtaDate}
+          />
+        </Container>
+      </div>
 
       {allCourses != null && (
         <CourseSection
