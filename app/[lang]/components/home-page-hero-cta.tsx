@@ -28,7 +28,7 @@ export const HomePageHeroCta = ({
   }
 
   return (
-    <div className="flex flex-col gap-8 md:mb-16 max-w-3xl px-4 md:px-0 mx-auto md:mx-0">
+    <div className="flex flex-col gap-8 md:mb-16 max-w-3xl mx-auto md:mx-0">
       <div className="flex flex-col gap-2">
         <H1>{heroTitle}</H1>
 
