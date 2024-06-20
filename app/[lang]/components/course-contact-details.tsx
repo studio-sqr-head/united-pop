@@ -23,7 +23,7 @@ export const AddressDetails = ({
         target="_blank"
         rel="noreferrer"
       >
-        <Paragraph variant={variant} className="font-semibold">
+        <Paragraph variant={"primary"} className="font-semibold">
           {address?.name}
         </Paragraph>
         <Paragraph variant={variant}>{address?.street}</Paragraph>
