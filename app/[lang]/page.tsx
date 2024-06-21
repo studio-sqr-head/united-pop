@@ -61,7 +61,6 @@ export default async function Home({
       {/* mobile */}
       <div className="md:hidden">
         {/* gradient upper part of image into background */}
-
         <HeroSection
           src={heroImage?.filename}
           alt={heroImage?.alt ?? "Hero Image"}
@@ -70,7 +69,7 @@ export default async function Home({
         >
           <div className="absolute top-0 left-0 right-0 h-[7rem] bg-gradient-to-b from-black to-transparent" />
         </HeroSection>
-        <Container className="h-[calc(100vh-40vh-80px)] flex flex-col gap-4">
+        <Container className="h-[calc(100vh)] flex flex-col gap-4">
           <HomePageHeroCta
             heroTitle={heroTitle}
             heroSubtitle={heroSubtitle}
@@ -79,7 +78,7 @@ export default async function Home({
             heroTertiaryCta={heroTertiaryCta}
             heroTertiaryCtaDate={heroTertiaryCtaDate}
           />
-        </Container>
+        </Container>{" "}
       </div>
 
       {allCourses != null && (
