@@ -29,7 +29,7 @@ export const HeroSection = ({
   src,
   alt,
   children,
-  imageClassName,
+  imageClassName = "object-cover object-center",
   sectionClassName,
 }: {
   height?: "hero" | "banner" | "largeBanner"
@@ -40,7 +40,7 @@ export const HeroSection = ({
   sectionClassName?: string
 }) => {
   const heightClass = {
-    banner: "h-[50vh] md:h-[500px]",
+    banner: "h-[40vh] md:h-[500px]",
     largeBanner: "h-[400px] md:h-[600px]",
     hero: "h-[100vh]",
   }
@@ -57,7 +57,7 @@ export const HeroSection = ({
         placeholder="blur"
         blurDataURL={src}
         sizes="100vw, (min-width: 640px) 640px, (min-width: 768px) 768px, (min-width: 1024px) 1024px, (min-width: 1280px) 1280px"
-        className={clsx("object-cover object-center", imageClassName)}
+        className={imageClassName}
       />
 
       {children}
