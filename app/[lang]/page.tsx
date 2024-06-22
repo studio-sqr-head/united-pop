@@ -38,7 +38,7 @@ export default async function Home({
         src={heroImage?.filename}
         alt={heroImage?.alt ?? "Hero Image"}
         height={"hero"}
-        imageClassName="brightness-50 md:brightness-100 object-cover object-center"
+        imageClassName="brightness-100 object-cover object-center"
         sectionClassName="hidden md:block"
       >
         <Container
@@ -59,17 +59,15 @@ export default async function Home({
       </HeroSection>
 
       {/* mobile */}
-      <div className="md:hidden">
-        {/* gradient upper part of image into background */}
+      <div className="md:hidden h-[100vh]">
         <HeroSection
           src={heroImage?.filename}
           alt={heroImage?.alt ?? "Hero Image"}
           height={"banner"}
-          imageClassName="object-contain object-center relative"
-        >
-          <div className="absolute top-0 left-0 right-0 h-[7rem] bg-gradient-to-b from-black to-transparent" />
-        </HeroSection>
-        <Container className="h-[calc(100vh)] flex flex-col gap-4">
+          imageClassName="object-cover object-center relative brightness-50 ::before:brightness-100"
+        />
+
+        <Container className="flex flex-col gap-4">
           <HomePageHeroCta
             heroTitle={heroTitle}
             heroSubtitle={heroSubtitle}
@@ -78,7 +76,7 @@ export default async function Home({
             heroTertiaryCta={heroTertiaryCta}
             heroTertiaryCtaDate={heroTertiaryCtaDate}
           />
-        </Container>{" "}
+        </Container>
       </div>
 
       {allCourses != null && (
