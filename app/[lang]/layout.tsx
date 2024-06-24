@@ -23,7 +23,7 @@ export async function generateMetadata({
           url: metaImage?.filename ?? "/favicon.ico",
           width: 800,
           height: 600,
-          alt: metaTitle,
+          alt: metaTitle ?? "United Pop - Music Academy",
         },
       ],
       title: metaTitle,
@@ -40,7 +40,8 @@ export async function generateMetadata({
           url: metaImage?.filename ?? "/favicon.ico",
           width: 800,
           height: 600,
-          alt: metaImage?.alt ?? metaDescription,
+          alt:
+            metaImage?.alt ?? metaDescription ?? "United Pop - Music Academy",
         },
       ],
     },
