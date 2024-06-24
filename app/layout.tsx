@@ -76,10 +76,11 @@ export default async function RootLayout(
     name,
     street,
     postalCode,
+    phoneNumber,
     city,
+    addressUrl,
   } = generalContent.content
 
-  console.log(generalContent)
   const { children, params } = props
 
   return (
@@ -96,7 +97,9 @@ export default async function RootLayout(
             street,
             postalCode,
             city,
+            addressUrl,
           }}
+          phoneNumber={phoneNumber}
           tiktokUrl={tiktokUrl}
           instagramUrl={instagramUrl}
           linkedInUrl={linkedInUrl}

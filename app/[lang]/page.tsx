@@ -64,7 +64,7 @@ export default async function Home({
           src={heroImage?.filename}
           alt={heroImage?.alt ?? "Hero Image"}
           height={"banner"}
-          imageClassName="object-cover object-center relative brightness-50 ::before:brightness-100"
+          imageClassName="object-cover object-center relative"
         />
 
         <Container className="flex flex-col gap-4">
