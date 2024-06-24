@@ -14,13 +14,13 @@ const UnitedPopRightsReserved = () => {
 }
 
 export const Footer = ({
-  facebookUrl,
+  tiktokUrl,
   instagramUrl,
   linkedInUrl,
   youtubeUrl,
   address,
 }: {
-  facebookUrl?: string
+  tiktokUrl?: string
   instagramUrl?: string
   linkedInUrl?: string
   youtubeUrl?: string
@@ -42,7 +42,7 @@ export const Footer = ({
           />
           <div className="flex justify-center md:justify-end flex-col gap-4 order-first md:order-none">
             <SocialMediaLinks
-              facebookUrl={facebookUrl}
+              tiktokUrl={tiktokUrl}
               instagramUrl={instagramUrl}
               linkedInUrl={linkedInUrl}
               youtubeUrl={youtubeUrl}

@@ -2,7 +2,7 @@
 
 import { useMemo } from "react"
 import {
-  FacebookSvg,
+  TiktokSvg,
   InstagramSvg,
   LinkedInSvg,
   YoutubeSvg,
@@ -10,12 +10,12 @@ import {
 import { IconButton } from "@/app/components/button"
 
 export const SocialMediaLinks = ({
-  facebookUrl,
+  tiktokUrl,
   instagramUrl,
   linkedInUrl,
   youtubeUrl,
 }: {
-  facebookUrl?: string
+  tiktokUrl?: string
   instagramUrl?: string
   linkedInUrl?: string
   youtubeUrl?: string
@@ -23,10 +23,10 @@ export const SocialMediaLinks = ({
   const SOCIAL_MEDIA = useMemo(() => {
     return [
       {
-        id: "facebook",
-        href: facebookUrl,
-        title: "Facebook",
-        Svg: FacebookSvg,
+        id: "tiktok",
+        href: tiktokUrl,
+        title: "TikTok",
+        Svg: TiktokSvg,
       },
       {
         id: "instagram",
@@ -47,23 +47,25 @@ export const SocialMediaLinks = ({
         Svg: YoutubeSvg,
       },
     ]
-  }, [facebookUrl, instagramUrl, linkedInUrl, youtubeUrl])
+  }, [tiktokUrl, instagramUrl, linkedInUrl, youtubeUrl])
 
   return (
     <div className="flex gap-2">
-      {SOCIAL_MEDIA.map(({ id, title, Svg, href }) => (
-        <IconButton
-          as="a"
-          target="_blank"
-          rel="noopener noreferrer"
-          key={id}
-          href={{
-            pathname: href,
-          }}
-          icon={<Svg />}
-          iconDescription={title}
-        />
-      ))}
+      {SOCIAL_MEDIA.map(({ id, title, Svg, href }) => {
+        if (href == null) return null
+        return (
+          <IconButton
+            as="a"
+            externalLink
+            target="_blank"
+            rel="noopener noreferrer"
+            key={id}
+            href={href}
+            icon={<Svg />}
+            iconDescription={title}
+          />
+        )
+      })}
     </div>
   )
 }

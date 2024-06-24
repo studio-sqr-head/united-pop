@@ -125,7 +125,8 @@ export const Button: React.FC<ButtonProps> = ({
   )
 }
 
-interface IconButtonProps extends Partial<NextLinkProps<string | UrlObject>> {
+interface IconButtonProps
+  extends Omit<Partial<NextLinkProps<string | UrlObject>>, "href"> {
   icon: ReactNode
   onClick?: () => void
   iconDescription?: string
@@ -134,6 +135,8 @@ interface IconButtonProps extends Partial<NextLinkProps<string | UrlObject>> {
   className?: string
   as?: "button" | "a"
   variant?: "primary" | "secondary"
+  externalLink?: boolean
+  href?: string | UrlObject
 }
 
 export const IconButton: React.FC<IconButtonProps> = ({
@@ -145,6 +148,8 @@ export const IconButton: React.FC<IconButtonProps> = ({
   className,
   as = "button",
   variant = "primary",
+  externalLink = false,
+  href,
   ...linkProps
 }) => {
   const baseClasses = "rounded-lg border flex items-center justify-center"
@@ -176,9 +181,31 @@ export const IconButton: React.FC<IconButtonProps> = ({
     className
   )
 
-  if (as === "a" && linkProps?.href) {
+  const isExternalLink = as === "a" && externalLink && typeof href === "string"
+  if (isExternalLink) {
     return (
-      <NextLink href={linkProps.href} passHref legacyBehavior {...linkProps}>
+      <HeadlessUiButton
+        as="a"
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={buttonClasses}
+      >
+        {icon}
+        <span className="sr-only">{iconDescription}</span>
+      </HeadlessUiButton>
+    )
+  }
+
+  if (as === "a" && href != null) {
+    return (
+      <NextLink
+        href={href as UrlObject}
+        passHref
+        legacyBehavior
+        prefetch={false}
+        {...linkProps}
+      >
         <HeadlessUiButton as="a" className={buttonClasses} disabled={disabled}>
           {icon}
 

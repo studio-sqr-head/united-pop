@@ -68,7 +68,7 @@ export default async function RootLayout(
 ) {
   const { generalContent } = await getGeneralContent()
   const {
-    facebookUrl,
+    tiktokUrl,
     instagramUrl,
     linkedInUrl,
     youtubeUrl,
@@ -78,6 +78,8 @@ export default async function RootLayout(
     postalCode,
     city,
   } = generalContent.content
+
+  console.log(generalContent)
   const { children, params } = props
 
   return (
@@ -95,7 +97,7 @@ export default async function RootLayout(
             postalCode,
             city,
           }}
-          facebookUrl={facebookUrl}
+          tiktokUrl={tiktokUrl}
           instagramUrl={instagramUrl}
           linkedInUrl={linkedInUrl}
           youtubeUrl={youtubeUrl}

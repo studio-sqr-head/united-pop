@@ -125,7 +125,7 @@ export interface FaqStoryblok {
 }
 
 export interface GeneralStoryblok {
-  facebookUrl?: string
+  tiktokUrl?: string
   youtubeUrl?: string
   linkedInUrl?: string
   instagramUrl?: string
