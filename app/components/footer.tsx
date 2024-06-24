@@ -28,12 +28,13 @@ export const Footer = ({
   instagramUrl?: string
   linkedInUrl?: string
   youtubeUrl?: string
-  phoneNumber: string
+  phoneNumber?: string
   address: {
     name?: string
     street?: string
     postalCode?: string
     city?: string
+    addressUrl?: string
   }
 }): ReactElement => {
   return (
