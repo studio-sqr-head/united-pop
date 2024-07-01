@@ -29,6 +29,7 @@ export async function generateMetadata({
       title: metaTitle,
       description: metaDescription,
     },
+    metadataBase: new URL(`${env.NEXT_PUBLIC_BASE_URL}/${lang}`),
     openGraph: {
       type: "website",
       locale: lang,
